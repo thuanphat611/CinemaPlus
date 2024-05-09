@@ -1,0 +1,22 @@
+{
+  "name": "cinemaplus",
+  "version": "1.0.0",
+  "description": "Movie streaming web",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "keywords": [
+    "CinemaPlus"
+  ],
+  "author": "Nguyen Thuan Phat",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
