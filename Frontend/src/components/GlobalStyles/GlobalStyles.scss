@@ -1,1 +1,23 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --primary-color: #611DBA;
+  --light-primary-color: #A060F2;
+  --white-color: #FFFFFF;
+  --black-color: #161616;
+  --turquoise-color: #60F2BE;
+  --green-color: #00A310;
+  --red-color: #FF0000;
+  --orange-color: #FF9900;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Poppins';
+  font-size: 1.6rem;
+  text-rendering: optimizeSpeed;
+}
