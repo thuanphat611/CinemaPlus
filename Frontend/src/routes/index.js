@@ -1,5 +1,5 @@
-import HomePage from "../pages/HomePage";
-import MoviePage from "../pages/MoviePage";
+import HomePage from "../pages/HomePage/HomePage";
+import MoviePage from "../pages/MoviePage/MoviePage";
 
 const publicRoutes = [
   {path: '/', component: HomePage},
