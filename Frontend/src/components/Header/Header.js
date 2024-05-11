@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -6,14 +6,15 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 const cx = classNames.bind(styles);
 
 function Header() {
+
+  const headerRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
-      var header = document.getElementsByClassName(cx('header'))[0];
-
       if (window.scrollY < 500) {
-        header.style.background = 'linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0))';
+        headerRef.current.style.background = 'linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0))';
       } else {
-        header.style.background = 'rgba(22, 22, 22, 1)';
+        headerRef.current.style.background = 'rgba(22, 22, 22, 1)';
       }
     };
 
@@ -25,7 +26,7 @@ function Header() {
   },[]);
 
   return ( 
-    <div className={cx('header')} id='header'>
+    <div ref={headerRef} className={cx('header')} id='header'>
       <div className={cx('logo')}>
         <a href={cx('header')}> 
           <img src="" alt=""/>

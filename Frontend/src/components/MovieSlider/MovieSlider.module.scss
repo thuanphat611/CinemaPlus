@@ -31,7 +31,7 @@
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
   right: 100px;
   z-index: 2;
 }
@@ -84,30 +84,4 @@
   background-color: var(--primary-color);
   border-radius: 50%;
   border: 1px solid var(--white-color);
-}
-
-.fade-out-animation {
-  animation: fade-out 0.3s ease forwards;
-}
-
-.fade-in-animation {
-  animation: fade-in 0.3s ease forwards;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
