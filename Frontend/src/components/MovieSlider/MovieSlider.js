@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 import styles from './MovieSlider.module.scss';
 
@@ -89,7 +90,31 @@ function MovieSlider({ imageList }) {
           <h2 className={cx('imdb-max-score')}>/</h2>
           <h2 className={cx('imdb-max-score')}>10</h2>
         </div>
-        <img className={cx('poster')} src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg" alt={imageList[0].name}/>
+      </div>
+
+      <div className={cx('poster-slider-border')}>
+        <div 
+          className={cx('poster-slider', 'poster-slide-' + activeIndex)}
+        >
+        {
+          imageList.map((item, index) => {
+            return (
+              <Link 
+                to={"/movie/id=" + item.movieId}
+                key={index} 
+                className={cx('poster-link', {
+                  'poster-active': index === activeIndex
+                })}
+                >
+                <img 
+                  className={cx('poster')} 
+                  src={item.poster} 
+                  alt={item.name}/>
+              </Link>
+              )
+          })
+        }
+        </div>
       </div>
 
       <div className={cx('slider-button-group')}>

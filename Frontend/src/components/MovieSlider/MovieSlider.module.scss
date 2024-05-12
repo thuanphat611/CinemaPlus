@@ -35,7 +35,7 @@
 .movie-info {
   position: absolute;
   left: 100px;
-  bottom: 15%;
+  top: 15%;
   z-index: 2;
 }
 
@@ -50,7 +50,6 @@
 .rating {
   display: flex;
   align-items: center;
-  margin-bottom: 6rem;
 }
 
 .imdb-logo {
@@ -75,9 +74,53 @@
   font-weight: 500;
 }
 
+.poster-slider-border {
+  height: 325px;
+  width: 800px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  bottom: 15%;
+  z-index: 2;
+}
+
+.poster-slider {
+  margin-left: 300px;
+  display: flex;
+  position: relative;
+  transition: transform 0.5s ease;
+}
+
+.poster-slide-0 {
+  transform: translateX(0);
+}
+
+.poster-slide-1 {
+  transform: translateX(calc(-203px - 20px));
+}
+
+.poster-slide-2 {
+  transform: translateX(calc(-203px * 2 - 20px * 2));
+}
+
+.poster-slide-3 {
+  transform: translateX(calc(-203px * 3 - 20px * 3));
+}
+
+.poster-link {
+  transition: transform 0.5s ease;
+}
+
+.poster-link + .poster-link {
+  margin-left: 20px;
+}
+
 .poster {
-  width: 225px;
-  height: 320px;
+  width: 203px;
+  height: 288px;
+  flex: none;
   object-fit: cover;
   overflow: hidden;
   background-color: var(--light-primary-color);
@@ -85,13 +128,13 @@
   border-radius: 15px;
 }
 
+.poster-active {
+  transform: translateY(-30px);
+}
+
 .poster:hover {
   cursor: pointer;
   opacity: 0.8;
-}
-
-.poster-link {
-  text-decoration: none;
 }
 
 //next, prev, dots---------------------------------------------
