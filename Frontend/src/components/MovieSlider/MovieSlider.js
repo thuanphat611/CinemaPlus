@@ -9,10 +9,7 @@ const cx = classNames.bind(styles);
 function MovieSlider({ imageList }) {
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const numImg = [1, 2, 3, 4, 5];
-  let imageSrc = imageList[activeIndex].imgURL ? imageList[activeIndex].imgURL : "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2022/12/30214953/Avatar-2-poster-600x337.jpeg";
-  const fadeOut = cx('fade-out-animation');
-  const fadeIn = cx('fade-in-animation');
+  // let imageSrc = imageList[activeIndex].imgURL ? imageList[activeIndex].imgURL : "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2022/12/30214953/Avatar-2-poster-600x337.jpeg";
 
   useEffect(() => {
     
@@ -39,7 +36,23 @@ function MovieSlider({ imageList }) {
   return (
     <div className={cx('container')}>
       <div className={cx('overlay')}></div>
-      <img className={cx('image')} src={imageSrc} alt=""/>
+      {
+        imageList.map((image, index) => {
+          return (
+            <img 
+              key={index} 
+              className={
+                cx("image",{
+                  "image-active": index === activeIndex
+                })
+              } 
+              src={image.imgURL} 
+              alt={image.imgAlt}
+            />
+          )
+        })
+      }
+      {/* <img className={cx('image')} src={imageSrc} alt=""/> */}
       <div className={cx('slider-button-group')}>
         <button className={cx('slider-button')} 
           onClick={(e) => {
