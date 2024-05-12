@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
+import logo from '../../assests/images/logo.png'
+
 const cx = classNames.bind(styles);
 
 function Header() {
@@ -11,7 +13,7 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < 500) {
+      if (window.scrollY < 100) {
         headerRef.current.style.background = 'linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0))';
       } else {
         headerRef.current.style.background = 'rgba(22, 22, 22, 1)';
@@ -25,13 +27,24 @@ function Header() {
     };   
   },[]);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return ( 
-    <div ref={headerRef} className={cx('header')} id='header'>
-      <div className={cx('logo')}>
-        <a href={cx('header')}> 
-          <img src="" alt=""/>
-        </a>
-      </div>
+    <div ref={headerRef} className={cx('header')}>
+      <button 
+        className={cx('logo-container')} 
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToTop();
+        }}
+      > 
+        <img className={cx('logo')} src={logo} alt=""/>
+      </button>
 
       <ul className={cx('navigation')}>
         <li>

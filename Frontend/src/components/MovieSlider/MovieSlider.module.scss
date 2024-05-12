@@ -2,19 +2,21 @@
   width: 100%;
   height: 100vh;
   background-color: var(--black-color);
+  overflow: hidden;
   position: relative;
 }
 
 .overlay {
+  height: 150vh;
+  width: 150vw;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(50deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
+  bottom: -50%;
+  left: -50%;
+  background: linear-gradient(45deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
   z-index: 1;
 }
 
+//background image-----------------------------------------------
 .image {
   min-width: 100%;
   height: 100%;
@@ -29,6 +31,70 @@
   opacity: 1;
 }
 
+//movie name, rating and poster----------------------------------------
+.movie-info {
+  position: absolute;
+  left: 100px;
+  bottom: 15%;
+  z-index: 2;
+}
+
+.movie-name {
+  width: 800px;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--white-color);
+  margin-bottom: 2rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.imdb-logo {
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #ff9900;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.imdb-score {
+  color: var(--white-color);
+  font-size: 3rem;
+}
+
+.imdb-max-score {
+  color: var(--white-color);
+  margin-left: 5px;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.poster {
+  width: 225px;
+  height: 320px;
+  object-fit: cover;
+  overflow: hidden;
+  background-color: var(--light-primary-color);
+  border: 2px solid var(--white-color);
+  border-radius: 15px;
+}
+
+.poster:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.poster-link {
+  text-decoration: none;
+}
+
+//next, prev, dots---------------------------------------------
 .slider-button-group {
   width: 125px;
   height: 70px;

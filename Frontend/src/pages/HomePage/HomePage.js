@@ -11,22 +11,26 @@ function HomePage() {
     {
       imgURL:
         "https://m.media-amazon.com/images/M/MV5BMjM4MzJjOTktNjc3Ni00YzA1LWExN2EtNDU0NTViY2M0ODBhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX2160_.jpg",
-      imgAlt: "Godzilla x Kong: The New Empire"
+      name: "Godzilla x Kong: The New Empire",
+      imdb: "6.5"
     },
     {
       imgURL:
         "https://m.media-amazon.com/images/M/MV5BNzQyOTJjOTEtOTFiYi00NzgyLWFiYmUtYTMzYzk5ODYwMjc2XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX2048_.jpg",
-      imgAlt: "Avatar: The Way of Water"
+      name: "Avatar: The Way of Water",
+      imdb: "7.5"
     },
     {
       imgURL:
         "https://m.media-amazon.com/images/M/MV5BYWU1ZGQ4MjctYjNlMS00YWY2LTg2ODctMTlhMDg2OWRiYjEzXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX2160_.jpg",
-      imgAlt: "Extraction 2"
+      name: "Extraction 2",
+      imdb: "7.0"
     },
     {
       imgURL:
         "https://m.media-amazon.com/images/M/MV5BMjVkMWFhN2ItZmI0NC00YzIyLWJiZDUtYTMxZDc2NzVjNWUzXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX2160_.jpg",
-      imgAlt: "Deadpool & Wolverine"
+      name: "Deadpool & Wolverine",
+      imdb: "7.0"
     }
   ];
 

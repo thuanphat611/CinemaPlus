@@ -12,14 +12,25 @@
   transition: background-color 0.5s ease;
 }
 
+.logo-container {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .logo {
-  min-width: 80px;
-  background-color: purple;
+  height: 150px;
+  object-fit: contain;
 }
 
 .navigation {
   width: 380px;
-  margin-left: 100px;
+  margin-left: 50px;
   display: flex; 
   list-style: none;
   justify-content: space-between;

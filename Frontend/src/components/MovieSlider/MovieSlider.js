@@ -12,6 +12,9 @@ function MovieSlider({ imageList }) {
   const [slideDone, setSlideDone] = useState(true);
   const [timeID, setTimeID] = useState(null);
 
+  let movieName = imageList[activeIndex].name;
+  let movieIMDB = imageList[activeIndex].imdb;
+
   useEffect(() => {
     if (slideDone) {
       setSlideDone(false);
@@ -72,12 +75,23 @@ function MovieSlider({ imageList }) {
                 })
               } 
               src={image.imgURL} 
-              alt={image.imgAlt}
+              alt={image.name}
             />
           )
         })
       }
-      {/* <img className={cx('image')} src={imageSrc} alt=""/> */}
+
+      <div className={cx('movie-info')}>
+        <h1 className={cx('movie-name')}>{movieName}</h1>
+        <div className={cx('rating')}>
+          <span className={cx('imdb-logo')}>IMDB</span>
+          <h2 className={cx('imdb-score')}>{movieIMDB}</h2>
+          <h2 className={cx('imdb-max-score')}>/</h2>
+          <h2 className={cx('imdb-max-score')}>10</h2>
+        </div>
+        <img className={cx('poster')} src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg" alt={imageList[0].name}/>
+      </div>
+
       <div className={cx('slider-button-group')}>
         <button className={cx('slider-button')} 
           onClick={(e) => {
