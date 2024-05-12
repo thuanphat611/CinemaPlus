@@ -36,21 +36,21 @@ function Header() {
 
   return ( 
     <div ref={headerRef} className={cx('header')}>
-      <button 
-        className={cx('logo-container')} 
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToTop();
-        }}
-      > 
+      <a className={cx('logo-container')} href='/'> 
         <img className={cx('logo')} src={logo} alt=""/>
-      </button>
+      </a>
 
       <ul className={cx('navigation')}>
         <li>
-          <a className={cx('navigation-link')} href="/">
+          <button 
+            className={cx('navigation-link')}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop();
+            }}
+          >
             <h3 className={cx('navigation-text')}>Home</h3>
-          </a>
+          </button>
         </li>
         <li>
           <a className={cx('navigation-link')} href="/">
