@@ -9,11 +9,20 @@ const cx = classNames.bind(styles);
 function MovieSlider({ imageList }) {
 
   const [activeIndex, setActiveIndex] = useState(0);
-  // let imageSrc = imageList[activeIndex].imgURL ? imageList[activeIndex].imgURL : "https://gugimages.s3.us-east-2.amazonaws.com/wp-content/uploads/2022/12/30214953/Avatar-2-poster-600x337.jpeg";
+  const [slideDone, setSlideDone] = useState(true);
+  const [timeID, setTimeID] = useState(null);
 
   useEffect(() => {
-    
-  });
+    if (slideDone) {
+      setSlideDone(false);
+      setTimeID(
+        setTimeout(() => {
+          slideNext();
+          setSlideDone(true);
+        }, 5000)
+      );
+    }
+  }, [slideDone]);
 
   const slideNext = () => {
     if (activeIndex < imageList.length - 1) {
@@ -33,8 +42,24 @@ function MovieSlider({ imageList }) {
     }
   }
 
+  const AutoPlayStop = () => {
+    if (timeID > 0) {
+      clearTimeout(timeID);
+      setSlideDone(false);
+    }
+  };
+
+  const AutoPlayStart = () => {
+    if (!slideDone) {
+      setSlideDone(true);
+    }
+  };
+
   return (
-    <div className={cx('container')}>
+    <div className={cx('container')}
+      onMouseEnter={AutoPlayStop}
+      onMouseLeave={AutoPlayStart}
+    >
       <div className={cx('overlay')}></div>
       {
         imageList.map((image, index) => {
