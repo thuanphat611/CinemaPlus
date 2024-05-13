@@ -8,6 +8,9 @@ const cx = classNames.bind(styles);
 
 function SearchBar() {
   
+  const [genre, setGenre] = useState("all");
+  const [year, setYear] = useState("all");
+
   let currentDate = new Date();
   let currentYear = Number(currentDate.getFullYear());
   let minYear = 1990;
@@ -29,33 +32,82 @@ function SearchBar() {
           <label className={cx('radio-label')} htmlFor="tv-show">TV show</label>
         </div>
 
-        <div className={cx('selection-wrap')}>
-          <select className={cx('selection')} name="genre" id="genre">
-            <option className={cx('selection-item')} value="all">Genre</option>
-
-            <option className={cx('selection-item')} value="Action">Action</option>
-            <option className={cx('selection-item')} value="Horror">Horror</option>
-            <option className={cx('selection-item')} value="Romantic">Romantic</option>
-          </select>
-          <FaAngleDown className={cx('selection-icon')} />
+        <input style={{display: "none"}} type="text" name="genre" value={genre} readOnly/>
+        <div className={cx('selection-container')}>
+          <div className={cx('selection')}>
+            <span className={cx('selection-selected-item')}>{genre === "all" ? "Year" : genre}</span>
+            <FaAngleDown />
+          </div>
+          <div className={cx('selection-dropdown-list')}>
+            <option className={cx('selection-dropdown-item')} value="all"
+              onClick={(e) => {
+                e.preventDefault();
+                setGenre(e.target.value);
+              }}
+            >
+              Genre
+            </option>
+            <option className={cx('selection-dropdown-item')} value="Action"
+              onClick={(e) => {
+                e.preventDefault();
+                setGenre(e.target.value);
+              }}
+            >
+              Action
+            </option>
+            <option className={cx('selection-dropdown-item')} value="Horror"
+              onClick={(e) => {
+                e.preventDefault();
+                setGenre(e.target.value);
+              }}
+            >
+              Horror
+            </option>
+            <option className={cx('selection-dropdown-item')} value="Romantic"
+              onClick={(e) => {
+                e.preventDefault();
+                setGenre(e.target.value);
+              }}
+            >
+              Romantic
+            </option>
+          </div>
         </div>
 
         <h3 className={cx('input-label')}>Rate</h3>
         <input type="text" className={cx('rate-input')} name="minRate" placeholder="from:" />
         <input type="text" className={cx('rate-input')} name="maxRate" placeholder="to:" />
 
-        <div className={cx('selection-wrap')}>
-          <select className={cx('selection')} name="year" id="year">
-          <option className={cx('selection-item')} value="all">Year</option>
-          {
-            yearList.map((year, index) => {
-              return (
-                <option key={index} className={cx('selection-item')} value={year}>{year}</option>
-              )
-            })
-          }
-          </select>
-          <FaAngleDown className={cx('selection-icon')} />
+        <input style={{display: "none"}} type="text" name="year" value={year} readOnly/>
+        <div className={cx('selection-container')}>
+          <div className={cx('selection')}>
+            <span className={cx('selection-selected-item')}>{year === "all" ? "Year" : year}</span>
+            <FaAngleDown />
+          </div>
+          <div className={cx('selection-dropdown-list')}>
+            <option className={cx('selection-dropdown-item')} value="all"
+              onClick={(e) => {
+                e.preventDefault();
+                setYear(e.target.value);
+              }}
+            >
+              Year
+            </option>
+            {
+              yearList.map((year, index) => {
+                return (
+                  <option key={index} className={cx('selection-dropdown-item')} value={year}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setYear(e.target.value);
+                    }}
+                  >
+                    {year}
+                  </option>
+                )
+              })
+            }
+          </div>
         </div>
 
         <button className={cx('button')}>Search</button>
