@@ -28,3 +28,26 @@ body {
   font-size: 1.6rem;
   text-rendering: optimizeSpeed;
 }
+
+//scrollbar-------------------------------------------------------------
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-black-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--white-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+  cursor: grab;
+}
+
+::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
+}
