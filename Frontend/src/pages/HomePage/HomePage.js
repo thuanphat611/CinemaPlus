@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
 import MovieSlider from '../../components/MovieSlider/MovieSlider';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 const cx = classNames.bind(styles);
 
@@ -45,7 +46,8 @@ function HomePage() {
   return ( 
     <div className={cx('content')}>
       <Header />
-      <MovieSlider imageList={images}/>
+      <MovieSlider imageList={images} />
+      <SearchBar />
     </div>
   );
 }

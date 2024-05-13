@@ -1,1 +1,2 @@
 MovieSilder component: có thể dùng API để lấy trending movie (https://developer.themoviedb.org/reference/trending-movies).
+Phần diễn viên ở trang chủ có thể lấy trending people (https://developer.themoviedb.org/reference/trending-people)

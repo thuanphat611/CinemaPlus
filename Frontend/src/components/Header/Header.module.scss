@@ -29,18 +29,23 @@
 }
 
 .navigation {
-  width: 380px;
   margin-left: 50px;
   display: flex; 
   list-style: none;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .navigation-link {
+  font-family: 'Poppins';
+  text-rendering: optimizeSpeed;
   background-color: transparent;
   border: none;
   text-decoration: none;
   cursor: pointer;
+}
+
+.navigation-item + .navigation-item {
+  margin-left: 30px;
 }
 
 .navigation-text {

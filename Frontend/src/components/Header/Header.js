@@ -41,7 +41,7 @@ function Header() {
       </a>
 
       <ul className={cx('navigation')}>
-        <li>
+        <li className={cx('navigation-item')}>
           <button 
             className={cx('navigation-link')}
             onClick={(e) => {
@@ -52,22 +52,22 @@ function Header() {
             <h3 className={cx('navigation-text')}>Home</h3>
           </button>
         </li>
-        <li>
+        <li className={cx('navigation-item')}>
           <a className={cx('navigation-link')} href="/">
             <h3 className={cx('navigation-text')}>Movie</h3>
           </a>
         </li>
-        <li>
+        {/* <li className={cx('navigation-item')}>
           <a className={cx('navigation-link')} href="/">
             <h3 className={cx('navigation-text')}>Series</h3>
           </a>
-        </li>
-        <li>
+        </li> */}
+        <li className={cx('navigation-item')}>
           <a className={cx('navigation-link')} href="/">
             <h3 className={cx('navigation-text')}>Actors</h3>
           </a>
         </li>
-        <li>
+        <li className={cx('navigation-item')}>
           <div className={cx('search-icon')}>
             <FaMagnifyingGlass/>
           </div>
