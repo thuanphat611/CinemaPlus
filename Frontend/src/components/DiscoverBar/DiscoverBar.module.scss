@@ -1,0 +1,140 @@
+.container {
+  display: flex;
+  position: absolute;
+  max-width: 90%;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%) translateY(-20px);
+  z-index: 3;
+}
+
+.form {
+  padding: 20px 20px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-black-color);
+  border: none;
+  border-radius: 10px;
+}
+
+.radio-group {
+  display: flex;
+  padding: 10px 10px;
+  margin-right: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: var(--black-color);
+}
+
+.radio-item {
+  display: none;
+}
+
+.radio-label {
+  display: block;
+  width: 100px;
+  padding: 10px 0px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  text-align: center;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+  z-index: 1;
+  user-select: none;
+  cursor: pointer;
+}
+
+.radio-item:checked + .radio-label {
+  background-color: var(--primary-color);
+}
+
+.selection-wrap {
+  margin-right: 30px;
+  display: flex;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.selection {
+  padding: 20px 20px 20px 10px;
+  appearance:initial;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  background: var(--black-color);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.selection-icon {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  transform: translateY(-50%);
+}
+
+.selection-item {
+  text-align: center;
+  padding: 5px;
+}
+
+.input-label {
+  display: flex;
+  height: 100%;
+  margin-right: 10px;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 100%;
+  user-select: none;
+}
+
+.rate-input {
+  height: 100%;
+  width: 70px;
+  padding: 0 10px;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+.rate-input + .rate-input {
+  margin-left: 10px;
+  margin-right: 30px;
+}
+
+.button {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.button:hover {
+  background-color: var(--light-primary-color);
+  cursor: pointer;
+}

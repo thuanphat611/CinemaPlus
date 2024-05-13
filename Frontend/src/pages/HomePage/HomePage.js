@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
 import MovieSlider from '../../components/MovieSlider/MovieSlider';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import SearchBar from '../../components/DiscoverBar/DiscoverBar';
 
 const cx = classNames.bind(styles);
 
