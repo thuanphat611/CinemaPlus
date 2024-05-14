@@ -214,7 +214,7 @@ function HomePage() {
       <MovieSlider imageList={images} />
       <DiscoverBar />
       <div className={cx('space-under-slider')}></div>
-      <CardSlider title="New Movies" viewAll="/movie">
+      <CardSlider title="New Movies" viewAll="/movie" pages={cardList.length} >
       {
         cardList.map((item, index) => {
           return (
@@ -223,7 +223,7 @@ function HomePage() {
         })
       }
       </CardSlider>
-      <CardSlider title="The Most Visited" viewAll="/movie">
+      <CardSlider title="The Most Visited" viewAll="/movie" pages={cardList.length} >
       {
         cardList.map((item, index) => {
           return (
@@ -232,7 +232,7 @@ function HomePage() {
         })
       }
       </CardSlider>
-      <CardSlider title="New Series" viewAll="/movie">
+      <CardSlider title="New Series" viewAll="/movie" pages={cardList.length} >
       {
         cardList.map((item, index) => {
           return (
@@ -241,7 +241,7 @@ function HomePage() {
         })
       }
       </CardSlider>
-      <CardSlider title="Animations" viewAll="/movie">
+      <CardSlider title="Animations" viewAll="/movie" pages={cardList.length} >
       {
         cardList.map((item, index) => {
           return (
