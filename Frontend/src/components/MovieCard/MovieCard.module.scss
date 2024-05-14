@@ -62,9 +62,12 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .like-btn:hover {
+  width: 55px;
+  height: 55px;
   cursor: pointer;
 }
 
