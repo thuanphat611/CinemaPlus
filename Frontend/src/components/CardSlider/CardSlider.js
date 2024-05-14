@@ -18,8 +18,10 @@ function CardSlider({ title, viewAll, children }) {
         </Link>
       </div>
       <div className={cx('slider')}>
-        <div className={cx('slider-content')}>
-          {children}
+        <div className={cx('slider-border')}>
+          <div className={cx('slider-content')}>
+            {children}
+          </div>
         </div>
 
         <button className={cx('slider-button')} 

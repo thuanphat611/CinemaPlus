@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  padding: 0 20px;
+  padding: 0 115px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -38,6 +38,11 @@
   width: 100%;
   min-height: 100px;
   position: relative;
+}
+
+.slider-border {
+  width: 100%;
+  padding: 10px 0px;
   overflow: hidden;
 }
 
@@ -63,14 +68,15 @@
   border: none;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: -25px;
   transform: translateY(-50%);
   opacity: 0.5;
+  z-index: 2;
 }
 
 .slider-button + .slider-button {
   left: unset;
-  right: 0;
+  right: -25px;
 }
 
 .slider-button:hover {

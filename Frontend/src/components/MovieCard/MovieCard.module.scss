@@ -11,15 +11,65 @@
   margin-left: 15px;
 }
 
+.link {
+  display: block;
+  position: relative;
+}
+
 .poster {
   flex: none;
   width: 203px;
   height: 288px;
   object-fit: cover;
   overflow: hidden;
-  background-color: var(--light-primary-color);
+  background-color: var(--light-black-color);
   border: 1px solid var(--light-black-color);
   border-radius: 15px;
+}
+
+.link:hover .hover-overlay {
+  display: block;
+}
+
+.hover-overlay {
+  display: none;
+  width: 203px;
+  height: 288px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(96, 242, 190, 0), rgba(96, 242, 190, 0.9));
+  box-shadow: 0 0 5px 1px rgba(96, 242, 190, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+
+.like-btn {
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, rgba(97, 29, 186, 1), rgba(96, 242, 190, 1));
+  color: var(--white-color);
+  border-radius: 50%;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 2;
+}
+
+.like-btn:hover {
+  cursor: pointer;
+}
+
+.like-icon {
+  text-align: center  ;
 }
 
 .movie-name {
@@ -33,4 +83,9 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.container:hover .movie-name {
+  color: var(--primary-color);
+  font-weight: 500;
 }
