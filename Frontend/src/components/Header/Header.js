@@ -59,7 +59,7 @@ function Header() {
         </li>
         <li className={cx('navigation-item')}>
           <a className={cx('navigation-link')} href="/">
-            <h3 className={cx('navigation-text')}>TV show</h3>
+            <h3 className={cx('navigation-text')}>Series</h3>
           </a>
         </li>
         <li className={cx('navigation-item')}>

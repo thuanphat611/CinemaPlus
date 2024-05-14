@@ -6,7 +6,7 @@ import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
 
-function CardSlider({ title, viewAll }) {
+function CardSlider({ title, viewAll, children }) {
   const sliderTitle = title ? title : 'None titled';
 
   return (
@@ -18,6 +18,9 @@ function CardSlider({ title, viewAll }) {
         </Link>
       </div>
       <div className={cx('slider')}>
+        <div className={cx('slider-content')}>
+          {children}
+        </div>
 
         <button className={cx('slider-button')} 
           onClick={(e) => {

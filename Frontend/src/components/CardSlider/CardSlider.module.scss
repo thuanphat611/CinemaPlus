@@ -38,6 +38,13 @@
   width: 100%;
   min-height: 100px;
   position: relative;
+  overflow: hidden;
+}
+
+.slider-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .slider:hover .slider-button {

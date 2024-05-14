@@ -6,7 +6,7 @@ import styles from './DiscoverBar.module.scss'
 
 const cx = classNames.bind(styles);
 
-function SearchBar() {
+function DiscoverBar() {
   
   const [genre, setGenre] = useState("all");
   const [year, setYear] = useState("all");
@@ -29,7 +29,7 @@ function SearchBar() {
           <input className={cx('radio-item')} type="radio" id="movie" name="type" value="movie" />
           <label className={cx('radio-label')} htmlFor="movie">Movie</label>
           <input className={cx('radio-item')} type="radio" id="tv-show" name="type" value="tv-show" />
-          <label className={cx('radio-label')} htmlFor="tv-show">TV show</label>
+          <label className={cx('radio-label')} htmlFor="tv-show">Series</label>
         </div>
 
         <input style={{display: "none"}} type="text" name="genre" value={genre} readOnly/>
@@ -116,4 +116,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default DiscoverBar;
