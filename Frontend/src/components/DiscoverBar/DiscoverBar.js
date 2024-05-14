@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FaAngleDown } from "react-icons/fa";
 
 import styles from './DiscoverBar.module.scss'
@@ -35,7 +35,7 @@ function SearchBar() {
         <input style={{display: "none"}} type="text" name="genre" value={genre} readOnly/>
         <div className={cx('selection-container')}>
           <div className={cx('selection')}>
-            <span className={cx('selection-selected-item')}>{genre === "all" ? "Year" : genre}</span>
+            <span className={cx('selection-selected-item')}>{genre === "all" ? "Genre" : genre}</span>
             <FaAngleDown />
           </div>
           <div className={cx('selection-dropdown-list')}>
@@ -45,7 +45,7 @@ function SearchBar() {
                 setGenre(e.target.value);
               }}
             >
-              Genre
+              All
             </option>
             <option className={cx('selection-dropdown-item')} value="Action"
               onClick={(e) => {
@@ -91,7 +91,7 @@ function SearchBar() {
                 setYear(e.target.value);
               }}
             >
-              Year
+              All
             </option>
             {
               yearList.map((year, index) => {

@@ -4,6 +4,7 @@ import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
 import MovieSlider from '../../components/MovieSlider/MovieSlider';
 import SearchBar from '../../components/DiscoverBar/DiscoverBar';
+import CardSlider from '../../components/CardSlider/CardSlider';
 
 const cx = classNames.bind(styles);
 
@@ -48,6 +49,11 @@ function HomePage() {
       <Header />
       <MovieSlider imageList={images} />
       <SearchBar />
+      <div className={cx('space-under-slider')}></div>
+      <CardSlider title="New Movies" viewAll="/movie" />
+      <CardSlider title="The Most Visited" viewAll="/movie" />
+      <CardSlider title="New Series" viewAll="/movie" />
+      <CardSlider title="Animations" viewAll="/movie" />
     </div>
   );
 }
