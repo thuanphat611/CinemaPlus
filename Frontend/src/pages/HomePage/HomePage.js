@@ -214,42 +214,10 @@ function HomePage() {
       <MovieSlider imageList={images} />
       <DiscoverBar />
       <div className={cx('space-under-slider')}></div>
-      <CardSlider title="New Movies" viewAll="/movie" pages={cardList.length} >
-      {
-        cardList.map((item, index) => {
-          return (
-            <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-          )
-        })
-      }
-      </CardSlider>
-      <CardSlider title="The Most Visited" viewAll="/movie" pages={cardList.length} >
-      {
-        cardList.map((item, index) => {
-          return (
-            <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-          )
-        })
-      }
-      </CardSlider>
-      <CardSlider title="New Series" viewAll="/movie" pages={cardList.length} >
-      {
-        cardList.map((item, index) => {
-          return (
-            <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-          )
-        })
-      }
-      </CardSlider>
-      <CardSlider title="Animations" viewAll="/movie" pages={cardList.length} >
-      {
-        cardList.map((item, index) => {
-          return (
-            <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-          )
-        })
-      }
-      </CardSlider>
+      <CardSlider title="New Movies" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <CardSlider title="The Most Visited" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <CardSlider title="New Series" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <CardSlider title="Animations" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
     </div>
   );
 }

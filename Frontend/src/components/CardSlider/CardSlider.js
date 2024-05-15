@@ -3,15 +3,17 @@ import { Link  } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
 
+import MovieCard from "../MovieCard/MovieCard";
 import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
 
-function CardSlider({ title, viewAll, children, pages }) {
+function CardSlider({ title, viewAll, source, type }) {
 
   const sliderTitle = title ? title : 'None titled';
   const sliderContent = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const pages = source ? source.length : 0;
 
   useEffect(() => {
     if (sliderContent) {
@@ -48,7 +50,32 @@ function CardSlider({ title, viewAll, children, pages }) {
       <div className={cx('slider')}>
         <div className={cx('slider-border')}>
           <div ref={sliderContent} className={cx('slider-content')}>
-            {children}
+          {
+            source 
+            ?
+            source.map((item, index) => {
+              return (
+                <>
+                  {
+                    type === "cast" 
+                    ?
+                    <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                    :
+                    null
+                  }
+                  {
+                    type === "movie"
+                    ?
+                    <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                    :
+                    null
+                  }
+                </>
+              )
+            })
+            : 
+            null
+          }
           </div>
         </div>
 
