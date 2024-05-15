@@ -54,24 +54,17 @@ function CardSlider({ title, viewAll, source, type }) {
             source 
             ?
             source.map((item, index) => {
-              return (
-                <>
-                  {
-                    type === "cast" 
-                    ?
-                    <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-                    :
-                    null
-                  }
-                  {
-                    type === "movie"
-                    ?
-                    <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
-                    :
-                    null
-                  }
-                </>
-              )
+              if (type === "cast") {
+                return (
+                  <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                );
+              }
+              else if ( type === "movie") {
+                return (
+                  <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                );
+              }
+              return null;
             })
             : 
             null
