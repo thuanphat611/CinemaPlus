@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
 
 import MovieCard from "../MovieCard/MovieCard";
+import CastCard from "../CastCard/CastCard";
 import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
@@ -14,10 +15,16 @@ function CardSlider({ title, viewAll, source, type }) {
   const sliderContent = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
   const pages = source ? source.length : 0;
+  let slideOffset = 0
+
+  if (type === "movie")
+    slideOffset = 203;
+  else if (type ==="cast")
+    slideOffset = 233;
 
   useEffect(() => {
     if (sliderContent) {
-      sliderContent.current.style = "transform: translateX(-"+ ((203 + 15) * currentPage) +"px)"; // tùy theo width và margin left của card
+      sliderContent.current.style = "transform: translateX(-"+ ((slideOffset + 15) * currentPage) +"px)"; // tùy theo width và margin left của card
     }
   });
 
@@ -56,12 +63,12 @@ function CardSlider({ title, viewAll, source, type }) {
             source.map((item, index) => {
               if (type === "cast") {
                 return (
-                  <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                  <CastCard key={index} profileURL={item.imgURL} name={item.name} homepage={item.homepage} birthday={item.birthday} />
                 );
               }
               else if ( type === "movie") {
                 return (
-                  <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
+                  <MovieCard key={index} id={item.movieId} posterURL={item.imgURL} name={item.name} />
                 );
               }
               return null;
