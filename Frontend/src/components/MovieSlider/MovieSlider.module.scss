@@ -10,10 +10,21 @@
   height: 150vh;
   width: 150vw;
   position: absolute;
-  bottom: -50%;
-  left: -50%;
-  background: linear-gradient(45deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
+  bottom: 0;
+  left: 0;
   z-index: 1;
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+  background-color: red;
+  box-shadow: 0 0 200px 400px rgba(97, 29, 186, 0.8);
+  transform: rotate(-35deg);
 }
 
 //background image-----------------------------------------------
