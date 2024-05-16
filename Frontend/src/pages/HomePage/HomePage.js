@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import MovieSlider from '../../components/MovieSlider/MovieSlider';
 import DiscoverBar from '../../components/DiscoverBar/DiscoverBar';
 import CardSlider from '../../components/CardSlider/CardSlider';
-import MovieCard from '../../components/MovieCard/MovieCard';
+import HightlightSection from '../../components/HightlightSection/HighlightSection';
 
 const cx = classNames.bind(styles);
 
@@ -168,6 +168,17 @@ function HomePage() {
     },
   ];
 
+  const highlightMovie = {
+    id: "111",
+    name: "Godzilla x Kong: The New Empire",
+    category: ["Science Fiction", "Action", " Adventure"],
+    casts: ["Rebecca Hall", "Brian Tyree Henry", "Dan Stevens"],
+    director: "Adam Wingard",
+    overview: "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own.",
+    posterURL: "https://m.media-amazon.com/images/M/MV5BMjM4MzJjOTktNjc3Ni00YzA1LWExN2EtNDU0NTViY2M0ODBhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX2160_.jpg",
+    more: "https://www.godzillaxkongmovie.com",
+  }
+
   return ( 
     <div className={cx('content')}>
       <Header />
@@ -176,8 +187,10 @@ function HomePage() {
       <div className={cx('space-under-slider')}></div>
       <CardSlider title="New Movies" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
       <CardSlider title="The Most Visited" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <HightlightSection source={highlightMovie} />
       <CardSlider title="New Series" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
       <CardSlider title="Animations" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <HightlightSection source={highlightMovie} />
       <CardSlider title="Actors" viewAll="/cast" pages={cardList.length} source={cardList} type="cast" ></CardSlider>
     </div>
   );
