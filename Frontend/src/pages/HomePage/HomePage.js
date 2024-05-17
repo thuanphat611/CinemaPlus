@@ -6,6 +6,7 @@ import MovieSlider from '../../components/MovieSlider/MovieSlider';
 import DiscoverBar from '../../components/DiscoverBar/DiscoverBar';
 import CardSlider from '../../components/CardSlider/CardSlider';
 import HightlightSection from '../../components/HightlightSection/HighlightSection';
+import TrailerSection from '../../components/TrailerSection/TrailerSection';
 
 const cx = classNames.bind(styles);
 
@@ -185,13 +186,14 @@ function HomePage() {
       <MovieSlider imageList={images} />
       <DiscoverBar />
       <div className={cx('space-under-slider')}></div>
-      <CardSlider title="New Movies" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
-      <CardSlider title="The Most Visited" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <CardSlider title="New Movies" viewAll="/movie" source={cardList} type="movie" />
+      <CardSlider title="The Most Visited" viewAll="/movie" source={cardList} type="movie" />
       <HightlightSection source={highlightMovie} />
-      <CardSlider title="New Series" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
-      <CardSlider title="Animations" viewAll="/movie" pages={cardList.length} source={cardList} type="movie" ></CardSlider>
+      <CardSlider title="New Series" viewAll="/movie" source={cardList} type="movie" />
+      <CardSlider title="Animations" viewAll="/movie" source={cardList} type="movie" />
       <HightlightSection source={highlightMovie} />
-      <CardSlider title="Actors" viewAll="/cast" pages={cardList.length} source={cardList} type="cast" ></CardSlider>
+      <CardSlider title="Actors" viewAll="/cast" source={cardList} type="cast" />
+      <TrailerSection source={images} />
     </div>
   );
 }
