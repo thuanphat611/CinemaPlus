@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
+import ReactPlayer from 'react-player';
 import { IoPlay } from "react-icons/io5";
-import { FaChevronDown, FaChevronUp  } from "react-icons/fa";
 
 import styles from './TrailerSection.module.scss';
 
@@ -11,24 +11,33 @@ function TrailerSection({ source }) {
   console.log(source1)
   return (
     <div className={cx('container')}>
-      <h4 className={cx('header')}>Trailers</h4>
-      <div className={cx('main')}>
-        <div className={cx('slider')}>
-          <div className={cx('slider-item')}>
-            <img className={cx('slider-item-image')} src={source1.imgURL} alt={source1.name} />
-            <div className={cx('play-button')}>
-              <IoPlay />
-            </div>
-            <h4 className={cx('slider-itemname')}>{source1.name}</h4>
-          </div>
+      <h3 className={cx('title')}>Trailers</h3>
 
-          <button className={cx('button-up')}><FaChevronUp /></button>
-          <button className={cx('button-down')}><FaChevronDown /></button>
+      <div className={cx('main')}>
+        <div className={cx('thumbnails')}>
+          <div className={cx('trailer-list')}>
+            {
+              source.map((item, index) => {
+                return (
+                  <div key={index} className={cx('trailer-item')}>
+                    <div className={cx('img-wrapper')}>
+                      <img className={cx('trailer-img')} src={item.imgURL} alt={item.name} />
+                      <div className={cx('play-btn')}>
+                        <IoPlay />
+                      </div>
+                    </div>
+                    <div className={cx('trailer-info')}>
+                      <h4 className={cx('trailer-name')}>{item.name + " Trailer"}</h4>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
         </div>
-        <img className={cx('background-image')} src={source1.imgURL} alt={source1.name} />
-        <div className={cx('free-space')}>
-          <button className={cx('background-play-btn')}><IoPlay /></button>
-          <h4 className={cx('background-name')}>{source1.name}</h4>
+
+        <div className={cx('player-container')}>
+          <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
         </div>
       </div>
     </div>

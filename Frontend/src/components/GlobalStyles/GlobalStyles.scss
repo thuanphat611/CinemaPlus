@@ -5,6 +5,7 @@
   --primary-color: rgb(97, 29, 186);
   --light-primary-color: #A060F2;
   --white-color: #FFFFFF;
+  --white-hover-color: #CCCCCC;
   --black-color: rgb(22, 22, 22);
   --light-black-color: rgb(32, 32, 32);
   --turquoise-color: rgb(96, 242, 190);
@@ -30,24 +31,24 @@ body {
 }
 
 //scrollbar-------------------------------------------------------------
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   width: 15px;
 }
 
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: var(--light-black-color);
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: var(--white-color);
   border-radius: 8px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background: var(--primary-color);
   cursor: grab;
 }
 
-::-webkit-scrollbar-thumb:active {
+body::-webkit-scrollbar-thumb:active {
   cursor: grabbing;
 }

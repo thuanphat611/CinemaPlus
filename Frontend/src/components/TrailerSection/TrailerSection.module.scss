@@ -1,65 +1,127 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background: red;
+  padding: 0 105px;
 }
 
-.headerTrailers {
-
+.title {
+  margin-bottom: 20px;
+  color: var(--white-color);
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .main {
-
+  display: flex;
+  height: 495px;
+  align-items: center;
+  justify-content: center;
 }
 
-.slider {
-
-}
-
-.slider-item {
-
-}
-
-.slider-item-image {
-  width: 216px;
-  height: 144px;
-  box-sizing: border-box;
-  object-fit: cover;
-  overflow: hidden;
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  padding: 10px 20px 30px 20px;
+  flex: 1;
+  margin-right: 20px;
+  background-color: var(--light-black-color);
   border-radius: 10px;
 }
 
-.play-button {
-
+.trailer-list {
+  margin-top: 10px;
+  flex: 1;
+  overflow: auto;
 }
 
-.slider-itemname {
-
+.trailer-list::-webkit-scrollbar {
+  width: 8px;
 }
 
-.button-up {
-
+.trailer-list::-webkit-scrollbar-track {
+  background: var(--light-black-color);
 }
 
-.button-down {
-
+.trailer-list::-webkit-scrollbar-thumb {
+  background: var(--white-color);
+  border-radius: 2px;
 }
 
-.background-image {
+.trailer-list::-webkit-scrollbar-thumb:hover {
+  background: var(--white-hover-color);
+}
+
+.trailer-item {
+  height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+}
+
+.trailer-item:hover {
+  cursor: pointer;
+  background-color: var(--black-color);
+}
+
+.trailer-item:hover .trailer-name {
+  color: var(--primary-color);
+}
+
+.img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.trailer-img {
+  width: 150px;
+  height: 85px;
+  margin-left: 5px;
+  border: 1px solid var(--white-color);
+  border-radius: 10px;
   box-sizing: border-box;
   object-fit: cover;
   overflow: hidden;
 }
 
-.free-space {
-
+.play-btn {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--white-color);
+  border-radius: 50%;
+  color: var(--white-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
-.background-play-btn {
-
+.trailer-info {
+  display: flex;
+  height: 100%;
+  padding: 5px 0;
+  margin-left: 10px;
+  align-items: center;
 }
 
-.background-name {
+.trailer-name {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.player-container {
+  width: 880px;
+  height: 100%;
+  background-color: var(--light-black-color);
 }
