@@ -37,12 +37,8 @@ function TrailerSection({ source }) {
         </div>
 
         <div className={cx('player-container')}>
-<<<<<<< HEAD
           <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=lV1OOlGwExM'/>
           {/* <iframe width="880" height='495' allowFullScreen title='videos' src='https://vidsrc.to/embed/movie/823464' /> */}
-=======
-          <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
->>>>>>> parent of 9f5a89b (link header tags to body components)
         </div>
       </div>
     </div>
