@@ -100,8 +100,8 @@ function Header({ refList }) {
       </ul>
 
       <div className={cx('header-button-group')}>
-        <button className={cx('login-btn')}>Login</button>
-        <button className={cx('signup-btn')}>Sign Up</button>
+        <button className={cx('login-btn')}>Premium</button>
+        <button className={cx('signup-btn')}>Sign In</button>
       </div>
     </div>
   );

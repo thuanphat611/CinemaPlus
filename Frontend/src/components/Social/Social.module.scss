@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  gap: 30px;
+  height: 280px;
+  padding: 0 105px;
+  padding-bottom: 80px;
+  margin-top: 80px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link {
+  height: 100%;
+  flex: 1;
+  text-decoration: none;
+}
+
+.block {
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.block:hover {
+  opacity: 0.9;
+}
+
+.telegram {
+  background: linear-gradient(135deg, rgba(0, 250, 175, 1), rgba(0, 139, 250, 1));
+}
+
+.instagram {
+  background: linear-gradient(135deg, rgba(211, 0, 197, 1), rgba(255, 122, 0, 1));
+}
+
+.icon {
+  width: 100%;
+  padding-top: 45px;
+  margin-bottom: 20px;
+  font-size: 5rem;
+  color: var(--white-color);
+  text-align: center;
+}
+
+.name {
+  font-size: 1.7rem;
+  color: var(--white-color);
+  font-weight: 500;
+  text-align: center;
+}
+
+.block-double {
+  flex: 2;
+  height: 100%;
+  background-color: var(--light-black-color);
+  border-radius: 10px;
+}
+
+.text {
+
+}
+.submit {
+
+
+}
+
+.input {
+
+}
+
+.btn {
+
+}

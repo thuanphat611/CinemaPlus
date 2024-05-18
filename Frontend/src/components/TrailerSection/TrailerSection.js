@@ -7,8 +7,6 @@ import styles from './TrailerSection.module.scss';
 const cx = classNames.bind(styles);
 
 function TrailerSection({ source }) {
-  const source1 = source[0];
-  console.log(source1)
   return (
     <div className={cx('container')}>
       <h3 className={cx('title')}>Trailers</h3>

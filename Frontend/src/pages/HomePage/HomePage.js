@@ -8,6 +8,7 @@ import DiscoverBar from '../../components/DiscoverBar/DiscoverBar';
 import CardSlider from '../../components/CardSlider/CardSlider';
 import HightlightSection from '../../components/HightlightSection/HighlightSection';
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
+import Social from '../../components/Social/Social';
 
 const cx = classNames.bind(styles);
 
@@ -269,6 +270,7 @@ function HomePage() {
       <HightlightSection source={highlightMovie} />
       <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={cardList} type="cast" />
       <TrailerSection source={trailers} />
+      <Social />
     </div>
   );
 }
