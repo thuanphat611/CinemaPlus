@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { Link  } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
 
 import MovieCard from "../MovieCard/MovieCard";
@@ -9,8 +9,7 @@ import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
 
-function CardSlider({ title, viewAll, source, type }) {
-
+const CardSlider = React.forwardRef(({ title, viewAll, source, type }, ref) => {
   const sliderTitle = title ? title : 'None titled';
   const sliderContent = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -47,7 +46,7 @@ function CardSlider({ title, viewAll, source, type }) {
   }
 
   return (
-    <div className={cx('container')}>
+    <div ref={ref} className={cx('container')}>
       <div className={cx('header')}>
         <h2 className={cx('title')}>{sliderTitle}</h2>
         <Link className={cx('view-all')} to={viewAll ? viewAll : "/"} >
@@ -98,6 +97,7 @@ function CardSlider({ title, viewAll, source, type }) {
       </div>
     </div>
   );
-}
+})
+
 
 export default CardSlider;

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useRef } from 'react';
 
 import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
@@ -11,6 +12,13 @@ import TrailerSection from '../../components/TrailerSection/TrailerSection';
 const cx = classNames.bind(styles);
 
 function HomePage() {
+
+  const refList = {
+    moviesRef: useRef(null),
+    castsRef: useRef(null),
+    seriesRef: useRef(null)
+  }
+
   const images = [
     {
       movieId: "001",
@@ -249,17 +257,17 @@ function HomePage() {
 
   return ( 
     <div className={cx('content')}>
-      <Header />
+      <Header refList={refList} />
       <MovieSlider imageList={images} />
       <DiscoverBar />
       <div className={cx('space-under-slider')}></div>
-      <CardSlider title="New Movies" viewAll="/movie" source={cardList} type="movie" />
+      <CardSlider ref={refList.moviesRef} title="New Movies" viewAll="/movie" source={cardList} type="movie" />
       <CardSlider title="The Most Visited" viewAll="/movie" source={cardList} type="movie" />
       <HightlightSection source={highlightMovie} />
-      <CardSlider title="New Series" viewAll="/movie" source={cardList} type="movie" />
+      <CardSlider ref={refList.seriesRef} title="New Series" viewAll="/movie" source={cardList} type="movie" />
       <CardSlider title="Animations" viewAll="/movie" source={cardList} type="movie" />
       <HightlightSection source={highlightMovie} />
-      <CardSlider title="Actors" viewAll="/cast" source={cardList} type="cast" />
+      <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={cardList} type="cast" />
       <TrailerSection source={trailers} />
     </div>
   );

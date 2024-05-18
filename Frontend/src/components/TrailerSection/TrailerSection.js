@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/youtube';
 import { IoPlay } from "react-icons/io5";
 
 import styles from './TrailerSection.module.scss';
@@ -27,7 +27,7 @@ function TrailerSection({ source }) {
                       </div>
                     </div>
                     <div className={cx('trailer-info')}>
-                      <h4 className={cx('trailer-name')}>{item.name + " Trailer"}</h4>
+                      <h4 className={cx('trailer-name')}>{item.name}</h4>
                     </div>
                   </div>
                 )
@@ -37,7 +37,12 @@ function TrailerSection({ source }) {
         </div>
 
         <div className={cx('player-container')}>
+<<<<<<< HEAD
+          <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=lV1OOlGwExM'/>
+          {/* <iframe width="880" height='495' allowFullScreen title='videos' src='https://vidsrc.to/embed/movie/823464' /> */}
+=======
           <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=LXb3EKWsInQ'/>
+>>>>>>> parent of 9f5a89b (link header tags to body components)
         </div>
       </div>
     </div>

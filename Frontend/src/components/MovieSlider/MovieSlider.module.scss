@@ -4,6 +4,7 @@
   background-color: var(--black-color);
   overflow: hidden;
   position: relative;
+  user-select: none;
 }
 
 .overlay {

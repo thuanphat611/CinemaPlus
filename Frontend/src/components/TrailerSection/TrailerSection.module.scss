@@ -84,6 +84,7 @@
   box-sizing: border-box;
   object-fit: cover;
   overflow: hidden;
+  user-select: none;
 }
 
 .play-btn {

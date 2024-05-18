@@ -7,7 +7,7 @@ import logo from '../../assests/images/logo.png'
 
 const cx = classNames.bind(styles);
 
-function Header() {
+function Header({ refList }) {
 
   const headerRef = useRef(null);
 
@@ -34,6 +34,16 @@ function Header() {
     });
   };
 
+  const scrollToRef = (cardRef) => {
+    if (cardRef.current) {
+      const topOffset = cardRef.current.offsetTop;
+      window.scrollTo({
+        top: topOffset - 100,
+        behavior: 'smooth' 
+      });
+    }
+  };
+
   return ( 
     <div ref={headerRef} className={cx('header')}>
       <a className={cx('logo-container')} href='/'> 
@@ -53,17 +63,32 @@ function Header() {
           </button>
         </li>
         <li className={cx('navigation-item')}>
-          <a className={cx('navigation-link')} href="/">
-            <h3 className={cx('navigation-text')}>Movie</h3>
+          <a className={cx('navigation-link')} href="/" 
+            onClick={(e) => { 
+              e.preventDefault();
+              scrollToRef(refList.moviesRef); 
+            }} 
+          >
+            <h3 className={cx('navigation-text')}>Movies</h3>
           </a>
         </li>
         <li className={cx('navigation-item')}>
-          <a className={cx('navigation-link')} href="/">
+          <a className={cx('navigation-link')} href="/"
+            onClick={(e) => { 
+              e.preventDefault();
+              scrollToRef(refList.seriesRef); 
+            }} 
+          >
             <h3 className={cx('navigation-text')}>Series</h3>
           </a>
         </li>
         <li className={cx('navigation-item')}>
-          <a className={cx('navigation-link')} href="/">
+          <a className={cx('navigation-link')} href="/"
+            onClick={(e) => { 
+              e.preventDefault();
+              scrollToRef(refList.castsRef); 
+            }} 
+          >
             <h3 className={cx('navigation-text')}>Actors</h3>
           </a>
         </li>
