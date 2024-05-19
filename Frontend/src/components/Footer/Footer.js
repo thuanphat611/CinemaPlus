@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { FiDownload } from "react-icons/fi";
+import { FaTelegram, FaInstagram, FaWhatsappSquare, FaTwitter } from "react-icons/fa";
 
 import styles from './Footer.module.scss';
 import logo from '../../assests/images/logo.png'
@@ -60,14 +61,31 @@ function Footer() {
                 </a>
               </div>
               <div className={cx('block')}>
-                
+                <h2 className={cx('download-text')}>I don't know what to put here :v</h2>
+                {/* add something here */}
               </div>
             </div>
           </div>
         </div>
 
         <div className={cx('credit')}>
-
+          <p className={cx('credit-text')}>The orginal design can be found 
+            <a className={cx('design-link')} href="https://dribbble.com/shots/24037692-Movie-Website-Case-Study" rel="noreferrer" target="_blank">here</a>
+          </p>
+          <div className={cx('social-media-group')}>
+            <a className={cx('social-media')} href="https://web.telegram.org/" rel="noreferrer" target="_blank">
+              <FaTelegram />
+            </a>
+            <a className={cx('social-media')} href="https://www.instagram.com/" rel="noreferrer" target="_blank">
+              <FaInstagram />
+            </a>
+            <a className={cx('social-media')} href="https://web.whatsapp.com/" rel="noreferrer" target="_blank">
+              <FaWhatsappSquare />
+            </a>
+            <a className={cx('social-media')} href="https://x.com/" rel="noreferrer" target="_blank">
+              <FaTwitter />
+            </a>
+          </div>
         </div>
       </div>
     </div>
