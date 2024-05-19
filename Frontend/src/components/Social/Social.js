@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import { useState } from "react";
 import { FaTelegram, FaInstagram  } from "react-icons/fa";
+import { LuAtSign } from "react-icons/lu";
 
 import styles from './Social.module.scss';
 
@@ -12,31 +13,46 @@ function Social() {
   
   return (
     <div className={cx('container')}>
-      <a className={cx('link')} href="/" target="_blank">
+      <a className={cx('link')} href="https://web.telegram.org/" rel="noreferrer" target="_blank">
         <div className={cx('block', 'telegram')}>
-          <div className={cx('icon')}>
-            <FaTelegram />
+          <div className={cx('content-wrapper')}>
+            <div className={cx('icon')}>
+              <FaTelegram />
+            </div>
+            <h4 className={cx('name')}>Follow us on Telegram</h4>
           </div>
-          <h4 className={cx('name')}>Follow us on Telegram</h4>
         </div>
       </a>
 
-      <a className={cx('link')} href="/" target="_blank">
+      <a className={cx('link')} href="https://www.instagram.com/" rel="noreferrer" target="_blank">
         <div className={cx('block', 'instagram')}>
-          <div className={cx('icon')}>
-            <FaInstagram />
+          <div className={cx('content-wrapper')}>
+            <div className={cx('icon')}>
+              <FaInstagram />
+            </div>
+            <h4 className={cx('name')}>Follow us on Instagram</h4>
           </div>
-          <h4 className={cx('name')}>Follow us on Instagram</h4>
         </div>
       </a>
 
       <div className={cx('block-double')}>
-        <p className={cx('text')}>
-
-        </p>
+        <div className={cx('subscribe')}>
+          <div className={cx('content-wrapper')}>
+            <div className={cx('at-icon')}>
+              <LuAtSign />
+            </div>
+            <h4 className={cx('name')}>Newsletter Subcription</h4>
+          </div>
+        </div>
+        
         <div className={cx('submit')}>
-          <input className={cx('input')} type="text" value={input} onChange={(e) => { setInput(e.target.value) }}/>
-          <button className={cx('btn')}>Subscribe</button>
+          <p className={cx('text')}>
+            By subscribing to the Email newsletter, you can find out about the latest news of the world cinema and also find out about the discounts and festivals of the website.
+          </p>
+          <div className={cx('form')}>
+            <input className={cx('input')} type="text" placeholder="Enter your Email..." value={input} onChange={(e) => { setInput(e.target.value) }}/>
+            <button className={cx('btn')}>Subscribe</button>
+          </div>
         </div>
       </div>
     </div>
