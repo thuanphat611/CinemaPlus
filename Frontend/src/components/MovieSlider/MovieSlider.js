@@ -29,21 +29,23 @@ function MovieSlider({ imageList }) {
   }, [slideDone]);
 
   const slideNext = () => {
-    if (activeIndex < imageList.length - 1) {
-      setActiveIndex(activeIndex + 1);
-    }
-    else {
-      setActiveIndex(0);
-    }
+    setActiveIndex((val) => {
+      if (val >= imageList.length - 1) {
+        return 0;
+      } else {
+        return val + 1;
+      }
+    });
   }
 
   const slidePrev = () => {
-    if (activeIndex > 0) {
-      setActiveIndex(activeIndex - 1);
-    }
-    else {
-      setActiveIndex(imageList.length - 1);
-    }
+    setActiveIndex((val) => {
+      if (val <= 0) {
+        return imageList.length - 1;
+      } else {
+        return val - 1;
+      }
+    });
   }
 
   const AutoPlayStop = () => {
