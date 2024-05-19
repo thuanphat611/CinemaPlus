@@ -9,6 +9,7 @@ import CardSlider from '../../components/CardSlider/CardSlider';
 import HightlightSection from '../../components/HightlightSection/HighlightSection';
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
+import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
 
@@ -271,6 +272,7 @@ function HomePage() {
       <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={cardList} type="cast" />
       <TrailerSection source={trailers} />
       <Social />
+      <Footer />
     </div>
   );
 }

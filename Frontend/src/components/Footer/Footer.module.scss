@@ -1,0 +1,72 @@
+.border {
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(90deg, rgba(97, 29, 186, 1), rgba(160, 96, 242, 1), rgba(97, 29, 186, 1));
+}
+
+.container {
+  width: 100%;
+  padding: 0px 40px;
+  background-color: var(--black-color);
+}
+
+.content {
+  display: flex;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 3px solid var(--light-black-color);
+  min-height: 100px;
+}
+
+.introduction {
+  flex: 1;
+  padding: 25px;
+  background-color: var(--light-black-color);
+  border-radius: 20px;
+}
+
+.logo-container {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo {
+  height: 160px;
+  width: auto;
+  box-sizing: border-box;
+  object-fit: cover;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -25px;
+}
+
+.title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.introduction-text {
+  color: var(--gray-color);
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 400;
+}
+
+.downloads {
+  flex: 3;
+  background-color: red;
+}
+
+.credit {
+  padding-bottom: 20px;
+}

@@ -20,6 +20,7 @@
   position: relative;
   border-radius: 15px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .content-wrapper {
@@ -39,6 +40,14 @@
 
 .instagram {
   background: linear-gradient(135deg, rgba(211, 0, 197, 1), rgba(255, 122, 0, 1));
+}
+
+.telegram:hover {
+  background: linear-gradient(-45deg, rgba(0, 250, 175, 1), rgba(0, 139, 250, 1));
+}
+
+.instagram:hover {
+  background: linear-gradient(-45deg, rgba(211, 0, 197, 1), rgba(255, 122, 0, 1));
 }
 
 .icon {
@@ -96,6 +105,7 @@
   flex: 1;
   color: var(--gray-color);
   font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .form {
