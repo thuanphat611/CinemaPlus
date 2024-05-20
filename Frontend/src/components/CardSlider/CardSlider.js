@@ -62,12 +62,12 @@ const CardSlider = React.forwardRef(({ title, viewAll, source, type }, ref) => {
             source.map((item, index) => {
               if (type === "cast") {
                 return (
-                  <CastCard key={index} profileURL={item.imgURL} name={item.name} homepage={item.homepage} birthday={item.birthday} />
+                  <CastCard key={index} profileURL={item.poster} name={item.name} homepage={item.homepage} birthday={item.birthday} />
                 );
               }
               else if ( type === "movie") {
                 return (
-                  <MovieCard key={index} id={item.movieId} posterURL={item.imgURL} name={item.name} />
+                  <MovieCard key={index} id={item.movieId} posterURL={item.poster} name={item.name} />
                 );
               }
               return null;
