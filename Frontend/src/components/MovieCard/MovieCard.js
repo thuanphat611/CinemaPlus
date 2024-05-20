@@ -6,12 +6,12 @@ import styles from './MovieCard.module.scss';
 
 const cx = classNames.bind(styles);
 
-function MovieCard({ id, posterURL, name }) {
+function MovieCard({ id, posterURL, name, type }) {
   return (
     <div className={cx('container')}>
       <Link 
         className={cx('link')}
-        to={"/movie?id=" + id}
+        to={"/" + type + "?id=" + id}
         >
         <img 
           className={cx('poster')} 

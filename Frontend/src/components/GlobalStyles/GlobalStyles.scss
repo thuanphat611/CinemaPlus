@@ -42,12 +42,11 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: var(--white-color);
+  background: var(--gray-color);
   border-radius: 8px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color);
   cursor: grab;
 }
 

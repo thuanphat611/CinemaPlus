@@ -26,12 +26,16 @@ function HightlightSection({ source }) {
             ""
           }
         </h4>
-        <h4 className={cx('information-line')}>
+        <h4 
+          className={cx('information-line', {
+            'no-display': source.type === 'series'
+          })} 
+        >
           <span className={cx('information-title')}>Director:</span>
           {source.director}
         </h4>
         <h4 className={cx('information-line')}>
-          <span className={cx('information-title')}>Stars:</span>
+          <span className={cx('information-title')}>Casts:</span>
           {
             source.casts && source.casts.length > 0 
             ?
@@ -52,7 +56,7 @@ function HightlightSection({ source }) {
           </span>
         </div>
         <div className={cx('button-group')}>
-          <Link className={cx('play-btn')} to={"/movie?id=" + source.id}>Play online</Link>
+          <Link className={cx('play-btn')} to={"/"+ source.type +"?id=" + source.id}>Play online</Link>
           <a className={cx('more-btn', {'no-display': !source.more})} href={source.more} target="_blank" rel="noreferrer">More Details</a>
         </div>
       </div>

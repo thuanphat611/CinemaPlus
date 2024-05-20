@@ -23,37 +23,37 @@ function HomePage() {
     seriesRef: useRef(null)
   }
 
-  const emptyData = [
+  const emptyList = [
     {
-      movieId: "",
+      id: "",
       imgURL: "",
       name: "",
       imdb: "",
       poster: ""
     },
     {
-      movieId: "",
+      id: "",
       imgURL: "",
       name: "",
       imdb: "",
       poster: ""
     },
     {
-      movieId: "",
+      id: "",
       imgURL: "",
       name: "",
       imdb: "",
       poster: ""
     },
     {
-      movieId: "",
+      id: "",
       imgURL: "",
       name: "",
       imdb: "",
       poster: ""
     },
     {
-      movieId: "",
+      id: "",
       imgURL: "",
       name: "",
       imdb: "",
@@ -61,7 +61,7 @@ function HomePage() {
     }
   ];
 
-  const emptyMovie = {
+  const emptyItem = {
     id: "",
     name: "",
     category: [],
@@ -71,129 +71,6 @@ function HomePage() {
     posterURL: "",
     more: ""
   }
-
-  const cardList = [
-    {
-      movieId: "001",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
-    },
-    {
-      movieId: "002",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
-    },
-    {
-      movieId: "003",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
-    },
-    {
-      movieId: "004",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
-    },
-    {
-      movieId: "001",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
-    },
-    {
-      movieId: "002",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
-    },
-    {
-      movieId: "003",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
-    },
-    {
-      movieId: "004",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
-    },
-    {
-      movieId: "001",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
-    },
-    {
-      movieId: "002",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
-    },
-    {
-      movieId: "003",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
-    },
-    {
-      movieId: "004",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
-    },
-    {
-      movieId: "001",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
-    },
-    {
-      movieId: "002",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
-    },
-    {
-      movieId: "003",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
-    },
-    {
-      movieId: "004",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
-    },
-    {
-      movieId: "001",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
-    },
-    {
-      movieId: "002",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
-    },
-    {
-      movieId: "003",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
-    },
-    {
-      movieId: "004",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
-    },
-  ];
 
   const trailers = [
     {
@@ -262,16 +139,17 @@ function HomePage() {
     }
   ];
 
-  const getMoviesFromURL = async (url) => {
+  const getListFromURL = async (url, type) => {
     const response = await tmdbClient.get(url);
-    let results = response?.data?.results.map((movie, index) => {
+    let results = response?.data?.results.map((item, index) => {
       return {
-        originalLanguage: movie.original_language,
-        movieId: movie.id,
-        name: movie.title,
-        imdb: '6.5',
-        imgURL: 'https://image.tmdb.org/t/p/original' + movie.backdrop_path,
-        poster: 'https://image.tmdb.org/t/p/original' + movie.poster_path
+        id: item.id,
+        type: type === 'tv' ? 'series' : 'movie',
+        name: item.title ? item.title : item.name,
+        originalLanguage: item.original_language,
+        imdb: null,
+        imgURL: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
+        poster: 'https://image.tmdb.org/t/p/w342' + item.poster_path
       }
     })
 
@@ -283,15 +161,21 @@ function HomePage() {
     return results;
   }
 
-  const getMovieDetailFromURL = async (url) => {
-    const movieDetail = await tmdbClient.get(url);
-    let result = undefined;
+  const getDetailFromURL = async (url, type) => {
+    let numOfCasts = 3;
 
-    if (movieDetail) {
-      const data = movieDetail?.data;
+    if (type === 'tv') {
+      numOfCasts = 5
+    }
+
+    const detail = await tmdbClient.get(url);
+    let result = undefined;
+    if (detail) {
+      const data = detail?.data;
       result = {
         id: data.id,
-        name: data.title,
+        type: type === 'tv' ? 'series' : 'movie',
+        name: data.title ? data.title : data.name,
         category: data.genres?.map((item) => {
           return item.name;
         }),
@@ -301,18 +185,37 @@ function HomePage() {
         posterURL: 'https://image.tmdb.org/t/p/original' + data.backdrop_path,
         more: data.homepage
       }
+
+      let requestURL = 'https://api.themoviedb.org/3/' + type + '/' + result.id + '/credits?language=en-US';
+      const response = await tmdbClient.get(requestURL);
+      const casts = response?.data?.cast;
+      const castList = casts
+      .filter((item, index) => {
+        return index < numOfCasts;
+      })
+      .map((item) => {
+        return item.name;
+      })
+      const director = response?.data?.crew?.filter((item) => {
+        return item.job === "Director" && item.department === "Directing";
+      })
+
+      result.director = director[0]?.name;
+      result.casts = castList;
     }
 
     return result;
   }
 
   const [loading, setLoading] = useState(false);
-  const [movieSliderData, setMovieSliderData] = useState(emptyData);
-  const [popularMoviesData, setPopularMoviesData] = useState(emptyData);
-  const [topRatedData, setTopRatedData] = useState(emptyData);
-  const [animationData, setAnimationData] = useState(emptyData);
+  const [movieSliderData, setMovieSliderData] = useState(emptyList);
+  const [popularMoviesData, setPopularMoviesData] = useState(emptyList);
+  const [topRatedData, setTopRatedData] = useState(emptyList);
+  const [animationData, setAnimationData] = useState(emptyList);
+  const [seriesData, setSeriesData] = useState(emptyList);
 
-  const [highlightMovie1, setHighlightMovie1] = useState(emptyMovie);
+  const [highlightMovie, setHighlightMovie] = useState(emptyItem);
+  const [highlightSeries, setHighlightSeries] = useState(emptyItem);
 
   //Get MovieSlider data
   useEffect(() => {
@@ -322,7 +225,7 @@ function HomePage() {
       setLoading(true);
 
       let requestURL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
-      const results = await getMoviesFromURL(requestURL);
+      const results = await getListFromURL(requestURL, 'movie');
 
       if (results.length >= 5) {
         setMovieSliderData(results.slice(0, movieSliderSize));
@@ -331,12 +234,12 @@ function HomePage() {
       //Get Highlight movie data
       const random = Math.floor(Math.random() * (results.length - movieSliderSize)) + movieSliderSize;
       const randomIndex = random < results.length ? random : 0;
-      const highlightMovieId = results[randomIndex].movieId;
+      const highlightMovieId = results[randomIndex].id;
       requestURL = 'https://api.themoviedb.org/3/movie/' + highlightMovieId + '?language=en-US'
-      const movieDetail = await getMovieDetailFromURL(requestURL);
+      const movieDetail = await getDetailFromURL(requestURL, 'movie');
 
       if (movieDetail) {
-        setHighlightMovie1(movieDetail);
+        setHighlightMovie(movieDetail);
       }
 
       setLoading(false);
@@ -350,7 +253,7 @@ function HomePage() {
       setLoading(true);
 
       const requestURL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
-      const results = await getMoviesFromURL(requestURL);
+      const results = await getListFromURL(requestURL, 'movie');
 
       if (results.length > 0) {
         setPopularMoviesData(results);
@@ -367,7 +270,7 @@ function HomePage() {
       setLoading(true);
 
       const requestURL = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-      const results = await getMoviesFromURL(requestURL);
+      const results = await getListFromURL(requestURL, 'movie');
 
       if (results.length > 0) {
         setTopRatedData(results);
@@ -392,10 +295,50 @@ function HomePage() {
 
       const requestURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&release_date.lte=' + currentTime + '&sort_by=popularity.desc&with_genres=16&with_original_language=en';
 
-      const results = await getMoviesFromURL(requestURL);
+      const results = await getListFromURL(requestURL, 'movie');
 
       if (results.length > 0) {
         setAnimationData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
+  //Get Popular Series section data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      const requestURL = 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1';
+      const results = await getListFromURL(requestURL, 'tv');
+
+      if (results.length > 0) {
+        setSeriesData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+  
+  //Get Highlight series data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      let requestURL = 'https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1';
+      const results = await getListFromURL(requestURL, 'tv');
+
+      const random = Math.floor(Math.random() * results.length);
+      const randomIndex = random < results.length ? random : 0;
+      const highlightSeriesId = results[randomIndex].id;
+      requestURL = 'https://api.themoviedb.org/3/tv/' + highlightSeriesId + '?language=en-US'
+      const seriesDetail = await getDetailFromURL(requestURL, 'tv');
+
+      if (seriesDetail) {
+        setHighlightSeries(seriesDetail);
       }
 
       setLoading(false);
@@ -411,11 +354,11 @@ function HomePage() {
       <div className={cx('space-under-slider')}></div>
       <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
       <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" />
-      <HightlightSection source={highlightMovie1} />
-      <CardSlider ref={refList.seriesRef} title="New Series" viewAll="/movie" source={cardList} type="movie" />
+      <HightlightSection source={highlightMovie} />
+      <CardSlider ref={refList.seriesRef} title="Popular Series" viewAll="/movie" source={seriesData} type="movie" />
       <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
-      <HightlightSection source={highlightMovie1} />
-      <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={cardList} type="cast" />
+      <HightlightSection source={highlightSeries} />
+      <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={popularMoviesData} type="cast" />
       <TrailerSection source={trailers} />
       <Social />
       <Footer />
