@@ -30,35 +30,40 @@ function HomePage() {
       imgURL: "",
       name: "",
       imdb: "",
-      poster: ""
+      poster: "",
+      youtubeKey: ""
     },
     {
       id: "",
       imgURL: "",
       name: "",
       imdb: "",
-      poster: ""
+      poster: "",
+      youtubeKey: ""
     },
     {
       id: "",
       imgURL: "",
       name: "",
       imdb: "",
-      poster: ""
+      poster: "",
+      youtubeKey: ""
     },
     {
       id: "",
       imgURL: "",
       name: "",
       imdb: "",
-      poster: ""
+      poster: "",
+      youtubeKey: ""
     },
     {
       id: "",
       imgURL: "",
       name: "",
       imdb: "",
-      poster: ""
+      poster: "",
+      youtubeKey: ""
     }
   ];
 
@@ -208,12 +213,55 @@ function HomePage() {
     return result;
   }
 
+  const getTrailerFromURl = async (url) => {
+    let response = await tmdbClient.get(url);
+    let results = response?.data?.results.map((item, index) => {
+      return {
+        id: item.id,
+        name: item.title ? item.title : item.name,
+        originalLanguage: item.original_language,
+        imgURL: 'https://image.tmdb.org/t/p/w300' + item.backdrop_path
+      }
+    })
+
+    //English movies only
+    results = results.filter((item) => {
+      return item.originalLanguage === 'en';
+    });
+
+    //Get the youtube trailer link
+    for (var i = 0; i < results.length; i++) {
+      const requestURL = 'https://api.themoviedb.org/3/movie/'+ results[i].id +'/videos?language=en-US';
+      response = await tmdbClient.get(requestURL);
+      const data = response?.data;
+
+      const trailer = data?.results.filter((item) => {
+        return item.site === 'YouTube' && item.type === 'Trailer';
+      })
+
+      //Find the final offical trailer
+      const officalTrailer = trailer.filter((item) => {
+        return item.name.includes('Official Trailer');
+      })
+
+      if (officalTrailer.length !== 0) {
+        results[i].youtubeKey = officalTrailer[0].key;
+      }
+      else {
+        results[i].youtubeKey = trailer[0].key;
+      }
+    }
+
+    return results;
+  }
+
   const [loading, setLoading] = useState(false);
   const [movieSliderData, setMovieSliderData] = useState(emptyList);
   const [popularMoviesData, setPopularMoviesData] = useState(emptyList);
   const [topRatedData, setTopRatedData] = useState(emptyList);
   const [animationData, setAnimationData] = useState(emptyList);
   const [seriesData, setSeriesData] = useState(emptyList);
+  const [trailerData, setTrailerData] = useState(emptyList);
 
   const [highlightMovie, setHighlightMovie] = useState(emptyItem);
   const [highlightSeries, setHighlightSeries] = useState(emptyItem);
@@ -347,6 +395,23 @@ function HomePage() {
     getData();
   }, []);
 
+  //Get Trailer section data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      let requestURL = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
+      const results = await getTrailerFromURl(requestURL);
+
+      if (results.length > 0) {
+        setTrailerData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
   return ( 
     <div className={cx('content')}>
       <Header refList={refList} />
@@ -364,7 +429,7 @@ function HomePage() {
         <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
         <HightlightSection source={highlightSeries} />
         <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={popularMoviesData} type="cast" />
-        <TrailerSection source={trailers} />
+        <TrailerSection source={trailerData} />
         <Social />
         <Footer />
       </span>

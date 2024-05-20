@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import ReactPlayer from 'react-player/youtube';
+import { useState } from 'react';
 import { IoPlay } from "react-icons/io5";
 
 import styles from './TrailerSection.module.scss';
@@ -7,6 +8,8 @@ import styles from './TrailerSection.module.scss';
 const cx = classNames.bind(styles);
 
 function TrailerSection({ source }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className={cx('container')}>
       <h3 className={cx('title')}>Trailers</h3>
@@ -17,7 +20,14 @@ function TrailerSection({ source }) {
             {
               source.map((item, index) => {
                 return (
-                  <div key={index} className={cx('trailer-item')}>
+                  <div 
+                    key={index} 
+                    className={cx('trailer-item')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setActiveIndex(index);
+                    }}
+                  >
                     <div className={cx('img-wrapper')}>
                       <img className={cx('trailer-img')} src={item.imgURL} alt={item.name} />
                       <div className={cx('play-btn')}>
@@ -35,7 +45,7 @@ function TrailerSection({ source }) {
         </div>
 
         <div className={cx('player-container')}>
-          <ReactPlayer controls width="880px" height="495px" url='https://www.youtube.com/watch?v=lV1OOlGwExM'/>
+          <ReactPlayer controls width="880px" height="495px" url={'https://www.youtube.com/watch?v=' + source[activeIndex].youtubeKey}/>
           {/* <iframe width="880" height='495' allowFullScreen title='videos' src='https://vidsrc.to/embed/movie/823464' /> */}
         </div>
       </div>
