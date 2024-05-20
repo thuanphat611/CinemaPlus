@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
@@ -11,6 +11,8 @@ import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
 import Footer from '../../components/Footer/Footer';
 
+import { tmdbClient } from '../../axios/AxiosClients';
+
 const cx = classNames.bind(styles);
 
 function HomePage() {
@@ -21,40 +23,54 @@ function HomePage() {
     seriesRef: useRef(null)
   }
 
-  const images = [
+  const emptyData = [
     {
-      movieId: "001",
-      imgURL:
-        "https://m.media-amazon.com/images/M/MV5BMjM4MzJjOTktNjc3Ni00YzA1LWExN2EtNDU0NTViY2M0ODBhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX2160_.jpg",
-      name: "Godzilla x Kong: The New Empire",
-      imdb: "6.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BY2QwOGE2NGQtMWQwNi00M2IzLThlNWItYWMzNGQ5YWNiZDA4XkEyXkFqcGdeQXVyNTE1NjY5Mg@@._V1_FMjpg_UY2880_.jpg"
+      movieId: "",
+      imgURL: "",
+      name: "",
+      imdb: "",
+      poster: ""
     },
     {
-      movieId: "002",
-      imgURL:
-        "https://m.media-amazon.com/images/M/MV5BNzQyOTJjOTEtOTFiYi00NzgyLWFiYmUtYTMzYzk5ODYwMjc2XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX2048_.jpg",
-      name: "Avatar: The Way of Water",
-      imdb: "7.5",
-      poster: "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX900_.jpg"
+      movieId: "",
+      imgURL: "",
+      name: "",
+      imdb: "",
+      poster: ""
     },
     {
-      movieId: "003",
-      imgURL:
-        "https://m.media-amazon.com/images/M/MV5BYWU1ZGQ4MjctYjNlMS00YWY2LTg2ODctMTlhMDg2OWRiYjEzXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX2160_.jpg",
-      name: "Extraction 2",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BZjg5MTM4N2QtN2RlMS00NzBlLTg3NDktM2ExZDNmMmExMGU3XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1013_.jpg"
+      movieId: "",
+      imgURL: "",
+      name: "",
+      imdb: "",
+      poster: ""
     },
     {
-      movieId: "004",
-      imgURL:
-        "https://m.media-amazon.com/images/M/MV5BMjVkMWFhN2ItZmI0NC00YzIyLWJiZDUtYTMxZDc2NzVjNWUzXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX2160_.jpg",
-      name: "Deadpool & Wolverine",
-      imdb: "7.0",
-      poster: "https://m.media-amazon.com/images/M/MV5BOWI2YjAxODctOTAzYi00ZmQ5LWE0ZmEtOGMxMTUzYmVjYzY2XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UY3037_.jpg"
+      movieId: "",
+      imgURL: "",
+      name: "",
+      imdb: "",
+      poster: ""
+    },
+    {
+      movieId: "",
+      imgURL: "",
+      name: "",
+      imdb: "",
+      poster: ""
     }
   ];
+
+  const emptyMovie = {
+    id: "",
+    name: "",
+    category: [],
+    casts: [],
+    director: "",
+    overview: "",
+    posterURL: "",
+    more: ""
+  }
 
   const cardList = [
     {
@@ -179,17 +195,6 @@ function HomePage() {
     },
   ];
 
-  const highlightMovie = {
-    id: "111",
-    name: "Godzilla x Kong: The New Empire",
-    category: ["Science Fiction", "Action", " Adventure"],
-    casts: ["Rebecca Hall", "Brian Tyree Henry", "Dan Stevens"],
-    director: "Adam Wingard",
-    overview: "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own. Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own.",
-    posterURL: "https://m.media-amazon.com/images/M/MV5BMjM4MzJjOTktNjc3Ni00YzA1LWExN2EtNDU0NTViY2M0ODBhXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX2160_.jpg",
-    more: "https://www.godzillaxkongmovie.com",
-  }
-
   const trailers = [
     {
       movieId: "001",
@@ -257,18 +262,166 @@ function HomePage() {
     }
   ];
 
+  const getFromURL = async (url) => {
+    
+  }
+
+  const [loading, setLoading] = useState(false);
+  const [movieSliderData, setMovieSliderData] = useState(emptyData);
+  const [popularMoviesData, setPopularMoviesData] = useState(emptyData);
+  const [topRatedData, setTopRatedData] = useState(emptyData);
+  const [animationData, setAnimationData] = useState(emptyData);
+
+  const [highlightMovie1, setHighlightMovie1] = useState(emptyMovie);
+
+  //Get MovieSlider data
+  useEffect(() => {
+    const movieSliderSize = 5;
+    
+    async function getData() {
+      setLoading(true);
+
+      const response = await tmdbClient.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1');
+      let results = response?.data?.results.map((movie, index) => {
+        return {
+          originalLanguage: movie.original_language,
+          movieId: movie.id,
+          name: movie.title,
+          imdb: '6.5',
+          imgURL: 'https://image.tmdb.org/t/p/original' + movie.backdrop_path,
+          poster: 'https://image.tmdb.org/t/p/original' + movie.poster_path
+        }
+      })
+
+      results = results.filter((item) => {
+        return item.originalLanguage === 'en';
+      });
+
+      if (results.length >= 5) {
+        setMovieSliderData(results.slice(0, movieSliderSize));
+      }
+
+      //Get Highlight movie data
+      const random = Math.floor(Math.random() * (results.length - movieSliderSize)) + movieSliderSize;
+      const randomIndex = random < results.length ? random : 0;
+      const highlightMovieId = results[randomIndex].movieId;
+      const requestURL = 'https://api.themoviedb.org/3/movie/' + highlightMovieId + '?language=en-US'
+      const movieDetail = await tmdbClient.get(requestURL);
+
+      if (movieDetail) {
+        console.log(movieDetail);
+        const movieDetailData = movieDetail?.data;
+        const movieDetailResult = {
+          id: movieDetailData.id,
+          name: movieDetailData.title,
+          category: movieDetailData.genres?.map((item) => {
+            return item.name;
+          }),
+          casts: [],
+          director: "",
+          overview: movieDetailData.overview,
+          posterURL: 'https://image.tmdb.org/t/p/original' + movieDetailData.backdrop_path,
+          more: movieDetailData.homepage
+        }
+        console.log(movieDetailResult);
+        setHighlightMovie1(movieDetailResult);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
+  //Get Popular Movies section data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      const response = await tmdbClient.get('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1');
+      const results = response?.data?.results.map((movie, index) => {
+        return {
+          movieId: movie.id,
+          name: movie.title,
+          imgURL: 'https://image.tmdb.org/t/p/original' + movie.poster_path
+        }
+      })
+
+      if (results.length > 0) {
+        setPopularMoviesData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
+  //Get The Top Rated movies section data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      const response = await tmdbClient.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1');
+      const results = response?.data?.results.map((movie, index) => {
+        return {
+          movieId: movie.id,
+          name: movie.title,
+          imgURL: 'https://image.tmdb.org/t/p/original' + movie.poster_path
+        }
+      })
+
+      if (results.length > 0) {
+        setTopRatedData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
+  //Get Animations section data
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      const monthToString = month < 10 ? "0" + month : month;
+      const currentTime = year + "-" + monthToString + "-" + day;
+
+      const requestURL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&release_date.lte=' + currentTime + '&sort_by=popularity.desc&with_genres=16&with_original_language=en';
+
+      const response = await tmdbClient.get(requestURL);
+      const results = response?.data?.results.map((movie, index) => {
+        return {
+          movieId: movie.id,
+          name: movie.title,
+          imgURL: 'https://image.tmdb.org/t/p/original' + movie.poster_path
+        }
+      })
+
+      if (results.length > 0) {
+        setAnimationData(results);
+      }
+
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
   return ( 
     <div className={cx('content')}>
       <Header refList={refList} />
-      <MovieSlider imageList={images} />
+      <MovieSlider imageList={movieSliderData} />
       <DiscoverBar />
       <div className={cx('space-under-slider')}></div>
-      <CardSlider ref={refList.moviesRef} title="New Movies" viewAll="/movie" source={cardList} type="movie" />
-      <CardSlider title="The Most Visited" viewAll="/movie" source={cardList} type="movie" />
-      <HightlightSection source={highlightMovie} />
+      <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
+      <CardSlider title="The Top Rated" viewAll="/movie" source={topRatedData} type="movie" />
+      <HightlightSection source={highlightMovie1} />
       <CardSlider ref={refList.seriesRef} title="New Series" viewAll="/movie" source={cardList} type="movie" />
-      <CardSlider title="Animations" viewAll="/movie" source={cardList} type="movie" />
-      <HightlightSection source={highlightMovie} />
+      <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
+      <HightlightSection source={highlightMovie1} />
       <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={cardList} type="cast" />
       <TrailerSection source={trailers} />
       <Social />

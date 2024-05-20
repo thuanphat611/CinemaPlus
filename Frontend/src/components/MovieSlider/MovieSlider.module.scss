@@ -121,6 +121,10 @@
   transform: translateX(calc(-203px * 3 - 20px * 3));
 }
 
+.poster-slide-4 {
+  transform: translateX(calc(-203px * 4 - 20px * 4));
+}
+
 .poster-link {
   transition: transform 0.5s ease;
 }
