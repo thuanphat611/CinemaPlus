@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { LuLoader2 } from "react-icons/lu";
 import { useRef, useState, useEffect } from 'react';
 
 import styles from './HomePage.module.scss';
@@ -224,7 +225,7 @@ function HomePage() {
     async function getData() {
       setLoading(true);
 
-      let requestURL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+      let requestURL = 'https://api.themoviedb.org/3/trending/movie/week?language=en-US';
       const results = await getListFromURL(requestURL, 'movie');
 
       if (results.length >= 5) {
@@ -349,19 +350,27 @@ function HomePage() {
   return ( 
     <div className={cx('content')}>
       <Header refList={refList} />
-      <MovieSlider imageList={movieSliderData} />
-      <DiscoverBar />
-      <div className={cx('space-under-slider')}></div>
-      <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
-      <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" />
-      <HightlightSection source={highlightMovie} />
-      <CardSlider ref={refList.seriesRef} title="Popular Series" viewAll="/movie" source={seriesData} type="movie" />
-      <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
-      <HightlightSection source={highlightSeries} />
-      <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={popularMoviesData} type="cast" />
-      <TrailerSection source={trailers} />
-      <Social />
-      <Footer />
+      
+      <span className={cx({
+        'no-display': loading
+      })}>
+        <MovieSlider imageList={movieSliderData} />
+        <DiscoverBar />
+        <div className={cx('space-under-slider')}></div>
+        <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
+        <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" />
+        <HightlightSection source={highlightMovie} />
+        <CardSlider ref={refList.seriesRef} title="Popular Series" viewAll="/movie" source={seriesData} type="movie" />
+        <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
+        <HightlightSection source={highlightSeries} />
+        <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={popularMoviesData} type="cast" />
+        <TrailerSection source={trailers} />
+        <Social />
+        <Footer />
+      </span>
+      <div className={cx('loader', { 'no-display': !loading})}>
+        <LuLoader2 />
+      </div>
     </div>
   );
 }
