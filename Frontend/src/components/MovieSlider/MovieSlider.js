@@ -109,6 +109,7 @@ function MovieSlider({ imageList }) {
                 })}
                 >
                 <img 
+                  style={{ display: item.poster ? 'block' : 'none' }}
                   className={cx('poster')} 
                   src={item.poster} 
                   alt={item.name}/>

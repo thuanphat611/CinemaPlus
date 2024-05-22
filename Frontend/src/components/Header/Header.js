@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 import logo from '../../assests/images/logo.png'
 
@@ -9,6 +10,8 @@ const cx = classNames.bind(styles);
 
 function Header({ refList }) {
 
+  const [searchText, setSearchText] = useState('');
+  const [searchOpen, setSearchOpen] = useState(false);
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -92,9 +95,37 @@ function Header({ refList }) {
             <h3 className={cx('navigation-text')}>Actors</h3>
           </a>
         </li>
-        <li className={cx('navigation-item')}>
-          <div className={cx('search-icon')}>
-            <FaMagnifyingGlass/>
+        
+        <li 
+          className={cx('navigation-item')}
+        >
+          <div className={cx('search-wrap', {
+            'search-open': searchOpen
+          })}>
+            <div className={cx('search-bar')}>
+              <input className={cx('search-input')} value={searchText} type='text' 
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+              />
+              <button 
+                className={cx('search-clear')} 
+                onClick={(e) => {
+                e.preventDefault();
+                setSearchText('');
+                }}
+              > 
+                <IoClose className={cx({'no-display': searchText.length === 0})} />
+              </button>
+            </div>
+            <div className={cx('search-icon')} 
+              onClick={(e) => {
+                e.preventDefault();
+                setSearchOpen((val) => !val);
+              }}
+            >
+              <FaMagnifyingGlass/>
+            </div>
           </div>
         </li>
       </ul>

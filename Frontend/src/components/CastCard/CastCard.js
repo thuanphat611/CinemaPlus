@@ -20,6 +20,7 @@ function CastCard({ profileURL, name, birthday, homepage }) {
       >
         <img 
           className={cx('profile-picture')} 
+          style={{ display: profileURL ? 'block' : 'none' }}
           src={profileURL} 
           alt={name}/>
         <div className={cx('hover-overlay')}>

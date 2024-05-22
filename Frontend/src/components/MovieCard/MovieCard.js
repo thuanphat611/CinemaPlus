@@ -15,6 +15,7 @@ function MovieCard({ id, posterURL, name, type }) {
         >
         <img 
           className={cx('poster')} 
+          style={{ display: posterURL ? 'block' : 'none' }}
           src={posterURL} 
           alt={name}/>
           <div className={cx('hover-overlay')}>
