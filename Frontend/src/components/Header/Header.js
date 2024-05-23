@@ -6,41 +6,15 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 
 import logo from '../../assests/images/logo.png'
-import { tmdbClient } from '../../axios/AxiosClients';
+import { getSearchResultFromAPI } from '../../axios/AxiosClients';
 
 const cx = classNames.bind(styles);
 
 function Header({ refList }) {
-
-  const tempData = [
-    {
-      posterURL: 'https://image.tmdb.org/t/p/w92/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg',
-      name: 'Movie\'s name',
-      type: 'Movie'
-    }
-  ]
-
   const [searchText, setSearchText] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const headerRef = useRef(null);
-
-  const getListFromURL = async (url, type) => {
-    const response = await tmdbClient.get(url);
-    let results = response?.data?.results.map((item) => {
-      return {
-        id: item.id,
-        type: type === 'tv' ? 'series' : 'movie',
-        name: item.title ? item.title : item.name,
-        originalLanguage: item.original_language,
-        imdb: null,
-        imgURL: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
-        poster: 'https://image.tmdb.org/t/p/w92' + item.poster_path
-      }
-    })
-
-    return results;
-  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,10 +36,10 @@ function Header({ refList }) {
   useEffect(() => {
     const getResult = async () => {
       let requestURL = 'https://api.themoviedb.org/3/search/movie?query=' + searchText + '&language=en';
-      const movieList = await getListFromURL(requestURL, 'movie');
+      const movieList = await getSearchResultFromAPI(requestURL, 'movie');
 
       requestURL = 'https://api.themoviedb.org/3/search/tv?query=' + searchText + '&language=en'
-      const seriesList = await getListFromURL(requestURL, 'tv');
+      const seriesList = await getSearchResultFromAPI(requestURL, 'tv');
 
       const result = [...movieList, ...seriesList];
       setSearchResult(result);
