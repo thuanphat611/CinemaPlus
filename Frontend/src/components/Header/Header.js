@@ -96,37 +96,76 @@ function Header({ refList }) {
           </a>
         </li>
         
-        <li 
-          className={cx('navigation-item')}
-        >
-          <div className={cx('search-wrap', {
-            'search-open': searchOpen
-          })}>
-            <div className={cx('search-bar')}>
-              <input className={cx('search-input')} value={searchText} type='text' 
-                onChange={(e) => {
-                  setSearchText(e.target.value);
-                }}
-              />
-              <button 
-                className={cx('search-clear')} 
+        <li className={cx('navigation-item')}>
+          <div className={cx('search-border')}>
+            <div className={cx('search-wrap', { 'search-open': searchOpen })}>
+              <div className={cx('search-bar')}>
+                <input className={cx('search-input')} value={searchText} type='text' 
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                  }}
+                />
+                <button 
+                  className={cx('search-clear')} 
+                  onClick={(e) => {
+                  e.preventDefault();
+                  setSearchText('');
+                  }}
+                > 
+                  <IoClose className={cx({'no-display': searchText.length === 0})} />
+                </button>
+              </div>
+  
+              <div className={cx('search-icon')} 
                 onClick={(e) => {
-                e.preventDefault();
-                setSearchText('');
+                  e.preventDefault();
+                  setSearchText('');
+                  setSearchOpen((val) => !val);
                 }}
-              > 
-                <IoClose className={cx({'no-display': searchText.length === 0})} />
-              </button>
-            </div>
-            <div className={cx('search-icon')} 
-              onClick={(e) => {
-                e.preventDefault();
-                setSearchOpen((val) => !val);
-              }}
-            >
-              <FaMagnifyingGlass/>
+              >
+                <FaMagnifyingGlass/>
+              </div>
+  
             </div>
           </div>
+
+          <div className={cx('search-result-wrapper')}>
+            <div className={cx('search-results')}>
+              <div className={cx('result-item')}>
+                <img className={cx('result-img')} src="https://image.tmdb.org/t/p/w92/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" alt="" />
+                <div className={cx('result-info')}>
+                  <h3 className={cx('result-name')}>Movie's name</h3>
+                  <p className={cx('result-type')}>Movie</p>
+                </div>
+              </div>
+              <div className={cx('result-item')}>
+                <img className={cx('result-img')} src="https://image.tmdb.org/t/p/w92/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" alt="" />
+                <div className={cx('result-info')}>
+                  <h3 className={cx('result-name')}>Movie's name</h3>
+                  <p className={cx('result-type')}>Movie</p>
+                </div>
+              </div>
+              <div className={cx('result-item')}>
+                <img className={cx('result-img')} src="https://image.tmdb.org/t/p/w92/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" alt="" />
+                <div className={cx('result-info')}>
+                  <h3 className={cx('result-name')}>Movie's name</h3>
+                  <p className={cx('result-type')}>Movie</p>
+                </div>
+              </div>
+              <div className={cx('result-item')}>
+                <img className={cx('result-img')} src="https://image.tmdb.org/t/p/w92/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" alt="" />
+                <div className={cx('result-info')}>
+                  <h3 className={cx('result-name')}>Movie's name</h3>
+                  <p className={cx('result-type')}>Movie</p>
+                </div>
+              </div>
+              
+              {/* <div className={cx('no-result')}>
+                <p className={cx('no-result-text')}>No results</p>
+              </div> */}
+            </div>
+          </div>
+          
         </li>
       </ul>
 

@@ -45,7 +45,7 @@
 }
 
 .navigation-item {
-  overflow: hidden;
+  position: relative;
 }
 
 .navigation-item + .navigation-item {
@@ -116,12 +116,16 @@
 }
 
 //Searchbar 
+.search-border {
+  overflow: hidden;
+}
+
 .search-wrap {
   display: flex;
   align-items: center;
-  overflow: hidden;
   transform: translateX(-305px);
   transition: transform 0.5s ease;
+  position: relative;
 }
 
 .search-open {
@@ -177,4 +181,115 @@
 
 .no-display {
   display: none!important;
+}
+
+.search-result-wrapper {
+  width: 300px;
+  padding: 20px 0;
+  position: absolute;
+  left: 0;
+  top: calc((100% + 15px));
+  background: var(--black-color);
+  border: 1px solid var(--gray-color);
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.search-result-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -19px;
+  left: 10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--gray-color) transparent;
+}
+
+.search-results {
+  min-height: 50px;
+  max-height: 50vh;
+  overflow: auto;
+  position: relative;
+}
+
+.result-item {
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  background-color: var(--black-color);
+}
+
+.result-item:hover {
+  background-color: var(--light-black-color);
+  cursor: pointer;
+}
+
+.result-img {
+  width: 61px;
+  height: 92px;
+  box-sizing: border-box;
+  object-fit: cover;
+  overflow: hidden;
+  background: var(--gray-color);
+  border: 1px solid var(--white-color);
+  border-radius: 5px;
+}
+
+.result-info {
+  flex: 1;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.result-name {
+  margin-bottom: 5px;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.result-item:hover .result-name {
+  color: var(--primary-color);
+}
+
+.result-type {
+  color: var(--gray-color);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.result-item:hover .result-type {
+  color: var(--white-hover-color);
+}
+
+.no-result {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-result-text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--gray-color);
+}
+
+.search-results::-webkit-scrollbar {
+  width: 10px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: var(--black-color);
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: var(--white-color);
+  border-radius: 5px;
 }
