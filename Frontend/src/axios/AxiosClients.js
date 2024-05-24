@@ -4,6 +4,7 @@ const searchImagePlaceholder = 'https://placehold.co/60x90?text=No+Image';
 const movieCardImagePlaceholder = 'https://placehold.co/200x280?text=No+Image';
 const castCardImagePlaceholder = 'https://placehold.co/230x280?text=No+Image';
 const backdropImagePlaceholder = 'https://placehold.co/1200x700?text=No+Image';
+const trailerImagePlaceholder = 'https://placehold.co/150x85?text=No+Image';
 
 const tmdbClient = axios.create({
   baseURL: 'http://localhost:3033',
@@ -89,7 +90,7 @@ const getTrailerFromAPI = async (url) => {
       id: item.id,
       name: item.title ? item.title : item.name,
       originalLanguage: item.original_language,
-      imgURL: 'https://image.tmdb.org/t/p/w300' + item.backdrop_path
+      imgURL: item.backdrop_path ? 'https://image.tmdb.org/t/p/w300' + item.backdrop_path : trailerImagePlaceholder
     }
   })
 

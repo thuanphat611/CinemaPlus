@@ -6,6 +6,7 @@ import styles from './HomePage.module.scss';
 import Header from '../../components/Header/Header';
 import MovieSlider from '../../components/MovieSlider/MovieSlider';
 import DiscoverBar from '../../components/DiscoverBar/DiscoverBar';
+import AiringSeries from '../../components/AiringSeires/AiringSeires';
 import CardSlider from '../../components/CardSlider/CardSlider';
 import HightlightSection from '../../components/HightlightSection/HighlightSection';
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
@@ -86,7 +87,6 @@ function HomePage() {
   const [seriesData, setSeriesData] = useState(emptyList);
   const [trailerData, setTrailerData] = useState(emptyList);
   const [castData, setCastData] = useState(emptyList);
-
   const [highlightMovie, setHighlightMovie] = useState(emptyItem);
   const [highlightSeries, setHighlightSeries] = useState(emptyItem);
 
@@ -256,13 +256,15 @@ function HomePage() {
   return ( 
     <div className={cx('content')}>
       <Header refList={refList} />
+      <div className={cx('loader', { 'no-display': !loading})}>
+        <LuLoader2 />
+      </div>
       
-      <span className={cx({
-        'no-display': loading
-      })}>
+      <span className={cx({'no-display': loading})}>
         <MovieSlider imageList={movieSliderData} />
         <DiscoverBar />
         <div className={cx('space-under-slider')}></div>
+        <AiringSeries />
         <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
         <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" />
         <HightlightSection source={highlightMovie} />
@@ -274,9 +276,6 @@ function HomePage() {
         <Social />
         <Footer />
       </span>
-      <div className={cx('loader', { 'no-display': !loading})}>
-        <LuLoader2 />
-      </div>
     </div>
   );
 }
