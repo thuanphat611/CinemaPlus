@@ -69,7 +69,7 @@ function Footer() {
         </div>
 
         <div className={cx('credit')}>
-          <p className={cx('credit-text')}>The orginal design can be found 
+          <p className={cx('credit-text')}>The orginal design idea can be found 
             <a className={cx('design-link')} href="https://dribbble.com/shots/24037692-Movie-Website-Case-Study" rel="noreferrer" target="_blank">here</a>
           </p>
           <div className={cx('social-media-group')}>

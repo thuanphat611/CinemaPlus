@@ -29,7 +29,7 @@ function TrailerSection({ source }) {
                     }}
                   >
                     <div className={cx('img-wrapper')}>
-                      <img className={cx('trailer-img')} src={item.imgURL} alt={item.name} />
+                      <img className={cx('trailer-img')} src={'https://img.youtube.com/vi/' + item.youtubeKey + '/hqdefault.jpg'} alt={item.name} />
                       <div className={cx('play-btn')}>
                         <IoPlay />
                       </div>
