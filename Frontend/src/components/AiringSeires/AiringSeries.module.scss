@@ -6,6 +6,7 @@
   align-items: center;
   background-color: var(--light-black-color);
   border-radius: 25px;
+  position: relative;
 }
 
 .day-group {
@@ -43,16 +44,47 @@
   cursor: default;
 }
 
+.content-wrapper {
+  height: 100%;
+  flex: 1;
+  display: flex;
+}
+
+.no-display {
+  display: none!important;
+}
+
+.loader {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .series-list {
   flex: 1;
   height: 100%;
   margin: 0 35px;
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .series-item-wrapper{
-  flex: 1 1 25%;
+  flex: 0 1 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +103,7 @@
 
 .series-img {
   width: 138px;
-  height: 207;
+  height: 207px;
   box-sizing: border-box;
   object-fit: cover;
 }
@@ -90,8 +122,8 @@
   cursor: pointer;
 }
 
-.series-item:hover .series-img {
-  opacity: 0.8;
+.series-item:hover {
+  box-shadow: 0 0 5px 3px rgb(96, 242, 190);
 }
 
 .series-item:hover .series-info {
@@ -101,13 +133,6 @@
 .series-name {
   color: var(--white-color);
   font-size: 1.3rem;
-  font-weight: 400;
-}
-
-.air-date {
-  margin-top: 5px;
-  color: var(--white-color);
-  font-size: 1.1rem;
   font-weight: 400;
 }
 
@@ -147,14 +172,6 @@
   font-size: 1.9rem;
   font-weight: 500;
 }
-
-.highlight-air-date {
-  margin-top: 5px;
-  color: var(--white-color);
-  font-size: 1.5rem;
-  font-weight: 400;
-}
-
 
 .highlight-series-item::before {
   display: none;
