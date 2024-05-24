@@ -113,7 +113,6 @@ function AiringSeries() {
         let requestURL = 'https://api.themoviedb.org/3/tv/on_the_air?language=en&page=' + Number(i + 1);
         let results = await getDataFromAPI(requestURL);
   
-        results = results.filter((item) => !finalResults.includes(item));
         finalResults = [...finalResults, ...results];
 
         i++;

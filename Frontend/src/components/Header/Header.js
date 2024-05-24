@@ -15,6 +15,11 @@ function Header({ refList }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const headerRef = useRef(null);
+  const searchRef = useRef(null);
+
+  if (searchRef.current && searchOpen) {
+    searchRef.current.focus();
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,7 +127,7 @@ function Header({ refList }) {
           <div className={cx('search-border')}>
             <div className={cx('search-wrap', { 'search-open': searchOpen })}>
               <div className={cx('search-bar')}>
-                <input className={cx('search-input')} value={searchText} type='text' 
+                <input ref={searchRef} className={cx('search-input')} value={searchText} type='text' 
                   onChange={(e) => {
                     setSearchText(e.target.value);
                   }}
@@ -130,8 +135,11 @@ function Header({ refList }) {
                 <button 
                   className={cx('search-clear')} 
                   onClick={(e) => {
-                  e.preventDefault();
-                  setSearchText('');
+                    e.preventDefault();
+                    setSearchText('');
+                    if (searchRef.current) {
+                      searchRef.current.focus();
+                    }
                   }}
                 > 
                   <IoClose className={cx({'no-display': searchText.length === 0})} />
