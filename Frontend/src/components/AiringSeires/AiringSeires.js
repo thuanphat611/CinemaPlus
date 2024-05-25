@@ -144,7 +144,7 @@ function AiringSeries() {
             dataList.map((item, index) => {
               return (
                 <div key={index} className={cx('series-item-wrapper')}>
-                <Link className={cx('series-item')} to={'/series?id=' + item.id}>
+                <Link className={cx('series-item')} to={'/series/detail/' + item.id}>
                   <img className={cx('series-img')} src={item.poster} alt ={item.name} />
                   <div className={cx('series-info')}>
                     <h4 className={cx('series-name')}>{item.name}</h4>

@@ -5,7 +5,9 @@ const cx = classNames.bind(styles);
 
 function DetailPage({ props }) {
   return ( 
-    <h2>{props.type} detail page</h2>
+    <div className={cx('content')}>
+      
+    </div>
   );
 }
 

@@ -102,7 +102,7 @@ function MovieSlider({ imageList }) {
           imageList.map((item, index) => {
             return (
               <Link 
-                to={"/movie/" + item.id}
+                to={"/movie/detail/" + item.id}
                 key={index} 
                 className={cx('poster-link', {
                   'poster-active': index === activeIndex

@@ -164,7 +164,7 @@ function Header({ refList }) {
               {
                 searchResult.map((item, index) => {
                   return (
-                    <Link key={index} className={cx('result-item')} to={'/' + item.type + '/' + item.id}>
+                    <Link key={index} className={cx('result-item')} to={'/' + item.type + '/detail/' + item.id}>
                       <img className={cx('result-img')} src={item.poster} alt={item.name} />
                       <div className={cx('result-info')}>
                         <h3 className={cx('result-name')}>{item.name}</h3>
