@@ -20,6 +20,7 @@ const getListFromAPI = async (url, type) => {
   let results = response?.data?.results.map((item, index) => {
     return {
       id: item.id,
+      rating: item.vote_average,
       type: type === 'tv' ? 'series' : 'movie',
       name: item.title ? item.title : item.name,
       originalLanguage: item.original_language,

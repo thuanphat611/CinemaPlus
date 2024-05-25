@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
+import { FaChevronRight, FaChevronLeft, FaRegStar } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 import styles from './MovieSlider.module.scss';
@@ -14,7 +14,7 @@ function MovieSlider({ imageList }) {
   const [timeID, setTimeID] = useState(null);
 
   let movieName = imageList[activeIndex].name;
-  let movieIMDB = imageList[activeIndex].imdb;
+  let movieIMDB = imageList[activeIndex].rating;
 
   useEffect(() => {
     if (slideDone) {
@@ -87,7 +87,9 @@ function MovieSlider({ imageList }) {
       <div className={cx('movie-info')}>
         <h1 className={cx('movie-name')}>{movieName}</h1>
         <div className={cx('rating')}>
-          <span className={cx('imdb-logo')}>IMDB</span>
+          <span className={cx('imdb-logo')}>
+            <FaRegStar/>
+          </span>
           <h2 className={cx('imdb-score')}>{movieIMDB}</h2>
           <h2 className={cx('imdb-max-score')}>/</h2>
           <h2 className={cx('imdb-max-score')}>10</h2>
