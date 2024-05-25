@@ -101,6 +101,8 @@
   overflow: auto;
   position: absolute;
   top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .selection-dropdown-list::-webkit-scrollbar {

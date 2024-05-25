@@ -1,15 +1,27 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaAngleDown } from "react-icons/fa";
 
 import styles from './DiscoverBar.module.scss'
+import { getGenresFromAPI } from '../../axios/AxiosClients';
 
 const cx = classNames.bind(styles);
 
 function DiscoverBar() {
-  
+  const [type, setType] = useState('all');
   const [genre, setGenre] = useState("all");
   const [year, setYear] = useState("all");
+  const [currentGenreList, setCurrentGenreList] = useState([])
+  const [genreList, setGenreList] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getGenresFromAPI();
+      setGenreList(result);
+      setCurrentGenreList(result.all);
+    }
+    getData();
+  }, []);
 
   let currentDate = new Date();
   let currentYear = Number(currentDate.getFullYear());
@@ -25,11 +37,35 @@ function DiscoverBar() {
       <form className={cx('form')}>
         <div className={cx('radio-group')}>
           <input className={cx('radio-item')} type="radio" id="all" name="type" value="all" defaultChecked />
-          <label className={cx('radio-label')} htmlFor="all">All</label>
+          <label className={cx('radio-label')} htmlFor="all"
+            onClick={() => {
+              setType('all');
+              setGenre('all');
+              setCurrentGenreList(genreList.all);
+            }}
+          >
+            All
+          </label>
           <input className={cx('radio-item')} type="radio" id="movie" name="type" value="movie" />
-          <label className={cx('radio-label')} htmlFor="movie">Movie</label>
-          <input className={cx('radio-item')} type="radio" id="tv-show" name="type" value="tv-show" />
-          <label className={cx('radio-label')} htmlFor="tv-show">Series</label>
+          <label className={cx('radio-label')} htmlFor="movie"
+            onClick={() => {
+              setType('movie');
+              setGenre('all');
+              setCurrentGenreList(genreList.movie);
+            }}
+          >
+            Movie
+          </label>
+          <input className={cx('radio-item')} type="radio" id="series" name="type" value="series" />
+          <label className={cx('radio-label')} htmlFor="series"
+            onClick={() => {
+              setType('series');
+              setGenre('all');
+              setCurrentGenreList(genreList.series);
+            }}
+          >
+            Series
+          </label>
         </div>
 
         <input style={{display: "none"}} type="text" name="genre" value={genre} readOnly/>
@@ -47,30 +83,20 @@ function DiscoverBar() {
             >
               All
             </option>
-            <option className={cx('selection-dropdown-item')} value="Action"
-              onClick={(e) => {
-                e.preventDefault();
-                setGenre(e.target.value);
-              }}
-            >
-              Action
-            </option>
-            <option className={cx('selection-dropdown-item')} value="Horror"
-              onClick={(e) => {
-                e.preventDefault();
-                setGenre(e.target.value);
-              }}
-            >
-              Horror
-            </option>
-            <option className={cx('selection-dropdown-item')} value="Romantic"
-              onClick={(e) => {
-                e.preventDefault();
-                setGenre(e.target.value);
-              }}
-            >
-              Romantic
-            </option>
+            {
+              currentGenreList.map((item, index) => {
+                return (
+                  <option key={index} className={cx('selection-dropdown-item')} value={item.name}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setGenre(e.target.value);
+                    }}
+                  >
+                    {item.name}
+                  </option>
+                )
+              })
+            }
           </div>
         </div>
 

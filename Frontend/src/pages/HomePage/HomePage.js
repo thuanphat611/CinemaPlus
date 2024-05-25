@@ -17,7 +17,7 @@ import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } f
 
 const cx = classNames.bind(styles);
 
-function HomePage() {
+function HomePage({ props }) {
 
   const refList = {
     moviesRef: useRef(null),

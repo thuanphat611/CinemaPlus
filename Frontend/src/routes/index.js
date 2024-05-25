@@ -1,9 +1,26 @@
 import HomePage from "../pages/HomePage/HomePage";
-import MoviePage from "../pages/MoviePage/MoviePage";
+import DetailPage from "../pages/DetailPage/DetailPage";
 
 const publicRoutes = [
-  {path: '/', component: HomePage},
-  {path: '/movie', component: MoviePage},
+  {
+    path: '/', 
+    component: HomePage,
+    props: {}
+  },
+  {
+    path: '/movie', 
+    component: DetailPage,
+    props: {
+      type: 'movie'
+    }
+  },
+  {
+    path: '/series', 
+    component: DetailPage,
+    props: {
+      type: 'series'
+    }
+  },
 ];
 
 const privateRoutes = [];

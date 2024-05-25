@@ -49,9 +49,9 @@ const CardSlider = React.forwardRef(({ title, viewAll, source, type }, ref) => {
     <div ref={ref} className={cx('container')}>
       <div className={cx('header')}>
         <h2 className={cx('title')}>{sliderTitle}</h2>
-        <Link className={cx('view-all')} to={viewAll ? viewAll : "/"} >
+        {/* <Link className={cx('view-all')} to={viewAll ? viewAll : "/"} >
           View all
-        </Link>
+        </Link> */}
       </div>
       <div className={cx('slider')}>
         <div className={cx('slider-border')}>

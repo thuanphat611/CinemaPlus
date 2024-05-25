@@ -105,7 +105,7 @@ function AiringSeries() {
   useEffect(() => {
     const getData = async () => {
       let finalResults = [];
-      const maxPage = 15;
+      const maxPage = 10;
 
       var i = 0
       setLoading(true);

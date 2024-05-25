@@ -18,6 +18,8 @@ function TrailerSection({ source }) {
         <div className={cx('thumbnails')}>
           <div className={cx('trailer-list')}>
             {
+              source[0].youtubeKey 
+              ?
               source.map((item, index) => {
                 return (
                   <div 
@@ -40,6 +42,8 @@ function TrailerSection({ source }) {
                   </div>
                 )
               })
+              :
+              null
             }
           </div>
         </div>

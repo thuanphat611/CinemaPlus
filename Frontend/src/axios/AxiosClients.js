@@ -115,10 +115,10 @@ const getTrailerFromAPI = async (url) => {
     })
 
     if (officalTrailer.length !== 0) {
-      results[i].youtubeKey = officalTrailer[0].key;
+      results[i].youtubeKey = officalTrailer[0].key ? officalTrailer[0].key : '';
     }
     else {
-      results[i].youtubeKey = trailer[0].key;
+      results[i].youtubeKey = trailer[0].key ? trailer[0].key : '';
     }
   }
 
@@ -168,4 +168,20 @@ const getSearchResultFromAPI = async (url, type) => {
   return results;
 }
 
-export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI };
+const getGenresFromAPI = async () => {
+  const result = {};
+
+  let requestURL = 'https://api.themoviedb.org/3/genre/movie/list';
+  let response = await tmdbClient.get(requestURL);
+  result.movie = response?.data.genres;
+
+  requestURL = 'https://api.themoviedb.org/3/genre/tv/list';
+  response = await tmdbClient.get(requestURL);
+  result.series = response?.data.genres;
+
+  result.all = [...result.movie, ...result.series];
+
+  return result;
+}
+
+export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };

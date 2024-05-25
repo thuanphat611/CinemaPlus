@@ -11,7 +11,7 @@ function MovieCard({ id, posterURL, name, type }) {
     <div className={cx('container')}>
       <Link 
         className={cx('link')}
-        to={"/" + type + "?id=" + id}
+        to={"/" + type + "/" + id}
         >
         <img 
           className={cx('poster')} 
