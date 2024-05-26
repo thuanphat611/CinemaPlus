@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { FiDownload } from "react-icons/fi";
-import { FaTelegram, FaInstagram, FaWhatsappSquare, FaTwitter } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
+import { FaTelegram, FaInstagram, FaWhatsappSquare, FaTwitter, FaMailBulk } from "react-icons/fa";
 
 import styles from './Footer.module.scss';
 import logo from '../../assests/images/logo.png'
@@ -61,8 +62,10 @@ function Footer() {
                 </a>
               </div>
               <div className={cx('block')}>
-                <h2 className={cx('download-text')}>I don't know what to put here :v</h2>
-                {/* add something here */}
+                <a className={cx('email-contact')} href="mailto:cinemaplus.contact@gmail.com" rel="noopener noreferrer" target="_blank">
+                  <IoIosMail />
+                  <h2 className={cx('download-text')}>contact us via email</h2>
+                </a>
               </div>
             </div>
           </div>
