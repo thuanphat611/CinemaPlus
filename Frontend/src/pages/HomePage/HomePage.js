@@ -184,11 +184,23 @@ function HomePage({ props }) {
     async function getData() {
       setLoading(true);
 
-      const requestURL = 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=1';
-      const results = await getListFromAPI(requestURL, 'tv');
+      const numOfItem = 20;
+      let finalResults = []
+      let i = 1;
 
-      if (results.length > 0) {
-        setSeriesData(results);
+      while (finalResults.length < numOfItem) {
+        let requestURL = 'https://api.themoviedb.org/3/tv/popular?language=en-US&page=' + i;
+        let results = await getListFromAPI(requestURL, 'tv');
+
+        if (results.length > 0) {
+          finalResults = [...finalResults, ...results];
+        }
+
+        i++;
+      }
+      
+      if (finalResults.length > 0) {
+        setSeriesData(finalResults);
       }
 
       setLoading(false);
