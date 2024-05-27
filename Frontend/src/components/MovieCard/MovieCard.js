@@ -19,7 +19,7 @@ function MovieCard({ id, posterURL, name, type }) {
           src={posterURL} 
           alt={name}/>
           <div className={cx('hover-overlay')}>
-            <button className={cx('like-btn')} 
+            {/* <button className={cx('like-btn')} 
               onClick={
               (e) => {
                 e.preventDefault(); 
@@ -27,8 +27,7 @@ function MovieCard({ id, posterURL, name, type }) {
               }}
             >
               <FaRegHeart className={cx('like-icon')} />
-              {/* <FaHeart /> */}
-            </button>
+            </button> */}
           </div>
       </Link>
       <h3 className={cx('movie-name')}>{name}</h3>

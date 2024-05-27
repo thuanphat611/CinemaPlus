@@ -62,7 +62,7 @@ function Footer() {
                 </a>
               </div>
               <div className={cx('block')}>
-                <a className={cx('email-contact')} href="mailto:cinemaplus.contact@gmail.com" rel="noopener noreferrer" target="_blank">
+                <a className={cx('email-contact')} href="mailto:cinemaplus.contact@gmail.com" rel="noreferrer" target="_blank">
                   <IoIosMail />
                   <h2 className={cx('download-text')}>contact us via email</h2>
                 </a>
