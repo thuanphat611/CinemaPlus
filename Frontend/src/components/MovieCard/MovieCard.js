@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { FaRegHeart, /*FaHeart*/  } from "react-icons/fa";
+// import { FaRegHeart, FaHeart  } from "react-icons/fa";
 
 import styles from './MovieCard.module.scss';
 

@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from './DetailPage.module.scss';
 import Header from '../../components/Header/Header';
+import MovieOverview from '../../components/MovieOverview/MovieOverview';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +15,7 @@ function DetailPage({ props }) {
   return ( 
     <div className={cx('content')}>
       <Header />
+      <MovieOverview />
     </div>
   );
 }

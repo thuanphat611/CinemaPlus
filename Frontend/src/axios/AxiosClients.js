@@ -38,7 +38,7 @@ const getListFromAPI = async (url, type) => {
   return results;
 }
 
-const getDetailFromAPI = async (url, type) => {
+const getShortDetailFromAPI = async (url, type) => {
   let numOfCasts = 3;
 
   if (type === 'tv') {
@@ -185,4 +185,4 @@ const getGenresFromAPI = async () => {
   return result;
 }
 
-export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };
+export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getShortDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };
