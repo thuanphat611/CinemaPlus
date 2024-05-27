@@ -52,6 +52,32 @@
   margin-left: 30px;
 }
 
+.back-to-home {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  text-decoration: none;
+  color: var(--white-color);
+  border: 1px solid var(--white-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-to-home:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.back-to-home .navigation-text {
+  margin-left: 5px;
+}
+
+.back-to-home:hover .navigation-text {
+  color: var(--primary-color);
+}
+
 .navigation-text {
   font-size: 1.7rem;
   font-weight: 400;

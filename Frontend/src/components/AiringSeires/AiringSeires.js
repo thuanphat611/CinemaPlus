@@ -156,7 +156,7 @@ function AiringSeries() {
           }
         </div>
         
-        <Link className={cx('highlight-series-item')} to={'/series?id=' + highlightSeries.id}>
+        <Link className={cx('highlight-series-item')} to={'/series/detail/' + highlightSeries.id}>
           <img className={cx('highlight-series-img')} src={highlightSeries.bigPoster} alt ={highlightSeries.name} />
           <div className={cx('highlight-series-info')}>
             <h4 className={cx('highlight-series-name')}>{highlightSeries.name}</h4>
