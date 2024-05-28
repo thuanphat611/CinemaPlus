@@ -79,7 +79,10 @@ function HomePage({ props }) {
     more: ""
   }
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [numToLoad, setNumToLoad] = useState(0);
+  const [numLoaded, setNumLoaded] = useState(0);
+
   const [movieSliderData, setMovieSliderData] = useState(emptyList);
   const [popularMoviesData, setPopularMoviesData] = useState(emptyList);
   const [topRatedData, setTopRatedData] = useState(emptyList);
@@ -90,12 +93,22 @@ function HomePage({ props }) {
   const [highlightMovie, setHighlightMovie] = useState(emptyItem);
   const [highlightSeries, setHighlightSeries] = useState(emptyItem);
 
+  //useEffect to check if the page is completely loaded
+  useEffect(() => {
+    if (numLoaded >= numToLoad) {
+      setLoading(false);
+    }
+    else {
+      setLoading(true);
+    }
+  }, [numToLoad, numLoaded]);
+
   //Get MovieSlider data
   useEffect(() => {
     const movieSliderSize = 5;
     
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       let requestURL = 'https://api.themoviedb.org/3/trending/movie/week?language=en-US';
       const results = await getListFromAPI(requestURL, 'movie');
@@ -115,7 +128,7 @@ function HomePage({ props }) {
         setHighlightMovie(movieDetail);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -123,7 +136,7 @@ function HomePage({ props }) {
   //Get Popular Movies section data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       const requestURL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
       const results = await getListFromAPI(requestURL, 'movie');
@@ -132,7 +145,7 @@ function HomePage({ props }) {
         setPopularMoviesData(results);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -140,7 +153,7 @@ function HomePage({ props }) {
   //Get Top Rated Movies section data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       const requestURL = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
       const results = await getListFromAPI(requestURL, 'movie');
@@ -149,7 +162,7 @@ function HomePage({ props }) {
         setTopRatedData(results);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -157,7 +170,7 @@ function HomePage({ props }) {
   //Get Animations section data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       const now = new Date();
       const year = now.getFullYear();
@@ -174,7 +187,7 @@ function HomePage({ props }) {
         setAnimationData(results);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -182,7 +195,7 @@ function HomePage({ props }) {
   //Get Popular Series section data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       const numOfItem = 20;
       let finalResults = []
@@ -203,7 +216,7 @@ function HomePage({ props }) {
         setSeriesData(finalResults);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -211,7 +224,7 @@ function HomePage({ props }) {
   //Get Highlight series data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       let requestURL = 'https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1';
       const results = await getListFromAPI(requestURL, 'tv');
@@ -226,7 +239,7 @@ function HomePage({ props }) {
         setHighlightSeries(seriesDetail);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -234,7 +247,7 @@ function HomePage({ props }) {
   //Get Trailer section data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       let requestURL = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
       const results = await getTrailerFromAPI(requestURL);
@@ -243,7 +256,7 @@ function HomePage({ props }) {
         setTrailerData(results);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);
@@ -251,7 +264,7 @@ function HomePage({ props }) {
   //Get the cast data
   useEffect(() => {
     async function getData() {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       let requestURL = 'https://api.themoviedb.org/3/trending/person/week?language=en-US';
       const results = await getCastFromAPI(requestURL);
@@ -260,7 +273,7 @@ function HomePage({ props }) {
         setCastData(results);
       }
 
-      setLoading(false);
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, []);

@@ -15,18 +15,31 @@ function DetailPage({ props }) {
   const type = props.type === 'series' ? 'tv' : 'movie';
   const { id } = useParams();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [numToLoad, setNumToLoad] = useState(0);
+  const [numLoaded, setNumLoaded] = useState(0);
   const [data, setData] = useState(undefined);
 
+  //useEffect to check if the page is completely loaded
+  useEffect(() => {
+    if (numLoaded >= numToLoad) {
+      setLoading(false);
+    }
+    else {
+      setLoading(true);
+    }
+  }, [numToLoad, numLoaded]);
+
+  //Load movie detail
   useEffect(() => {
     const getData =  async () => {
-      setLoading(true);
+      setNumToLoad((val) => val + 1);
 
       const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id;
       const result = await getDetailFromAPI(requestURL, type);
       setData(result);
 
-      setLoading(false)
+      setNumLoaded((val) => val + 1);
     }
     getData();
   }, [id, type]);
