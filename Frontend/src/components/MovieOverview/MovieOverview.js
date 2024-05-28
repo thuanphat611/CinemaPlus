@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { IoPlay, IoMenu } from "react-icons/io5";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -10,26 +9,10 @@ import { FaRegHeart, FaRegBookmark } from "react-icons/fa";
 // import { FaRegHeart, FaHeart, FaRegBookmark , FaBookmark } from "react-icons/fa";
 
 import styles from './MovieOverview.module.scss';
-import { getDetailFromAPI } from "../../axios/AxiosClients";
 
 const cx = classNames.bind(styles);
 
-function MovieOverview({ targetId, type }) {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(undefined);
-
-  useEffect(() => {
-    const getData =  async () => {
-      setLoading(true);
-
-      const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + targetId;
-      const result = await getDetailFromAPI(requestURL, type);
-      setData(result);
-
-      setLoading(false)
-    }
-    getData();
-  }, [targetId, type]);
+function MovieOverview({ data, type }) {
 
   return (
     <div className={cx('container')}>
@@ -65,7 +48,7 @@ function MovieOverview({ targetId, type }) {
         </div>
 
         <div className={cx('button-group')}>
-          <Link className={cx('play-btn')} to={'/' + (type === 'tv' ? 'series' : 'movie') + '/watch/' + data?.id}>
+          <Link className={cx('play-btn')} to={'/' + (type === 'tv' ? 'series' : 'movie') + '/watch/' + data?.id + (type === 'tv' ? '/0/0' : '')}>
             <IoPlay />
             <p className={cx('btn-text')}>Play online</p>
           </Link>
