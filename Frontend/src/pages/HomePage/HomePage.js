@@ -12,7 +12,7 @@ import HightlightSection from '../../components/HightlightSection/HighlightSecti
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
 import Footer from '../../components/Footer/Footer';
-import { getListFromAPI, getShortDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../axios/AxiosClients';
+import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../axios/AxiosClients';
 
 
 const cx = classNames.bind(styles);
@@ -109,7 +109,7 @@ function HomePage({ props }) {
       const randomIndex = random < results.length ? random : 0;
       const highlightMovieId = results[randomIndex].id;
       requestURL = 'https://api.themoviedb.org/3/movie/' + highlightMovieId + '?language=en-US'
-      const movieDetail = await getShortDetailFromAPI(requestURL, 'movie');
+      const movieDetail = await getDetailFromAPI(requestURL, 'movie');
 
       if (movieDetail) {
         setHighlightMovie(movieDetail);
@@ -220,7 +220,7 @@ function HomePage({ props }) {
       const randomIndex = random < results.length ? random : 0;
       const highlightSeriesId = results[randomIndex].id;
       requestURL = 'https://api.themoviedb.org/3/tv/' + highlightSeriesId + '?language=en-US'
-      const seriesDetail = await getShortDetailFromAPI(requestURL, 'tv');
+      const seriesDetail = await getDetailFromAPI(requestURL, 'tv');
 
       if (seriesDetail) {
         setHighlightSeries(seriesDetail);

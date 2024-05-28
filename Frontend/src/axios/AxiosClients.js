@@ -38,7 +38,7 @@ const getListFromAPI = async (url, type) => {
   return results;
 }
 
-const getShortDetailFromAPI = async (url, type) => {
+const getDetailFromAPI = async (url, type) => {
   let numOfCasts = 3;
 
   if (type === 'tv') {
@@ -53,13 +53,15 @@ const getShortDetailFromAPI = async (url, type) => {
       id: data.id,
       type: type === 'tv' ? 'series' : 'movie',
       name: data.title ? data.title : data.name,
+      rating: data.vote_average,
       category: data.genres?.map((item) => {
         return item.name;
       }),
       casts: [],
       director: "",
       overview: data.overview,
-      posterURL: data.backdrop_path ? 'https://image.tmdb.org/t/p/original' + data.backdrop_path : backdropImagePlaceholder,
+      imgURL: data.backdrop_path ? 'https://image.tmdb.org/t/p/original' + data.backdrop_path : backdropImagePlaceholder,
+      poster: data.poster_path ? 'https://image.tmdb.org/t/p/w342' + data.poster_path : movieCardImagePlaceholder,
       more: data.homepage
     }
 
@@ -80,7 +82,6 @@ const getShortDetailFromAPI = async (url, type) => {
     result.director = director[0]?.name;
     result.casts = castList;
   }
-
   return result;
 }
 
@@ -185,4 +186,4 @@ const getGenresFromAPI = async () => {
   return result;
 }
 
-export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getShortDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };
+export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };

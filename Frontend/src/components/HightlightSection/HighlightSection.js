@@ -60,7 +60,7 @@ function HightlightSection({ source }) {
           <a className={cx('more-btn', {'no-display': !source.more})} href={source.more} target="_blank" rel="noreferrer">More Details</a>
         </div>
       </div>
-      <img className={cx('poster')} src={source.posterURL} alt={source.name} />
+      <img className={cx('poster')} src={source.imgURL} alt={source.name} />
     </div>
   );
 }

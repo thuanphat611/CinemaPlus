@@ -12,7 +12,7 @@ function TrailerSection({ source }) {
 
   return (
     <div className={cx('container')}>
-      <h3 className={cx('title')}>Trailers</h3>
+      <h3 className={cx('title')}>Movie Trailers</h3>
 
       <div className={cx('main')}>
         <div className={cx('thumbnails')}>

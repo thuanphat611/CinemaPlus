@@ -1,34 +1,58 @@
 import classNames from "classnames/bind";
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { IoPlay, IoMenu } from "react-icons/io5";
-import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
-import { FaRegHeart, FaHeart, FaRegBookmark , FaBookmark } from "react-icons/fa";
+import { MdPlaylistAdd } from "react-icons/md";
+import { FaRegHeart, FaRegBookmark } from "react-icons/fa";
+// import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
+// import { FaRegHeart, FaHeart, FaRegBookmark , FaBookmark } from "react-icons/fa";
 
 import styles from './MovieOverview.module.scss';
+import { getDetailFromAPI } from "../../axios/AxiosClients";
 
 const cx = classNames.bind(styles);
 
-function MovieOverview() {
+function MovieOverview({ targetId, type }) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(undefined);
+
+  useEffect(() => {
+    const getData =  async () => {
+      setLoading(true);
+
+      const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + targetId;
+      const result = await getDetailFromAPI(requestURL, type);
+      setData(result);
+
+      setLoading(false)
+    }
+    getData();
+  }, [targetId, type]);
+
   return (
     <div className={cx('container')}>
-      <img className={cx('background-img')} src="https://image.tmdb.org/t/p/original/xRd1eJIDe7JHO5u4gtEYwGn5wtf.jpg" alt="" />
+      <img className={cx('background-img')} src={data?.imgURL} alt={data?.name ? data?.name : ''} />
       <div className={cx('shadow')}></div>
-      <img className={cx('poster')} src="https://image.tmdb.org/t/p/w342/z1p34vh7dEOnLDmyCrlUVLuoDzd.jpg" alt="" />
+      <img className={cx('poster')} src={data?.poster} alt={data?.name ? data?.name : ''} />
 
       <div className={cx('content')}>
-        <h1 className={cx('name')}>Godzilla x Kong: The New Empire</h1>
+        <h1 className={cx('name')}>{data?.name}</h1>
         
         <ul className={cx('genre-list')}>
-          <li className={cx('genre-item')}>Science Fiction</li>
-          <li className={cx('genre-item')}>Action</li>
-          <li className={cx('genre-item')}>Adventure</li>
+          {
+            data?.category.map((item, index) => {
+              return (
+                <li key={index} className={cx('genre-item')}>{item}</li>
+              )
+            })
+          }
         </ul>
 
         <div className={cx('rating-wrap')}>
           <div className={cx('progress-bar-wrap')}>
-            <CircularProgressbar value='7.361' text='7.361' strokeWidth='10' minValue='0' maxValue='10'
+            <CircularProgressbar value={data?.rating} text={data?.rating} strokeWidth='10' minValue='0' maxValue='10'
               styles={buildStyles({
                 textSize: '25px',
                 textColor: "#ffffff",
@@ -41,13 +65,24 @@ function MovieOverview() {
         </div>
 
         <div className={cx('button-group')}>
-          <Link className={cx('play-btn')} to="/">
+          <Link className={cx('play-btn')} to={'/' + (type === 'tv' ? 'series' : 'movie') + '/watch/' + data?.id}>
             <IoPlay />
             <p className={cx('btn-text')}>Play online</p>
           </Link>
-          <a className={cx('more-btn')} href="http://facebook.com" target="_blank" rel="noreferrer">
+          <a 
+            draggable={data?.more}
+            className={cx('more-btn', {'btn-inactive': !data?.more})} 
+            href={data?.more} 
+            target="_blank" 
+            rel="noreferrer"
+            onClick={(e) => {
+              if (!data?.more) {
+                e.preventDefault();
+              }
+            }}
+          >
             <IoMenu />  
-            <p className={cx('btn-text')}>Movie's webite</p>
+            <p className={cx('btn-text')}>{type === 'tv' ? 'Series' : 'Movie'}'s webite</p>
           </a>
           <button className={cx('option-btn')}>
             <MdPlaylistAdd />
@@ -60,10 +95,10 @@ function MovieOverview() {
           </button>
         </div>
         
-        {/* <h3 className={cx('overview-title')}>Overview</h3> */}
+        <h3 className={cx('overview-title')}>Overview</h3>
         <div className={cx('overview-wrapper')}>
           <div className={cx('overview-content')}>
-            <p className={cx('overview')}>acb asda asd d s ad sad d ghh jhfg jh khk ui u t hwgh eaf   weg qryw </p>
+            <p className={cx('overview')}>{data?.overview}</p>
           </div>
         </div>
       </div>

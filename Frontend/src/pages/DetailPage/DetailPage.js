@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './DetailPage.module.scss';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
+import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,8 @@ function DetailPage({ props }) {
   return ( 
     <div className={cx('content')}>
       <Header />
-      <MovieOverview />
+      <MovieOverview targetId={id} type={type === 'series' ? 'tv' : 'movie'}/>
+      <Footer />
     </div>
   );
 }
