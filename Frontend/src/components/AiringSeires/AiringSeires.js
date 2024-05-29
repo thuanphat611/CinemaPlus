@@ -165,7 +165,7 @@ function AiringSeries() {
       </span>
 
       <div className={cx('loader', { 'no-display': !loading})}>
-        <LuLoader2 />
+        <LuLoader2 className={cx('loader-icon')} />
       </div>
     </div>
   );

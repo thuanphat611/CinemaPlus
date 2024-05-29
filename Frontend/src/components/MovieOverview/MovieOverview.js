@@ -2,7 +2,8 @@ import classNames from "classnames/bind";
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { IoPlay, IoMenu } from "react-icons/io5";
+import { IoPlay } from "react-icons/io5";
+import { ImNewTab } from "react-icons/im";
 import { MdPlaylistAdd } from "react-icons/md";
 import { FaRegHeart, FaRegBookmark } from "react-icons/fa";
 // import { MdPlaylistAdd, MdPlaylistAddCheck } from "react-icons/md";
@@ -64,7 +65,7 @@ function MovieOverview({ data, type }) {
               }
             }}
           >
-            <IoMenu />  
+            <ImNewTab />  
             <p className={cx('btn-text')}>{type === 'tv' ? 'Series' : 'Movie'}'s webite</p>
           </a>
           <button className={cx('option-btn')}>

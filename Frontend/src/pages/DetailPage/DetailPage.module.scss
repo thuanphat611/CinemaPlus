@@ -19,6 +19,9 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.loader-icon {
   animation: spin 0.4s linear infinite;
 }
 
