@@ -29,3 +29,49 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+//info bar---------------------------------------------------------
+.info-bar {
+  display: flex;
+  padding: 35px;
+  margin: -30px 200px 80px;
+  border-radius: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+  background-color:  var(--light-black-color);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-title-icon {
+  margin-right: 5px;
+}
+
+.info-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  color: var(--gray-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-value {
+  max-width: 350px;
+  color: var(--white-color);
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+}

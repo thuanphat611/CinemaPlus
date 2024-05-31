@@ -2,6 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import classNames from 'classnames/bind';
 import { LuLoader2 } from "react-icons/lu";
+import { FaMoneyBills } from "react-icons/fa6";
+import { GrStatusInfo } from "react-icons/gr";
+import { IoLanguage } from "react-icons/io5";
 
 import styles from './DetailPage.module.scss';
 import { getDetailFromAPI } from '../../axios/AxiosClients';
@@ -53,6 +56,43 @@ function DetailPage({ props }) {
       
       <span className={cx({'no-display': loading})}>
         <MovieOverview data={data} targetId={id} type={type}/>
+
+        <div className={cx('info-bar')}>
+          <div className={cx('info-item')}>
+            <h3 className={cx('info-title')}>Original Title</h3>
+            <div className={cx('info-content')}>
+              <p className={cx('info-value')}>{data?.original_name ? data.original_name : data?.name}</p>
+            </div>
+          </div>
+          <div className={cx('info-item')}>
+            <h3 className={cx('info-title')}>
+              <span className={cx('info-title-icon')}><GrStatusInfo /></span>
+              Status
+            </h3>
+            <div className={cx('info-content')}>
+              <p className={cx('info-value')}>{data?.status ? data.status : '_'}</p>
+            </div>
+          </div>
+          <div className={cx('info-item')}>
+            <h3 className={cx('info-title')}>
+              <span className={cx('info-title-icon')}><IoLanguage /></span>
+              Original Language
+            </h3>
+            <div className={cx('info-content')}>
+              <p className={cx('info-value')}>{data?.original_language ? data.original_language : '_'}</p>
+            </div>
+          </div>
+          <div className={cx('info-item')}>
+            <h3 className={cx('info-title')}>
+              <span className={cx('info-title-icon')}><FaMoneyBills /></span>
+              Budget
+            </h3>
+            <div className={cx('info-content')}>
+              <p className={cx('info-value')}>{data?.budget ? '$' + data.budget : '_'}</p>
+            </div>
+          </div>
+        </div>
+        
         <Footer />
       </span>
     </div>

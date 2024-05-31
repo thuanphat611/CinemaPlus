@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const accessToken = 'Bearer ' + process.env.REACT_APP_TMBD_ACCESS_TOKEN;
 const searchImagePlaceholder = 'https://placehold.co/60x90?text=No+Image';
 const movieCardImagePlaceholder = 'https://placehold.co/200x280?text=No+Image';
@@ -14,6 +15,22 @@ const tmdbClient = axios.create({
     'Authorization': accessToken
   }
 })
+
+const languageList = {};
+(async () => {
+  // console.log('getting language list');
+  try {
+    const requestURL = 'https://api.themoviedb.org/3/configuration/languages';
+    const response = await tmdbClient.get(requestURL);
+
+    response?.data?.forEach((item) => {
+      languageList[item.iso_639_1] = item.english_name;
+    });
+  }
+  catch(ex) {
+    console.error('Exception in getting language list from API: ' + ex.message);
+  }
+})();
 
 const getListFromAPI = async (url, type) => {
   const response = await tmdbClient.get(url);
@@ -52,7 +69,10 @@ const getDetailFromAPI = async (url, type) => {
     result = {
       id: data.id,
       type: type === 'tv' ? 'series' : 'movie',
+      original_name: data.original_title,
+      original_language: languageList[data.original_language],
       name: data.title ? data.title : data.name,
+      status: data.status,
       rating: data.vote_average,
       category: data.genres?.map((item) => {
         return item.name;
@@ -60,6 +80,7 @@ const getDetailFromAPI = async (url, type) => {
       casts: [],
       director: "",
       overview: data.overview,
+      budget: data.budget,
       imgURL: data.backdrop_path ? 'https://image.tmdb.org/t/p/original' + data.backdrop_path : backdropImagePlaceholder,
       poster: data.poster_path ? 'https://image.tmdb.org/t/p/w342' + data.poster_path : movieCardImagePlaceholder,
       more: data.homepage
