@@ -30,6 +30,14 @@
   100% { transform: rotate(360deg); }
 }
 
+.section-title {
+  margin-bottom: 10px;
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+}
+
 //info bar---------------------------------------------------------
 .info-bar {
   display: flex;
@@ -74,4 +82,27 @@
   font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
+}
+
+//production companies-----------------------------
+.production-companies {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.production-company {
+  width: 170px;
+  height: 170px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--white-color);
+  box-sizing: border-box;
+  object-fit: contain;
+  overflow: hidden;
+  user-select: none;
 }

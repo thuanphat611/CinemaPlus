@@ -37,7 +37,6 @@ function DetailPage({ props }) {
       } 
     }
 
-    console.log(result);
     return result;
   }
 
@@ -109,6 +108,17 @@ function DetailPage({ props }) {
               <p className={cx('info-value')}>{data?.budget ? '$' + formatMoney(data.budget) : '_'}</p>
             </div>
           </div>
+        </div>
+
+        <h3 className={cx('section-title')}>Production Compan{data?.production_companies.length > 1 ? 'ies' : 'y'}:</h3>
+        <div className={cx('production-companies')}>
+          {
+            data?.production_companies?.map((item, index) => {
+              return (
+                <img key={index} className={cx('production-company')} src={item.img} alt={item.name}/>
+              )
+            })
+          }
         </div>
         
         <Footer />

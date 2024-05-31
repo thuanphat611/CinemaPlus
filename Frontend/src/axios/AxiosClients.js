@@ -79,6 +79,10 @@ const getDetailFromAPI = async (url, type) => {
       }),
       casts: [],
       director: "",
+      production_companies: data.production_companies.map((item) => ({
+        name: item.name,
+        img: 'https://image.tmdb.org/t/p/w154' + item.logo_path,
+      })),
       overview: data.overview,
       budget: data.budget,
       imgURL: data.backdrop_path ? 'https://image.tmdb.org/t/p/original' + data.backdrop_path : backdropImagePlaceholder,
@@ -103,6 +107,7 @@ const getDetailFromAPI = async (url, type) => {
     result.director = director[0]?.name;
     result.casts = castList;
   }
+  console.log(result)
   return result;
 }
 
