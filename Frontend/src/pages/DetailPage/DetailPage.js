@@ -23,6 +23,24 @@ function DetailPage({ props }) {
   const [numLoaded, setNumLoaded] = useState(0);
   const [data, setData] = useState(undefined);
 
+  const formatMoney = (money) => {
+    money = money.toString();
+    var result = '';
+    var count = 0;
+
+    for (var i = money.length - 1; i >= 0; i--) {
+      result = money[i] + result;
+      count++;
+      if (count === 3 && i !== 0) {
+        result = ',' + result;
+        count = 0;
+      } 
+    }
+
+    console.log(result);
+    return result;
+  }
+
   //useEffect to check if the page is completely loaded
   useEffect(() => {
     if (numLoaded >= numToLoad) {
@@ -88,7 +106,7 @@ function DetailPage({ props }) {
               Budget
             </h3>
             <div className={cx('info-content')}>
-              <p className={cx('info-value')}>{data?.budget ? '$' + data.budget : '_'}</p>
+              <p className={cx('info-value')}>{data?.budget ? '$' + formatMoney(data.budget) : '_'}</p>
             </div>
           </div>
         </div>
