@@ -211,4 +211,39 @@ const getGenresFromAPI = async () => {
   return result;
 }
 
-export { tmdbClient, getSearchResultFromAPI, getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI, getGenresFromAPI };
+const getCreditFromAPI = async (url) => {
+  let response = await tmdbClient.get(url);
+  let results = {
+    cast: response?.data?.cast?.map((item, index) => {
+      return {
+        id: item.id,
+        known_for_department: item.known_for_department,
+        name: item.title ? item.title : item.name,
+        poster: item.profile_path ? 'https://image.tmdb.org/t/p/w185' + item.profile_path : castCardImagePlaceholder
+      }
+    }),
+    director: response?.data?.crew?.filter((item) => item.job === "Director" && item.department === "Directing")
+    .map((item) => {
+      return {
+        id: item.id,
+        known_for_department: item.known_for_department,
+        name: item.title ? item.title : item.name,
+        poster: item.profile_path ? 'https://image.tmdb.org/t/p/w185' + item.profile_path : castCardImagePlaceholder
+      }
+    })
+  }
+
+  console.log(results)
+  return results;
+}
+
+export { 
+  tmdbClient, 
+  getSearchResultFromAPI, 
+  getListFromAPI, 
+  getDetailFromAPI, 
+  getTrailerFromAPI, 
+  getCastFromAPI, 
+  getGenresFromAPI,
+  getCreditFromAPI
+};

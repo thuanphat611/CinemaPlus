@@ -22,7 +22,7 @@ function Footer() {
             <div className={cx('logo-container')} href='/'> 
               <img className={cx('logo')} src={logo} alt=""/>
             </div>
-            <h4 className={cx('title')}>Your Free Ticket to Endless Entertainment</h4>
+            <h4 className={cx('title')}>Your {/*Free*/} Ticket to Endless Entertainment</h4>
             <p className={cx('introduction-text')}>
               CinemaPlus is your ultimate destination for streaming movies and TV series. Dive into a vast library of genres, discover new releases, and enjoy high-quality entertainment anytime, anywhere. Elevate your viewing experience with personalized recommendations, exclusive content, and seamless streaming on all your devices with CinemaPlus.
             </p>

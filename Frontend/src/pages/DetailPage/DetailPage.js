@@ -7,9 +7,10 @@ import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
 import styles from './DetailPage.module.scss';
-import { getDetailFromAPI } from '../../axios/AxiosClients';
+import { getDetailFromAPI, getCreditFromAPI } from '../../axios/AxiosClients';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
+import CardSlider from '../../components/CardSlider/CardSlider'
 import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
@@ -22,6 +23,7 @@ function DetailPage({ props }) {
   const [numToLoad, setNumToLoad] = useState(0);
   const [numLoaded, setNumLoaded] = useState(0);
   const [data, setData] = useState(undefined);
+  const [casts, setCasts] = useState({});
 
   const formatMoney = (money) => {
     money = money.toString();
@@ -58,6 +60,20 @@ function DetailPage({ props }) {
       const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id;
       const result = await getDetailFromAPI(requestURL, type);
       setData(result);
+
+      setNumLoaded((val) => val + 1);
+    }
+    getData();
+  }, [id, type]);
+
+  //Load casts and director
+  useEffect(() => {
+    const getData =  async () => {
+      setNumToLoad((val) => val + 1);
+
+      const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id + '/credits?language=en-US';
+      const result = await getCreditFromAPI(requestURL);
+      setCasts(result);
 
       setNumLoaded((val) => val + 1);
     }
@@ -109,6 +125,8 @@ function DetailPage({ props }) {
             </div>
           </div>
         </div>
+
+        <CardSlider title='Casts' source={casts.cast} type='person'/>
 
         <h3 className={cx('section-title')}>Production Compan{data?.production_companies.length > 1 ? 'ies' : 'y'}:</h3>
         <div className={cx('production-companies')}>

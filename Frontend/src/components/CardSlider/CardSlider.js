@@ -1,15 +1,16 @@
 import classNames from "classnames/bind";
-import { Link  } from "react-router-dom";
+// import { Link  } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
 import { FaChevronRight, FaChevronLeft  } from "react-icons/fa";
 
 import MovieCard from "../MovieCard/MovieCard";
 import CastCard from "../CastCard/CastCard";
+import PersonCard from '../PersonCard/PersonCard';
 import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
 
-const CardSlider = React.forwardRef(({ title, viewAll, source, type }, ref) => {
+const CardSlider = React.forwardRef(({ title, source, type }, ref) => {
   const sliderTitle = title ? title : 'None titled';
   const sliderContent = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -65,9 +66,14 @@ const CardSlider = React.forwardRef(({ title, viewAll, source, type }, ref) => {
                   <CastCard key={index} profileURL={item.poster} name={item.name} homepage={item.homepage} birthday={item.birthday} />
                 );
               }
-              else if ( type === "movie") {
+              else if (type === "movie") {
                 return (
                   <MovieCard key={index} id={item.id} posterURL={item.poster} name={item.name} type={item.type} />
+                );
+              }
+              else if (type === 'person') {
+                return (
+                  <PersonCard key={index} profileURL={item.poster} name={item.name} />
                 );
               }
               return null;
