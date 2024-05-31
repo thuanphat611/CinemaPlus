@@ -114,9 +114,14 @@ function DetailPage({ props }) {
         <div className={cx('production-companies')}>
           {
             data?.production_companies?.map((item, index) => {
-              return (
-                <img key={index} className={cx('production-company')} src={item.img} alt={item.name}/>
-              )
+              if (item.img)
+                return (
+                  <img key={index} className={cx('production-company')} src={item.img} alt={item.name}/>
+                )
+              else 
+                return (
+                  <div key={index} className={cx('no-logo')}>{item.name}</div>
+                )
             })
           }
         </div>

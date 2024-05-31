@@ -81,7 +81,7 @@ const getDetailFromAPI = async (url, type) => {
       director: "",
       production_companies: data.production_companies.map((item) => ({
         name: item.name,
-        img: 'https://image.tmdb.org/t/p/w154' + item.logo_path,
+        img: item.logo_path ? 'https://image.tmdb.org/t/p/w154' + item.logo_path : null,
       })),
       overview: data.overview,
       budget: data.budget,
@@ -107,7 +107,6 @@ const getDetailFromAPI = async (url, type) => {
     result.director = director[0]?.name;
     result.casts = castList;
   }
-  console.log(result)
   return result;
 }
 
