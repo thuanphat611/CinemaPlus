@@ -10,7 +10,7 @@ import styles from './CardSlider.module.scss';
 
 const cx = classNames.bind(styles);
 
-const CardSlider = React.forwardRef(({ title, source, type }, ref) => {
+const CardSlider = React.forwardRef(({ title, source, type, scroll }, ref) => {
   const sliderTitle = title ? title : 'None titled';
   const sliderContent = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -55,7 +55,7 @@ const CardSlider = React.forwardRef(({ title, source, type }, ref) => {
         </Link> */}
       </div>
       <div className={cx('slider')}>
-        <div className={cx('slider-border')}>
+        <div className={cx('slider-border', {'scroll-border': scroll})}>
           <div ref={sliderContent} className={cx('slider-content')}>
           {
             source 
@@ -84,7 +84,7 @@ const CardSlider = React.forwardRef(({ title, source, type }, ref) => {
           </div>
         </div>
 
-        <button className={cx('slider-button')} 
+        <button className={cx('slider-button',{'no-display': scroll})} 
           onClick={(e) => {
             e.preventDefault();
             slidePrev();
@@ -92,7 +92,7 @@ const CardSlider = React.forwardRef(({ title, source, type }, ref) => {
         >
           <FaChevronLeft />
         </button>
-        <button className={cx('slider-button')}
+        <button className={cx('slider-button',{'no-display': scroll})}
           onClick={(e) => {
             e.preventDefault();
             slideNext();

@@ -47,6 +47,23 @@
   overflow: hidden;
 }
 
+.scroll-border {
+  overflow: auto;
+}
+
+.scroll-border::-webkit-scrollbar {
+  width: 15px;
+}
+
+.scroll-border::-webkit-scrollbar-track {
+  background: var(--light-black-color);
+}
+
+.scroll-border::-webkit-scrollbar-thumb {
+  background: var(--gray-color);
+  border-radius: 8px;
+}
+
 .slider-content {
   display: flex;
   align-items: flex-start;
@@ -84,4 +101,8 @@
 .slider-button:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+.no-display {
+  display: none!important;
 }

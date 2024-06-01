@@ -126,7 +126,12 @@ function DetailPage({ props }) {
           </div>
         </div>
 
-        <CardSlider title='Casts' source={casts.cast} type='person'/>
+        <span className={cx({'no-display': casts?.director?.length === 0})}>
+          <CardSlider scroll title='Director' source={casts.director} type='person'/>
+        </span>
+        <span className={cx({'no-display': casts?.cast?.length === 0})}>
+          <CardSlider scroll title='Casts' source={casts.cast} type='person'/>
+        </span>
 
         <h3 className={cx('section-title')}>Production Compan{data?.production_companies.length > 1 ? 'ies' : 'y'}:</h3>
         <div className={cx('production-companies')}>
