@@ -18,8 +18,11 @@
 }
 
 .day-button {
+  display: flex;
   height: 55px;
   width: 120px;
+  align-items: center;
+  justify-content: center;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -28,11 +31,6 @@
   font-size: 1.5rem;
   font-weight: 400;
   user-select: none;
-}
-
-.day-button:hover {
-  background-color: var(--gray-color);
-  cursor: pointer;
 }
 
 .button-active {
