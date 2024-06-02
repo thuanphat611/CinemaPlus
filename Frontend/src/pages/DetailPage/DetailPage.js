@@ -7,7 +7,7 @@ import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
 import styles from './DetailPage.module.scss';
-import { getDetailFromAPI, getCreditFromAPI } from '../../axios/AxiosClients';
+import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI } from '../../axios/AxiosClients';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
 import CardSlider from '../../components/CardSlider/CardSlider'
@@ -23,6 +23,7 @@ function DetailPage({ props }) {
   const [numToLoad, setNumToLoad] = useState(0);
   const [numLoaded, setNumLoaded] = useState(0);
   const [data, setData] = useState(undefined);
+  const [collection, setCollection] = useState([]);
   const [casts, setCasts] = useState({});
 
   const formatMoney = (money) => {
@@ -57,15 +58,21 @@ function DetailPage({ props }) {
     const getData =  async () => {
       setNumToLoad((val) => val + 1);
 
-      const requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id;
-      const result = await getDetailFromAPI(requestURL, type);
+      let requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id;
+      let result = await getDetailFromAPI(requestURL, type);
       setData(result);
+
+      if (result?.collection) {
+        requestURL = 'https://api.themoviedb.org/3/collection/' + result.collection.id + '?language=en-US';
+        const resultCollection = await getCollectionFromAPI(requestURL, type);
+        setCollection(resultCollection);
+      }
 
       setNumLoaded((val) => val + 1);
     }
     getData();
   }, [id, type]);
-
+  
   //Load casts and director
   useEffect(() => {
     const getData =  async () => {
@@ -131,6 +138,9 @@ function DetailPage({ props }) {
         </span>
         <span className={cx({'no-display': casts?.cast?.length === 0})}>
           <CardSlider scroll title='Casts' source={casts.cast} type='person'/>
+        </span>
+        <span className={cx({'no-display': collection?.length === 0})}>
+          <CardSlider scroll title='Collection' source={collection} type='movie'/>
         </span>
 
         <h3 className={cx('section-title')}>Production Compan{data?.production_companies.length > 1 ? 'ies' : 'y'}:</h3>

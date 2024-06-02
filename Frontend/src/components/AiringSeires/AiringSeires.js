@@ -96,7 +96,6 @@ function AiringSeries() {
       }
       setLoading(false);
 
-      console.log(finalResults);
       setHighlightSeries(finalResults[0])
       setDataList(finalResults.slice(1, 9));
     }

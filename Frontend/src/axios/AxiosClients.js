@@ -18,7 +18,6 @@ const tmdbClient = axios.create({
 
 const languageList = {};
 (async () => {
-  // console.log('getting language list');
   try {
     const requestURL = 'https://api.themoviedb.org/3/configuration/languages';
     const response = await tmdbClient.get(requestURL);
@@ -38,7 +37,7 @@ const getListFromAPI = async (url, type) => {
     return {
       id: item.id,
       rating: item.vote_average,
-      type: type === 'tv' ? 'series' : 'movie',
+      type: type === 'tv' || type === 'series' ? 'series' : 'movie',
       name: item.title ? item.title : item.name,
       originalLanguage: item.original_language,
       imdb: null,
@@ -68,7 +67,8 @@ const getDetailFromAPI = async (url, type) => {
     const data = detail?.data;
     result = {
       id: data.id,
-      type: type === 'tv' ? 'series' : 'movie',
+      collection: data.belongs_to_collection,
+      type: type === 'tv' || type === 'series' ? 'series' : 'movie',
       original_name: data.original_title,
       original_language: languageList[data.original_language],
       name: data.title ? data.title : data.name,
@@ -186,7 +186,7 @@ const getSearchResultFromAPI = async (url, type) => {
   let results = response?.data?.results.map((item) => {
     return {
       id: item.id,
-      type: type === 'tv' ? 'series' : 'movie',
+      type: type === 'tv' || type === 'series' ? 'series' : 'movie',
       name: item.title ? item.title : item.name,
       poster: item.poster_path ? 'https://image.tmdb.org/t/p/w92' + item.poster_path : searchImagePlaceholder
     }
@@ -233,7 +233,29 @@ const getCreditFromAPI = async (url) => {
     })
   }
 
-  console.log(results)
+  return results;
+}
+
+const getCollectionFromAPI = async (url, type) => {
+  const response = await tmdbClient.get(url);
+  let results = response?.data?.parts.map((item) => {
+    return {
+      id: item.id,
+      rating: item.vote_average,
+      type: type === 'tv' || type === 'series' ? 'series' : 'movie',
+      name: item.title ? item.title : item.name,
+      originalLanguage: item.original_language,
+      imdb: null,
+      imgURL: 'https://image.tmdb.org/t/p/original' + item.backdrop_path,
+      poster: item.poster_path ? 'https://image.tmdb.org/t/p/w342' + item.poster_path : movieCardImagePlaceholder
+    }
+  })
+
+  //Streaming api can only support movies in English
+  results = results.filter((item) => {
+    return item.originalLanguage === 'en';
+  });
+
   return results;
 }
 
@@ -245,5 +267,6 @@ export {
   getTrailerFromAPI, 
   getCastFromAPI, 
   getGenresFromAPI,
-  getCreditFromAPI
+  getCreditFromAPI,
+  getCollectionFromAPI
 };
