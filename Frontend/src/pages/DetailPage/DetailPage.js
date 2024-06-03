@@ -10,7 +10,8 @@ import styles from './DetailPage.module.scss';
 import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI } from '../../axios/AxiosClients';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
-import CardSlider from '../../components/CardSlider/CardSlider'
+import CardSlider from '../../components/CardSlider/CardSlider';
+import EpisodeSection from '../../components/EpisodeSection/EpisodeSection';
 import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
@@ -132,6 +133,10 @@ function DetailPage({ props }) {
             </div>
           </div>
         </div>
+
+        <span className={cx({'no-display': type === 'movie'})}>
+          <EpisodeSection />
+        </span>
 
         <span className={cx({'no-display': casts?.director?.length === 0})}>
           <CardSlider scroll title='Director' source={casts.director} type='person'/>

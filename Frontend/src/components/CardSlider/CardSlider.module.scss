@@ -49,6 +49,7 @@
 
 .scroll-border {
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .scroll-border::-webkit-scrollbar {
