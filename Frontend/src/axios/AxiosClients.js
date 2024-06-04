@@ -87,7 +87,8 @@ const getDetailFromAPI = async (url, type) => {
       budget: data.budget,
       imgURL: data.backdrop_path ? 'https://image.tmdb.org/t/p/original' + data.backdrop_path : backdropImagePlaceholder,
       poster: data.poster_path ? 'https://image.tmdb.org/t/p/w342' + data.poster_path : movieCardImagePlaceholder,
-      more: data.homepage
+      more: data.homepage,
+      seasons: data.seasons ? data.seasons : []
     }
 
     let requestURL = 'https://api.themoviedb.org/3/' + type + '/' + result.id + '/credits?language=en-US';

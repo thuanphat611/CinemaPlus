@@ -135,7 +135,7 @@ function DetailPage({ props }) {
         </div>
 
         <span className={cx({'no-display': type === 'movie'})}>
-          <EpisodeSection />
+          <EpisodeSection data={type !== 'movie' ? data?.seasons : undefined} />
         </span>
 
         <span className={cx({'no-display': casts?.director?.length === 0})}>

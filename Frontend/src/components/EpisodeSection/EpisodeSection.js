@@ -1,14 +1,25 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 
 import styles from './EpisodeSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-function EpisodeSection() {
-  const [season, setSeason] = useState('1')
+function EpisodeSection({ data }) {
+  const [season, setSeason] = useState(data?.length > 0 ? data.length - 1 : 0);
+
+  useEffect(() => {
+    setSeason(data?.length > 0 ? data.length - 1 : 0);
+  }, [data]);
+
+  const episodeList = [];
+  if (data) {
+    for (var i = 0; i < data[Number(season)].episode_count; i++) {
+      episodeList.push(i + 1);
+    }
+  }
 
   return (
     <div className={cx('container')}>
@@ -17,48 +28,24 @@ function EpisodeSection() {
           <h3 className={cx('title')}>Seasons & Episodes</h3>
           <div className={cx('selection-container')}>
             <div className={cx('selection')}>
-              <span className={cx('selection-selected-item')}>{'Season: ' + season}</span>
+              <span className={cx('selection-selected-item')}>{data ? data[Number(season)]?.name : ''}</span>
               <FaAngleDown />
             </div>
             <div className={cx('selection-dropdown-list')}>
-              <option className={cx('selection-dropdown-item')} value="1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSeason(e.target.value);
-                }}
-              >
-                season 1
-              </option>
-              <option className={cx('selection-dropdown-item')} value="2"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSeason(e.target.value);
-                }}
-              >
-                season 2
-              </option>
-              <option className={cx('selection-dropdown-item')} value="3"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSeason(e.target.value);
-                }}
-              >
-                season 3
-              </option>
-              {/* {
-                currentGenreList.map((item, index) => {
+              {
+                data?.map((item, index) => {
                   return (
-                    <option key={index} className={cx('selection-dropdown-item')} value={item.name}
+                    <option key={index} className={cx('selection-dropdown-item')} value={index}
                       onClick={(e) => {
                         e.preventDefault();
-                        setGenre(e.target.value);
+                        setSeason(e.target.value);
                       }}
                     >
                       {item.name}
                     </option>
                   )
                 })
-              } */}
+              }
             </div>
           </div>
         </span>
@@ -66,24 +53,15 @@ function EpisodeSection() {
         <span className={cx('line')}></span>
 
         <ul className={cx('episode-list')}>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
-          <li className={cx('episode-item')}>
-            <Link className={cx('episode-link')} to='111  '>1</Link>
-          </li>
+          {
+            episodeList.map((item, index) => {
+              return (
+                <li key={index} className={cx('episode-item')}>
+                  <Link className={cx('episode-link')} to='111'>{item}</Link>
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     </div>
