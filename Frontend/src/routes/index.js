@@ -1,5 +1,6 @@
 import HomePage from "../pages/HomePage/HomePage";
 import DetailPage from "../pages/DetailPage/DetailPage";
+import WatchPage from "../pages/WatchPage/WatchPage";
 
 const publicRoutes = [
   {
@@ -23,14 +24,14 @@ const publicRoutes = [
   },
   {
     path: 'movie/watch/:id', 
-    component: DetailPage,
+    component: WatchPage,
     props: {
       type: 'movie'
     }
   },
   {
     path: 'series/watch/:id/:season/:episode', 
-    component: DetailPage,
+    component: WatchPage,
     props: {
       type: 'series'
     }
