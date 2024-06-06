@@ -28,80 +28,81 @@
   color: var(--white-color);
   font-size: 1.5rem;
   font-weight: 500;
-}
 
-.view-all:hover {
-  text-decoration: underline;
-  color: var(--primary-color);
+  &:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+  }
 }
 
 .slider {
   width: 100%;
   min-height: 100px;
   position: relative;
+
+  &-border {
+    width: 100%;
+    padding: 10px 5px;
+    overflow: hidden;
+  }
+
+  &-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover &-button {
+    display: flex;
+  }
+
+  &-button {
+    display: none;
+    width: 50px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  &-button + &-button {
+    left: unset;
+    right: -25px;
+  }
+
+  &-button:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
 }
 
-.slider-border {
-  width: 100%;
-  padding: 10px 5px;
-  overflow: hidden;
-}
 
 .scroll-border {
   overflow: auto;
   scroll-behavior: smooth;
-}
 
-.scroll-border::-webkit-scrollbar {
-  width: 15px;
-}
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
 
-.scroll-border::-webkit-scrollbar-track {
-  background: var(--light-black-color);
-}
+  &::-webkit-scrollbar-track {
+    background: var(--light-black-color);
+  }
 
-.scroll-border::-webkit-scrollbar-thumb {
-  background: var(--gray-color);
-  border-radius: 8px;
-}
-
-.slider-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  transition: transform 0.3s ease-in-out;
-}
-
-.slider:hover .slider-button {
-  display: flex;
-}
-
-.slider-button {
-  display: none;
-  width: 50px;
-  height: 100px;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  color: var(--white-color);
-  background-color: var(--primary-color);
-  border: none;
-  position: absolute;
-  top: 50%;
-  left: -25px;
-  transform: translateY(-50%);
-  opacity: 0.5;
-  z-index: 2;
-}
-
-.slider-button + .slider-button {
-  left: unset;
-  right: -25px;
-}
-
-.slider-button:hover {
-  cursor: pointer;
-  opacity: 1;
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-color);
+    border-radius: 8px;
+  }
 }
 
 .no-display {

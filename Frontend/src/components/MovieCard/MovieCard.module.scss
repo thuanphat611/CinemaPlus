@@ -5,15 +5,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-.container + .container {
-  margin-left: 15px;
+  & + & {
+    margin-left: 15px;
+  }
+    
+  &:hover .movie-name {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
 }
 
 .link {
   display: block;
   position: relative;
+
+  &:hover .hover-overlay {
+    display: block;
+  }
 }
 
 .poster {
@@ -28,10 +37,6 @@
   user-select: none;
 }
 
-.link:hover .hover-overlay {
-  display: block;
-}
-
 .hover-overlay {
   display: none;
   width: 203px;
@@ -44,7 +49,6 @@
   left: 0;
   z-index: 1;
 }
-
 
 .like-btn {
   border: none;
@@ -64,12 +68,12 @@
   transform: translateX(-50%) translateY(-50%);
   z-index: 2;
   transition: all 0.3s ease;
-}
 
-.like-btn:hover {
-  width: 55px;
-  height: 55px;
-  cursor: pointer;
+  &:hover {
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+  }
 }
 
 .like-icon {
@@ -88,9 +92,4 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.container:hover .movie-name {
-  color: var(--primary-color);
-  font-weight: 500;
 }

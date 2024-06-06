@@ -30,26 +30,26 @@ body {
   font-family: 'Poppins';
   font-size: 1.6rem;
   text-rendering: optimizeSpeed;
-}
 
-//scrollbar-------------------------------------------------------------
-body::-webkit-scrollbar {
-  width: 15px;
-}
+  //scrollbar
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
 
-body::-webkit-scrollbar-track {
-  background: var(--light-black-color);
-}
+  &::-webkit-scrollbar-track {
+    background: var(--light-black-color);
+  }
 
-body::-webkit-scrollbar-thumb {
-  background: var(--gray-color);
-  border-radius: 8px;
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-color);
+    border-radius: 8px;
+  }
 
-body::-webkit-scrollbar-thumb:hover {
-  cursor: grab;
-}
+  &::-webkit-scrollbar-thumb:hover {
+    cursor: grab;
+  }
 
-body::-webkit-scrollbar-thumb:active {
-  cursor: grabbing;
+  &::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+  }
 }

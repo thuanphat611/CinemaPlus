@@ -9,38 +9,42 @@
   position: relative;
 }
 
-.day-group {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+.day {
+  &-group {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  &-button {
+    display: flex;
+    height: 55px;
+    width: 120px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-size: 1.5rem;
+    font-weight: 400;
+    user-select: none;
+  }
 }
 
-.day-button {
-  display: flex;
-  height: 55px;
-  width: 120px;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-  background-color: var(--black-color);
-  color: var(--white-color);
-  font-size: 1.5rem;
-  font-weight: 400;
-  user-select: none;
-}
 
 .button-active {
   background-color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-color);
+    cursor: default;
+  }
 }
 
-.button-active:hover {
-  background-color: var(--primary-color);
-  cursor: default;
-}
 
 .content-wrapper {
   height: 100%;
@@ -64,135 +68,140 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+
+  &-icon {
+    animation: spin 0.4s linear infinite;
+  }
 }
 
-.loader-icon {
-  animation: spin 0.4s linear infinite;
-}
 
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-.series-list {
-  flex: 1;
-  height: 100%;
-  margin: 0 35px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+.series {
+  &-list {
+    flex: 1;
+    height: 100%;
+    margin: 0 35px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  
+  &-item-wrapper{
+    flex: 0 1 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--black-color);
+    text-decoration: none;
+  }
+  
+  &-img {
+    width: 138px;
+    height: 207px;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+  
+  &-info {
+    padding: 40px 0 10px;
+    background: linear-gradient(0deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  
+  &-item:hover {
+    cursor: pointer;
+  }
+  
+  &-item:hover {
+    box-shadow: 0 0 5px 3px rgb(96, 242, 190);
+  }
+  
+  &-item:hover &-info {
+    background: linear-gradient(0deg, rgba(96, 242, 190, 1), rgba(96, 242, 190, 0));
+  }
+  
+  &-name {
+    color: var(--white-color);
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
 }
 
-.series-item-wrapper{
-  flex: 0 1 25%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.series-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 10px;
-  border: 1px solid var(--black-color);
-  text-decoration: none;
-}
-
-.series-img {
-  width: 138px;
-  height: 207px;
-  box-sizing: border-box;
-  object-fit: cover;
-}
-
-.series-info {
-  padding: 40px 0 10px;
-  background: linear-gradient(0deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
-.series-item:hover {
-  cursor: pointer;
-}
-
-.series-item:hover {
-  box-shadow: 0 0 5px 3px rgb(96, 242, 190);
-}
-
-.series-item:hover .series-info {
-  background: linear-gradient(0deg, rgba(96, 242, 190, 1), rgba(96, 242, 190, 0));
-}
-
-.series-name {
-  color: var(--white-color);
-  font-size: 1.3rem;
-  font-weight: 400;
-}
-
-.highlight-series-item {
-  display: flex;  
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 15px;
-  position: relative;
-  text-decoration: none;
-}
-
-.highlight-series-img {
-  height: 462px;
-  width: 308px;
-  box-sizing: border-box;
-  object-fit: cover;
-}
-
-.highlight-series-info {
-  display: none;
-  padding: 50px 0 30px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(0deg, rgba(96, 242, 190, 1),rgba(96, 242, 190, 0));
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.highlight-series-name {
-  color: var(--white-color);
-  font-size: 1.9rem;
-  font-weight: 500;
-}
-
-.highlight-series-item::before {
-  display: none;
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: inset 0 0 50px 10px rgb(96, 242, 190);
-}
-
-.highlight-series-item:hover {
-  cursor: pointer;
-}
-
-.highlight-series-item:hover .highlight-series-info {
-  display: flex;
-}
-
-.highlight-series-item:hover::before {
-  display: block;
-}
+.highlight {
+  &-series-item {
+    display: flex;  
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+    text-decoration: none;
+  }
+  
+  &-series-img {
+    height: 462px;
+    width: 308px;
+    box-sizing: border-box;
+    object-fit: cover;
+  }
+  
+  &-series-info {
+    display: none;
+    padding: 50px 0 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(0deg, rgba(96, 242, 190, 1),rgba(96, 242, 190, 0));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  &-series-name {
+    color: var(--white-color);
+    font-size: 1.9rem;
+    font-weight: 500;
+  }
+  
+  &-series-item::before {
+    display: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: inset 0 0 50px 10px rgb(96, 242, 190);
+  }
+  
+  &-series-item:hover {
+    cursor: pointer;
+  }
+  
+  &-series-item:hover &-series-info {
+    display: flex;
+  }
+  
+  &-series-item:hover::before {
+    display: block;
+  }
+} 

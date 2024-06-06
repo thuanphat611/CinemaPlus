@@ -5,11 +5,20 @@
   flex: none;
   position: relative;
   overflow: hidden;
+
+  & + & {
+    margin-left: 15px;
+  }
+  
+  &:hover .cast-name {
+    display: inline;
+  }
+
+  &:hover .birthday {
+    display: inline;
+  }
 }
 
-.container + .container {
-  margin-left: 15px;
-}
 
 .link {
   display: block;
@@ -18,6 +27,26 @@
   text-decoration: none;
   position: relative;
   border-radius: 15px;
+
+  &:hover .hover-overlay {
+  display: block;
+  }
+
+  &-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--light-black-color);
+    border-radius: 50%;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
 }
 
 .profile-picture {
@@ -29,10 +58,6 @@
   border: 1px solid var(--light-black-color);
   border-radius: 15px;
   user-select: none;
-}
-
-.link:hover .hover-overlay {
-  display: block;
 }
 
 .hover-overlay {
@@ -47,39 +72,6 @@
   z-index: 1;
 }
 
-.link-icon {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--light-black-color);
-  border-radius: 50%;
-  font-size: 2.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
-
-.cast-name-wrap {
-  display: flex;
-  width: 100%;
-  min-height: 50px;
-  padding: 20px 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .cast-name {
   width: 100%;
   color: var(--black-color);
@@ -91,10 +83,23 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
-}
 
-.container:hover .cast-name {
-  display: inline;
+  &-wrap {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .birthday {
@@ -103,10 +108,6 @@
   color: var(--black-color);
   font-size: 1.5rem;
   font-weight: 400;
-}
-
-.container:hover .birthday {
-  display: inline;
 }
 
 .no-display {

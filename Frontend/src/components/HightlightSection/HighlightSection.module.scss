@@ -21,6 +21,19 @@
   bottom: 0;
   left: 0;
   box-shadow: 0 0 100px 100px rgb(97, 29, 186);
+
+  &-line {
+    display: block;
+    margin-bottom: 20px;
+    color: var(--white-color);
+    font-size: 1.7rem;
+    font-weight: 300;
+  }
+
+  &-title {
+    font-weight: 600;
+    margin-right: 5px;
+  }
 }
 
 .name {
@@ -32,51 +45,38 @@
   text-align: start;
 }
 
-.information-line {
-  display: block;
-  margin-bottom: 20px;
-  color: var(--white-color);
-  font-size: 1.7rem;
-  font-weight: 300;
-}
-
-.information-title {
-  font-weight: 600;
-  margin-right: 5px;
-}
-
 .overview {
   flex: 1;
   margin-bottom: 20px;
   overflow: auto;
-}
 
-.overview::-webkit-scrollbar {
-  width: 5px;
-}
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
 
-.overview::-webkit-scrollbar-track {
-  background: transparent;
-}
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-.overview::-webkit-scrollbar-thumb {
-  background: var(--white-color);
-  border-radius: 8px;
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(--white-color);
+    border-radius: 8px;
+  }
 
-.overview::-webkit-scrollbar-thumb:hover {
-  background: var(--white-color);
-  cursor: default;
-}
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--white-color);
+    cursor: default;
+  }
 
-.overview::-webkit-scrollbar-thumb:active {
-  cursor: default;
-}
+  &::-webkit-scrollbar-thumb:active {
+    cursor: default;
+  }
 
-.overview-text {
-  color: var(--white-color);
-  font-size: 1.7rem;
-  font-weight: 400  ;
+  &-text {
+    color: var(--white-color);
+    font-size: 1.7rem;
+    font-weight: 400  ;
+  }
 }
 
 .button-group {
@@ -93,11 +93,11 @@
   font-weight: 400;
   text-align: center;
   border-radius: 5px;
-}
 
-.play-btn:hover {
-  opacity: 0.9;
-  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 }
 
 .more-btn {
@@ -109,11 +109,11 @@
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-}
 
-.more-btn:hover {
-  opacity: 0.8;
-  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 }
 
 .no-display {

@@ -57,53 +57,58 @@
   font-size: 5rem;
   user-select: none;
 }
-.genre-list {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-  padding: 0;
-  list-style: none;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
+
+.genre {
+  &-list {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  &-item {
+    padding: 5px;
+    border: 1px solid var(--white-color);
+    border-radius: 10px;
+    color: var(--white-color);
+    font-size: 1.6rem;
+    font-weight: 500;
+    user-select: none;
+  }
 }
 
-.genre-item {
-  padding: 5px;
-  border: 1px solid var(--white-color);
-  border-radius: 10px;
-  color: var(--white-color);
-  font-size: 1.6rem;
-  font-weight: 500;
-  user-select: none;
-}
-
-.rating-wrap {
-  display: flex;
-  width: 200px;
-  height: 70px;
-  margin-top: 20px;
-  align-items: center;
-  border-radius: 50px;
-  background-color: var(--black-color);
+.rating {
+  &-wrap {
+    display: flex;
+    width: 200px;
+    height: 70px;
+    margin-top: 20px;
+    align-items: center;
+    border-radius: 50px;
+    background-color: var(--black-color);
+  }
+  
+  &-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    font-size: 1.8rem;
+    font-weight: 500;
+    user-select: none;
+  }
 }
 
 .progress-bar-wrap {
   margin-left: 10px;
   width: 50px;
   height: 50px;
-}
-
-.rating-text {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white-color);
-  font-size: 1.8rem;
-  font-weight: 500;
-  user-select: none;
 }
 
 .button-group {
@@ -114,8 +119,7 @@
   align-items: center;
 }
 
-.play-btn,
-.more-btn {
+.basic-btn {
   text-decoration: none;
   display: flex;
   height: 40px;
@@ -129,13 +133,14 @@
 }
 
 .play-btn {
+  @extend .basic-btn;
   background-color: var(--primary-color);
   color: var(--white-color);
-}
 
-.play-btn:hover {
-  cursor: pointer;
-  background-color: var(--light-primary-color);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--light-primary-color);
+  }
 }
 
 .btn-text{
@@ -143,13 +148,14 @@
 }
 
 .more-btn {
+  @extend .basic-btn;
   background-color: var(--white-color);
   color: var(--black-color);
-}
 
-.more-btn:hover {
-  cursor: pointer;
-  background-color: var(--white-hover-color);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--white-hover-color);
+  }
 }
 
 .btn-inactive,
@@ -174,56 +180,56 @@
   color: var(--white-color);
   font-size: 2rem;
   box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.1);
-}
 
-.option-btn:hover {
-  background-color: var(--light-black-color);
-  color: var(--primary-color);
-  cursor: pointer;
-}
-
-.overview-title {
-  margin: 20px 0 0 0;
-  color: var(--white-color);
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-.overview-wrapper {
-  flex: 1;
-  width: 500px;
-  margin-top: 10px;
-
-  //blur background----
-  // border-radius: 5px;
-  // background: rgba(204, 204, 204, 0.1);
-  // backdrop-filter: blur(30px);
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  //-------
-  
-  position: relative;
-}
-
-.overview-content {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow: auto;
-}
-
-.overview-content::-webkit-scrollbar {
-  width: 5px;
-}
-
-.overview-content::-webkit-scrollbar-thumb {
-  background: var(--white-color);
-  border-radius: 8px;
+  &:hover {
+    background-color: var(--light-black-color);
+    color: var(--primary-color);
+    cursor: pointer;
+  }
 }
 
 .overview {
   color: var(--white-color);
   font-size: 1.5rem;
   font-weight: 400;
+    
+  &-title {
+    margin: 20px 0 0 0;
+    color: var(--white-color);
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  &-wrapper {
+    flex: 1;
+    width: 500px;
+    margin-top: 10px;
+
+    //blur background----
+    // border-radius: 5px;
+    // background: rgba(204, 204, 204, 0.1);
+    // backdrop-filter: blur(30px);
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    //-------
+    
+    position: relative;
+  }
+
+  &-content {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: auto;
+  }
+
+  &-content::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &-content::-webkit-scrollbar-thumb {
+    background: var(--white-color);
+    border-radius: 8px;
+  }
 }

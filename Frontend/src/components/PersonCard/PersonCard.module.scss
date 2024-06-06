@@ -3,10 +3,15 @@
   flex: none;
   position: relative;
   overflow: hidden;
-}
 
-.container + .container {
-  margin-left: 30px;
+  & + & {
+    margin-left: 30px;
+  }
+  
+  &:hover .cast-name {
+    display: block;
+    text-align: center;
+  }
 }
 
 .profile-picture {
@@ -32,9 +37,4 @@
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.container:hover .cast-name {
-  display: block;
-  text-align: center;
 }

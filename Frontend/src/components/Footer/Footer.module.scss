@@ -25,16 +25,6 @@
   border-radius: 20px;
 }
 
-.logo-container {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  overflow: hidden;
-  position: relative;
-}
-
 .logo {
   height: 160px;
   width: auto;
@@ -45,6 +35,16 @@
   top: 50%;
   transform: translateY(-50%);
   left: -25px;
+
+  &-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+  }
 }
 
 .title {
@@ -69,48 +69,56 @@
   gap: 15px;
 }
 
-.download-upper {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.download-app {
-  flex-grow: 3;
-  display: flex;
-  height: 100%;
-  padding: 0 30px;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--primary-color);
-  border-radius: 10px;
-}
-
-.download-text {
-  color: var(--white-color);
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.download-btn {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  border: none;
-  background-color: var(--light-primary-color);
-  color: var(--white-color);
-  font-size: 2.5rem;
-  border-radius: 10px;
-}
-
-.download-btn:hover {
-  cursor: pointer;
-  background-color: rgb(171, 119, 238);
+.download {
+  &-upper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  &-app {
+    flex-grow: 3;
+    display: flex;
+    height: 100%;
+    padding: 0 30px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+  }
+  
+  &-text {
+    color: var(--white-color);
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  
+  &-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    background-color: var(--light-primary-color);
+    color: var(--white-color);
+    font-size: 2.5rem;
+    border-radius: 10px;
+  }
+  
+  &-btn:hover {
+    cursor: pointer;
+    background-color: rgb(171, 119, 238);
+  }
+  
+  &-blocks {
+    flex-grow: 2;
+    display: flex;
+    gap: 15px
+  }
 }
 
 .certificate {
@@ -125,12 +133,6 @@
   text-decoration: none;
 }
 
-.download-blocks {
-  flex-grow: 2;
-  display: flex;
-  gap: 15px
-}
-
 .block {
   flex: 1;
   display: flex;
@@ -140,46 +142,48 @@
   justify-content: center;
   background-color: var(--light-black-color);
   border-radius: 10px;
+
+  &-title {
+    margin-bottom: 30px;
+    color: var(--white-color);
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  &-link {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white-color);
+    border-radius: 5px;
+    overflow: hidden;
+    text-decoration: none;
+    user-select: none;
+  }
+
+  &-img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+  }
 }
 
-.block-title {
-  margin-bottom: 30px;
-  color: var(--white-color);
-  font-size: 1.6rem;
-  font-weight: 400;
-}
-
-.block-link {
-  display: flex;
-  width: 100%;
-  height: 50px;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--white-color);
-  border-radius: 5px;
-  overflow: hidden;
-  text-decoration: none;
-  user-select: none;
-}
-
-.block-img {
-  width: 100px;
-  height: auto;
-  object-fit: contain;
-}
-
-.microsoft-store-icon {
-  width: 25px;
-  height: 25px;
-  object-fit: contain;
-  user-select: none;
-}
-
-.microsoft-store-text {
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: var(--black-color);
-  user-select: none;
+.microsoft-store {
+  &-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    user-select: none;
+  }
+  
+  &-text {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--black-color);
+    user-select: none;
+  }
 }
 
 .email-contact{
@@ -187,10 +191,10 @@
   color: var(--white-color);
   font-size: 5rem;
   text-align: center;
-}
 
-.email-contact .download-text {
-  font-size: 1.5rem;
+  & .download-text {
+    font-size: 1.5rem;
+  }
 }
 
 .credit {
@@ -199,21 +203,17 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 40px;
-}
 
-.credit-text {
-  color: var(--gray-color);
-  font-size: 1.4rem;
-  font-weight: 400;
-} 
+  &-text {
+    color: var(--gray-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+  } 
+}
 
 .design-link {
   margin-left: 5px;
   text-decoration: none;
-}
-
-.social-media-group {
-  display: flex;
 }
 
 .social-media {
@@ -225,8 +225,12 @@
   color: var(--white-color);
   font-size: 2.5rem;
   text-decoration: none;
-}
+  
+  &-group {
+    display: flex;
+  }
 
-.social-media:hover {
-  color: var(--primary-color);
+  &:hover {
+    color: var(--primary-color);
+  }
 }
