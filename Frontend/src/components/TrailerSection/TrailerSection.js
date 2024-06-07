@@ -7,11 +7,11 @@ import styles from './TrailerSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-function TrailerSection({ source }) {
+function TrailerSection({ source, horizontal }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className={cx('container')}>
+    <div className={cx('container', {'horizontal': horizontal})}>
       <h3 className={cx('title')}>Movie Trailers</h3>
 
       <div className={cx('main')}>
