@@ -7,11 +7,12 @@ import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
 import styles from './DetailPage.module.scss';
-import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI } from '../../axios/AxiosClients';
+import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI, getRelatedTrailerFromAPI } from '../../axios/AxiosClients';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
 import CardSlider from '../../components/CardSlider/CardSlider';
 import EpisodeSection from '../../components/EpisodeSection/EpisodeSection';
+import TrailSection from '../../components/TrailerSection/TrailerSection';
 import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(styles);
@@ -26,6 +27,7 @@ function DetailPage({ props }) {
   const [data, setData] = useState(undefined);
   const [collection, setCollection] = useState([]);
   const [casts, setCasts] = useState({});
+  const [videos, setVideos] = useState([]);
 
   const formatMoney = (money) => {
     money = money.toString();
@@ -88,6 +90,18 @@ function DetailPage({ props }) {
     getData();
   }, [id, type]);
 
+  //Load trailers and teasers
+  useEffect(() => {
+    const getData =  async () => {
+      setNumToLoad((val) => val + 1);
+      const result = await getRelatedTrailerFromAPI(id, type);
+      setVideos(result);
+
+      setNumLoaded((val) => val + 1);
+    }
+    getData();
+  }, [id, type]);
+
   return ( 
     <div className={cx('content')}>
       <Header />
@@ -136,6 +150,10 @@ function DetailPage({ props }) {
 
         <span className={cx({'no-display': type === 'movie'})}>
           <EpisodeSection data={type !== 'movie' ? data?.seasons : undefined} />
+        </span>
+
+        <span className={cx({'no-display': videos?.length === 0})}>
+          <TrailSection title={'Teasers& Trailers'} horizontal source={videos} />
         </span>
 
         <span className={cx({'no-display': casts?.director?.length === 0})}>

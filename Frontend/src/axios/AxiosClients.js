@@ -153,6 +153,25 @@ const getTrailerFromAPI = async (url) => {
   return results;
 }
 
+const getRelatedTrailerFromAPI = async (id, type) => {
+  type = type === 'movie' ? 'movie' : 'tv';
+  let requestURL = 'https://api.themoviedb.org/3/' + type + '/' + id + '/videos?language=en-US';
+  const response = await tmdbClient.get(requestURL);
+
+  let result = response?.data?.results.map((item) => {
+    return {
+      name: item.title ? item.title : item.name,
+      site: item.site || '',
+      type: item.type,
+      youtubeKey: item.key,
+    }
+  });
+
+  result = result.filter((item) => item.site === 'YouTube');
+
+  return result;
+}
+
 const getCastFromAPI = async (url) => {
   let response = await tmdbClient.get(url);
   let results = response?.data?.results.map((item, index) => {
@@ -266,6 +285,7 @@ export {
   getListFromAPI, 
   getDetailFromAPI, 
   getTrailerFromAPI, 
+  getRelatedTrailerFromAPI,
   getCastFromAPI, 
   getGenresFromAPI,
   getCreditFromAPI,

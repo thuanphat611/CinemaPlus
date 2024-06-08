@@ -297,7 +297,7 @@ function HomePage({ props }) {
         <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
         <HightlightSection source={highlightSeries} />
         <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={castData} type="cast" />
-        <TrailerSection horizontal source={trailerData} />
+        <TrailerSection title={'Movie Trailers'} source={trailerData} />
         <Social />
         <Footer />
       </span>
