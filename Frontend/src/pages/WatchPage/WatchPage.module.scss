@@ -1,0 +1,36 @@
+.content {
+  background-color: var(--black-color);
+  min-height: 100vh;
+}
+
+.no-display {
+  display: none!important;
+}
+
+.loader {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  &-icon {
+    animation: spin 0.4s linear infinite;
+  }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.header-space {
+  width: 100%;
+  height: 80px;
+}

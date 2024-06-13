@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  margin: 40px 105px 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  width: 800px;
+  height: 450px;
+  background-color: var(--light-black-color);
+  position: relative;
+
+  &-btn {
+    font-size: 5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: var(--white-color);
+  } 
+
+  &-btn:hover {
+    cursor: pointer;
+  }
+}

@@ -21,7 +21,7 @@ function DetailPage({ props }) {
   const type = props.type === 'series' ? 'tv' : 'movie';
   const { id } = useParams();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [numToLoad, setNumToLoad] = useState(0);
   const [numLoaded, setNumLoaded] = useState(0);
   const [data, setData] = useState(undefined);
