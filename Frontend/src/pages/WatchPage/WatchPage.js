@@ -4,9 +4,7 @@ import { LuLoader2 } from "react-icons/lu";
 import classNames from "classnames/bind";
 
 import style from './WatchPage.module.scss';
-import Header from '../../components/Header/Header';
 import Player from '../../components/Player/Player';
-import Footer from '../../components/Footer/Footer';
 
 const cx = classNames.bind(style);
 
@@ -19,15 +17,12 @@ function WatchPage({ props }) {
 
   return (
     <div className={cx('content')}>
-      <Header />
       <div className={cx('loader', { 'no-display': !loading})}>
         <LuLoader2 className={cx('loader-icon')} />
       </div>
       
       <span className={cx({'no-display': loading})}>
-        <div className={cx('header-space')}></div>
-        <Player />
-        <Footer />
+        <Player id={id} type={type}/>
       </span>
     </div>
   );

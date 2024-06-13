@@ -7,7 +7,7 @@ import styles from './EpisodeSection.module.scss';
 
 const cx = classNames.bind(styles);
 
-function EpisodeSection({ data }) {
+function EpisodeSection({ data, id, type }) {
   const [season, setSeason] = useState(data?.length > 0 ? data.length - 1 : 0);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ function EpisodeSection({ data }) {
             episodeList.map((item, index) => {
               return (
                 <li key={index} className={cx('episode-item')}>
-                  <Link className={cx('episode-link')} to='111'>{item}</Link>
+                  <Link className={cx('episode-link')} to={ '/' + (type === 'movie' ? 'movie' : 'series') + '/watch/' + id + '/' + season + '/' + (index + 1)}>{item}</Link>
                 </li>
               )
             })

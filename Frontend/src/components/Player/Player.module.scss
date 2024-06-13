@@ -1,26 +1,106 @@
 .container {
-  display: flex;
-  margin: 40px 105px 80px;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--black-color);
+  color: var(--white-color);
 }
 
-.placeholder {
-  width: 800px;
-  height: 450px;
-  background-color: var(--light-black-color);
-  position: relative;
-
-  &-btn {
-    font-size: 5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    color: var(--white-color);
-  } 
-
-  &-btn:hover {
+.btn {
+  display: flex;
+  background: transparent;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  font-size: 3.5rem;
+  color: var(--white-color);
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    color: var(--primary-color);
     cursor: pointer;
   }
+
+  &-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
+
+  &-report {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+  }
+}
+
+.bottom-section {
+  display: flex;
+  padding: 0 20px 40px;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  .watch-progress {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .progress-bar {
+    height: 5px;
+    flex: 1;
+    background-color: var(--gray-color);
+  }
+  
+  .remaining-time {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--white-color);
+  }
+  
+  .btn-group {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .left-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .right-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      .series-only {
+        display: flex;
+        margin-right: 30px;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+    }
+  }
+}
+
+.no-display {
+  display: none!important;
 }

@@ -149,7 +149,7 @@ function DetailPage({ props }) {
         </div>
 
         <span className={cx({'no-display': type === 'movie'})}>
-          <EpisodeSection data={type !== 'movie' ? data?.seasons : undefined} />
+          <EpisodeSection id={id} type={type} data={type !== 'movie' ? data?.seasons : undefined} />
         </span>
 
         <span className={cx({'no-display': videos?.length === 0})}>

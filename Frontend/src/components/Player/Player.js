@@ -1,20 +1,176 @@
 import classNames from "classnames/bind";
-import { IoPlay } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { IoPlay, IoPause } from "react-icons/io5";
+import { FaArrowLeft } from "react-icons/fa6";
+import { FiSkipForward } from "react-icons/fi";
+import { TbRewindForward10, TbRewindBackward10 } from "react-icons/tb";
+import { 
+  PiSpeakerSimpleHighBold, 
+  PiSpeakerSimpleXBold, 
+  PiGearSixBold, 
+  PiCornersOutBold, 
+  PiCornersInBold, 
+  PiFlagBold, 
+  PiSquaresFourBold  
+} from "react-icons/pi";
 
 import styles from './Player.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Player() {
+function Player({id, type}) {
+  const [fullScreen, setFullScreen] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
+  const [playing, setPlaying] = useState(true);
+  
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (
+        document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement
+      ) {
+        setFullScreen(true);
+      } else {
+        setFullScreen(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('msfullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullScreen = () => {
+    try {
+      if (!fullScreen) {
+        enterFullscreen();
+      }
+      else {
+        exitFullscreen();
+      }
+    }
+    catch (e) {
+      //ignore :v
+    }
+  }
+
+  const enterFullscreen = () => {
+    const elem = document.documentElement;
+
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  };
+
   return (
     <div className={cx('container')}>
-      <div className={cx('placeholder')}>
-        <div className={cx('placeholder-btn')}>
-          <IoPlay />
+      <Link className={cx('btn', 'btn-back')} to={'/' + (type === 'movie' ? 'movie' : 'series') + '/detail/' + id}>
+        <FaArrowLeft />
+      </Link>
+
+      <button className={cx('btn', 'btn-report')}>
+        <PiFlagBold />
+      </button>
+
+      <div className={cx('bottom-section')}>
+        <div className={cx('watch-progress')}>
+          <div className={cx('progress-bar')}></div>
+          <h3 className={cx('remaining-time')}>59:59</h3>
+        </div>
+
+        <div className={cx('btn-group')}>
+          <div className={cx('left-side')}>
+            <button className={cx('btn')}
+              onClick={() => {
+                setPlaying(state => !state);
+              }}
+            >
+              {
+                playing ?
+                <IoPlay />
+                :
+                <IoPause />
+              }
+            </button>
+            <button className={cx('btn')}>
+              <TbRewindBackward10 />
+            </button>
+            <button className={cx('btn')}>
+              <TbRewindForward10 />
+            </button>
+            <button className={cx('btn')}
+              onClick={() => {
+                setSoundOn(state => !state);
+              }}
+            >
+              {
+                soundOn ?
+                <PiSpeakerSimpleHighBold />
+                :
+                <PiSpeakerSimpleXBold  />
+              }
+            </button>
+          </div>
+          
+          <div className={cx('right-side')}>
+            <div className={cx('series-only', {'no-display': type === 'movie'})}>
+              <button className={cx('btn')}>
+                <FiSkipForward />
+              </button>
+              
+              <button className={cx('btn')}>
+                <PiSquaresFourBold />
+              </button>
+            </div>
+
+            <button className={cx('btn')}>
+              <PiGearSixBold />
+            </button>
+            <button className={cx('btn')}
+              onClick={() => {
+                toggleFullScreen();
+              }}
+            >
+              {
+                fullScreen ?
+                <PiCornersInBold />
+                :
+                <PiCornersOutBold/>
+              }
+            </button>
+          </div>
         </div>
       </div>
-
-      
     </div>
   );
 }
