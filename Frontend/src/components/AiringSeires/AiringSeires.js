@@ -72,7 +72,7 @@ function AiringSeries() {
   const [highlightSeries, setHighlightSeries] = useState(emptyData[0]);
   
   const today = new Date();
-  const [currentDate, setCurrentDate] = useState(today.getDay());
+  const currentDate = today.getDay();
   
   const dateToString = (date) => {
     const year = date.getFullYear();

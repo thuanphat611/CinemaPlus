@@ -118,7 +118,8 @@ const getTrailerFromAPI = async (url) => {
       id: item.id,
       name: item.title ? item.title : item.name,
       originalLanguage: item.original_language,
-      imgURL: item.backdrop_path ? 'https://image.tmdb.org/t/p/w300' + item.backdrop_path : trailerImagePlaceholder
+      imgURL: item.backdrop_path ? 'https://image.tmdb.org/t/p/w300' + item.backdrop_path : trailerImagePlaceholder,
+      youtubeKey: ' '
     }
   })
 
@@ -142,15 +143,15 @@ const getTrailerFromAPI = async (url) => {
       return item.name.includes('Official Trailer');
     })
 
-    if (officalTrailer.length !== 0) {
-      results[i].youtubeKey = officalTrailer[0].key ? officalTrailer[0].key : '';
+    if (officalTrailer?.length !== 0) {
+      results[i].youtubeKey = officalTrailer[0]?.key ? officalTrailer[0].key : '';
     }
     else {
-      results[i].youtubeKey = trailer[0].key ? trailer[0].key : '';
+      results[i].youtubeKey = trailer[0]?.key ? trailer[0].key : '';
     }
   }
 
-  return results;
+  return results.filter(item => item.youtubeKey !== '');
 }
 
 const getRelatedTrailerFromAPI = async (id, type) => {
@@ -163,7 +164,7 @@ const getRelatedTrailerFromAPI = async (id, type) => {
       name: item.title ? item.title : item.name,
       site: item.site || '',
       type: item.type,
-      youtubeKey: item.key,
+      youtubeKey: item?.key,
     }
   });
 
