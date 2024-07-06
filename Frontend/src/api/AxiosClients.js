@@ -280,6 +280,21 @@ const getCollectionFromAPI = async (url, type) => {
   return results;
 }
 
+const getSeasonListFromAPI = async (url, type) => {
+  const detail = await tmdbClient.get(url);
+  let result = undefined;
+  if (detail) {
+    const data = detail?.data;
+    result = {
+      id: data.id,
+      type: type === 'tv' || type === 'series' ? 'series' : 'movie',
+      name: data.title ? data.title : data.name,
+      seasons: data.seasons ? data.seasons : []
+    }
+  }
+  return result;
+}
+
 export { 
   tmdbClient, 
   getSearchResultFromAPI, 
@@ -290,5 +305,6 @@ export {
   getCastFromAPI, 
   getGenresFromAPI,
   getCreditFromAPI,
-  getCollectionFromAPI
+  getCollectionFromAPI,
+  getSeasonListFromAPI
 };

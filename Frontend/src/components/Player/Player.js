@@ -19,7 +19,7 @@ import styles from './Player.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Player({id, type}) {
+function Player({id, data, season, episode, type}) {
   const [fullScreen, setFullScreen] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [playing, setPlaying] = useState(true);
@@ -28,6 +28,22 @@ function Player({id, type}) {
   
   const speedList = ['0.5', '1.0', '1.5', '2.0'];
   const resolutionist = ['360p', '480p', '720p', '1080p'];
+
+  let nextEp = 1;
+  let nextSeason = 1;
+  let notLastEp = true;
+
+  if (data) {
+    nextEp = data[season].episode_count === Number(episode) || data[season].episode_count < Number(episode) ? 1 : Number(episode) + 1;
+    nextSeason = data[season].episode_count === Number(episode) || data[season].episode_count < Number(episode) ? Number(season) + 1 : season;
+  }
+
+  try {
+    let nextSeasonValid = data[nextSeason];
+    notLastEp = Number(nextSeasonValid.episode_count) > 0;
+  } catch (ex) {
+    notLastEp = false;
+  }
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -149,13 +165,13 @@ function Player({id, type}) {
           
           <div className={cx('right-side')}>
             <div className={cx('series-only', {'no-display': type === 'movie'})}>
-              <button className={cx('btn')}>
+              <Link className={cx('btn', {'no-display': !notLastEp})} to={'/' + (type === 'tv' ? 'series' : 'movie') + '/watch/' + id + '/' + nextSeason + '/' + nextEp}>
                 <FiSkipForward />
-              </button>
+              </Link>
               
-              <button className={cx('btn')}>
+              {/* <button className={cx('btn')}>
                 <PiSquaresFourBold />
-              </button>
+              </button> */}
             </div>
 
             <div className={cx('config-wrapper')}>
