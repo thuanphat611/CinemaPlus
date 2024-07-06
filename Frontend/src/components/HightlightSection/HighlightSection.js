@@ -56,7 +56,7 @@ function HightlightSection({ source }) {
           </span>
         </div>
         <div className={cx('button-group')}>
-          <Link className={cx('play-btn')} to={"/"+ source.type +"/watch/" + source.id + '/1/1'}>Play online</Link>
+          <Link className={cx('play-btn')} to={"/"+ source.type +"/watch/" + source.id + (source.type !== 'movie' ? '/1/1' : '')}>Play online</Link>
           <Link className={cx('more-btn')} to={"/"+ source.type +"/detail/" + source.id}>More Details</Link>
         </div>
       </div>

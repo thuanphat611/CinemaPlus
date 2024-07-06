@@ -12,7 +12,7 @@ import HightlightSection from '../../components/HightlightSection/HighlightSecti
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
 import Footer from '../../components/Footer/Footer';
-import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../axios/AxiosClients';
+import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../api/AxiosClients';
 
 
 const cx = classNames.bind(styles);

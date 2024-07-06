@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { IoPlay, IoPause } from "react-icons/io5";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FiSkipForward } from "react-icons/fi";
@@ -23,7 +23,12 @@ function Player({id, type}) {
   const [fullScreen, setFullScreen] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [playing, setPlaying] = useState(true);
+  const [resolution, setResolution] = useState(3);
+  const [speed, setSpeed] = useState(1);
   
+  const speedList = ['0.5', '1.0', '1.5', '2.0'];
+  const resolutionist = ['360p', '480p', '720p', '1080p'];
+
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (
@@ -153,9 +158,53 @@ function Player({id, type}) {
               </button>
             </div>
 
-            <button className={cx('btn')}>
-              <PiGearSixBold />
-            </button>
+            <div className={cx('config-wrapper')}>
+              <button className={cx('btn')}>
+                <PiGearSixBold />
+              </button>
+              
+              <div className={cx('config-modal')}>
+                <div className={cx('config-section')}>
+                  <h3 className={cx('config-title')}>Resolution</h3>
+                  <ul className={cx('config-options')}>
+                    {
+                      resolutionist.map((item, index) => {
+                        return (
+                          <li key={index} className={cx('config-option', {'config-option-active': index === resolution})}
+                            onClick={() => {
+                              setResolution(index);
+                            }}
+                          >
+                            {item} {(item === '1080p' ? <h4 className={cx('hd-label')}>HD</h4> : null)}
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                </div>
+                <div className={cx('config-section')}>
+                  <h3 className={cx('config-title')}>Speed</h3>
+                  <ul className={cx('config-options')}>
+                  <ul className={cx('config-options')}>
+                    {
+                      speedList.map((item, index) => {
+                        return (
+                          <li key={index} className={cx('config-option', {'config-option-active': index === speed})}
+                            onClick={() => {
+                              setSpeed(index);
+                            }}
+                          >
+                            {item}
+                          </li>
+                        )
+                      })
+                    }
+                  </ul>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <button className={cx('btn')}
               onClick={() => {
                 toggleFullScreen();

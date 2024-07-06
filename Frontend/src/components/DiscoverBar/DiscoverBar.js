@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { FaAngleDown } from "react-icons/fa";
 
 import styles from './DiscoverBar.module.scss'
-import { getGenresFromAPI } from '../../axios/AxiosClients';
+import { getGenresFromAPI } from '../../api/AxiosClients';
 
 const cx = classNames.bind(styles);
 

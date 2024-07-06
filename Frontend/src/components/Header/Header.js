@@ -7,7 +7,7 @@ import { IoClose } from "react-icons/io5";
 import { PiArrowFatLeftFill } from "react-icons/pi";
 
 import logo from '../../assests/images/logo.png'
-import { getSearchResultFromAPI } from '../../axios/AxiosClients';
+import { getSearchResultFromAPI } from '../../api/AxiosClients';
 
 const cx = classNames.bind(styles);
 
