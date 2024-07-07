@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaRegBell, FaCaretDown, FaRegUser } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import { IoMdHelpCircleOutline } from "react-icons/io";
 import { PiArrowFatLeftFill } from "react-icons/pi";
+import { MdLogout } from "react-icons/md";
 
 import logo from '../../assests/images/logo.png'
 import { getSearchResultFromAPI } from '../../api/AxiosClients';
@@ -198,9 +200,77 @@ function Header({ refList }) {
       }
       </ul>
 
-      <div className={cx('header-button-group')}>
+      {/* <div className={cx('header-button-group')}>
         <button className={cx('login-btn')}>Premium</button>
         <button className={cx('signup-btn')}>Sign In</button>
+      </div> */}
+
+      <div className={cx('account-section')}>
+        <div className={cx('notification-wrapper')}>
+          <div className={cx('notification-icon')}>
+            <FaRegBell />
+          </div>
+          <h4 className={cx('notification-new')}>
+            1
+          </h4>
+
+          <div className={cx('notification-popup')}>
+            <h4 className={cx('notification-title')}>
+              Notifications
+            </h4>
+            <ul className={cx('notification-list')}>
+              <li className={cx('notification-item')}>
+                <Link className={cx('notification-link')} to='/'>
+                  <img className={cx('notification-img')} src='' alt=''/>
+                  <h4 className={cx('notification-text')}>
+                    Welcome username, we have a 20% discount for you!
+                  </h4>
+                </Link>
+              </li>
+
+              {/* <div className={cx('notification-empty')}>
+                No new notification
+              </div> */}
+            </ul>
+          </div>
+        </div>
+
+        <div className={cx('account-wrapper')}>
+          <img className={cx('account-img')} src='' alt=''/>
+          <div className={cx('account-arrow')}>
+            <FaCaretDown />
+          </div>
+
+          <ul className={cx('account-management-list')}>
+            <h4 className={cx('account-management-title')}>
+              Hello! username  
+            </h4>
+            <li className={cx('account-management-item', 'account-management-break')}>
+              <div className={cx('account-management-icon')}>
+                <FaRegUser />
+              </div>
+              <h4 className={cx('account-management-text')}>
+                Account management
+              </h4>
+            </li>
+            <li className={cx('account-management-item')}>
+              <div className={cx('account-management-icon')}>
+                <IoMdHelpCircleOutline />
+              </div>
+              <h4 className={cx('account-management-text')}>
+                Help center
+              </h4>
+            </li>
+            <li className={cx('account-management-item', 'account-management-break', 'logout')}>
+              <div className={cx('account-management-icon')}>
+                <MdLogout />
+              </div>
+              <h4 className={cx('account-management-text')}>
+                Log out
+              </h4>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
