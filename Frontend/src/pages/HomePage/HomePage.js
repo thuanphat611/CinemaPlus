@@ -280,7 +280,7 @@ function HomePage({ props }) {
 
   return ( 
     <div className={cx('content')}>
-      <Header refList={refList} />
+      <Header refList={refList} loading={loading} />
       <div className={cx('loader', { 'no-display': !loading})}>
         <LuLoader2 className={cx('loader-icon')} />
       </div>

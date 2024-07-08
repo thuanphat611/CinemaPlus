@@ -13,7 +13,7 @@ import { getSearchResultFromAPI } from '../../api/AxiosClients';
 
 const cx = classNames.bind(styles);
 
-function Header({ refList }) {
+function Header({ refList, loading }) {
   const [searchText, setSearchText] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
@@ -79,6 +79,8 @@ function Header({ refList }) {
 
   return ( 
     <div ref={headerRef} className={cx('header')}>
+      <span className={cx('blocker', {'no-display': !loading})}></span>
+
       <a className={cx('logo-container')} href='/'> 
         <img className={cx('logo')} src={logo} alt=""/>
       </a>
