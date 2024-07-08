@@ -13,7 +13,7 @@ import { getSearchResultFromAPI } from '../../api/AxiosClients';
 
 const cx = classNames.bind(styles);
 
-function Header({ refList, loading }) {
+function Header({ refList, loading, setAuthDisplay }) {
   const [searchText, setSearchText] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
@@ -202,12 +202,18 @@ function Header({ refList, loading }) {
       }
       </ul>
 
-      {/* <div className={cx('header-button-group')}>
+      <div className={cx('header-button-group')}>
         <button className={cx('login-btn')}>Premium</button>
-        <button className={cx('signup-btn')}>Sign In</button>
-      </div> */}
+        <button className={cx('signup-btn')}
+          onClick={() => {
+            setAuthDisplay(true);
+          }}
+        >
+          Sign In
+        </button>
+      </div>
 
-      <div className={cx('account-section')}>
+      {/* <div className={cx('account-section')}>
         <div className={cx('notification-wrapper')}>
           <div className={cx('notification-icon')}>
             <FaRegBell />
@@ -230,9 +236,9 @@ function Header({ refList, loading }) {
                 </Link>
               </li>
 
-              {/* <div className={cx('notification-empty')}>
+              <div className={cx('notification-empty')}>
                 No new notification
-              </div> */}
+              </div>
             </ul>
           </div>
         </div>
@@ -273,7 +279,8 @@ function Header({ refList, loading }) {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
+
     </div>
   );
 }

@@ -12,6 +12,7 @@ import HightlightSection from '../../components/HightlightSection/HighlightSecti
 import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
 import Footer from '../../components/Footer/Footer';
+import AuthForm from '../../components/AuthForm/AuthForm';
 import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../api/AxiosClients';
 
 
@@ -82,6 +83,7 @@ function HomePage({ props }) {
   const [loading, setLoading] = useState(true);
   const [numToLoad, setNumToLoad] = useState(0);
   const [numLoaded, setNumLoaded] = useState(0);
+  const [authDisplay, setAuthDisplay] = useState(false);
 
   const [movieSliderData, setMovieSliderData] = useState(emptyList);
   const [popularMoviesData, setPopularMoviesData] = useState(emptyList);
@@ -280,7 +282,8 @@ function HomePage({ props }) {
 
   return ( 
     <div className={cx('content')}>
-      <Header refList={refList} loading={loading} />
+      <Header refList={refList} loading={loading} setAuthDisplay={setAuthDisplay} />
+      <AuthForm display={authDisplay} setDisplay={setAuthDisplay} />
       <div className={cx('loader', { 'no-display': !loading})}>
         <LuLoader2 className={cx('loader-icon')} />
       </div>
