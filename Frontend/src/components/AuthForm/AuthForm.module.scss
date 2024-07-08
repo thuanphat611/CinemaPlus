@@ -26,6 +26,8 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     overflow: auto;
+    transform-style:  preserve-3d;
+    transition: all 0.2s ease-in;
     animation: zoom 0.2s ease-in;
 
     &::-webkit-scrollbar {
@@ -36,6 +38,24 @@
       background: var(--gray-color);
       border-radius: 8px;
     }
+  }
+
+  &-login {
+    display: none;
+    animation: slide 0.2s ease-in;
+  }
+
+  &-register {
+    display: none;
+    animation: slide 0.2s ease-in;
+  }
+
+  &-login.form-active {
+    display: block;
+  }
+
+  &-register.form-active {
+    display: block;
   }
 
   &-title {
@@ -129,12 +149,15 @@
   }
 
   &-error {
-    margin-bottom: 20px;
     font-size: 1.4rem;
     font-weight: 400;
     color: var(--red-color);
     align-self: flex-start;
     text-align: start;
+  }
+
+  &-error + &-input-wrap {
+    margin-top: 20px;
   }
 
   &-link {
@@ -165,6 +188,10 @@
       cursor: pointer;
       background-color: var(--light-primary-color);
     }
+  }
+
+  &-error + &-submit {
+    margin-top: 20px;
   }
 
   &-register-link {
@@ -198,6 +225,7 @@
     &-btn {
       width: 100%;
       padding: 10px;
+      margin-bottom: 15px;
       outline: none;
       border: none;
       border-radius: 10px;
@@ -208,10 +236,6 @@
       &:hover {
         cursor: pointer;
       }
-    }
-
-    &-btn + &-btn {
-      margin-top: 20px;
     }
 
     &-icon {
@@ -251,7 +275,7 @@
   background-color: #1974ec;
 
   &:hover {
-    background-color: #1a55a2;
+    background-color: #206bce;
   }
 }
 
@@ -265,5 +289,14 @@
   }
   100% {
     transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
