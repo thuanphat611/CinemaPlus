@@ -19,6 +19,12 @@
 .link {
   display: block;
   position: relative;
+  transition: transform 0.2s ease-in;
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
 
   &:hover .hover-overlay {
     display: block;

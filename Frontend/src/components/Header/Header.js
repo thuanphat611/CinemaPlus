@@ -9,7 +9,7 @@ import { PiArrowFatLeftFill } from "react-icons/pi";
 import { MdLogout } from "react-icons/md";
 
 import logo from '../../assests/images/logo.png'
-import { getSearchResultFromAPI } from '../../api/AxiosClients';
+import { getSearchResultFromAPI } from '../../api/tmdb';
 
 const cx = classNames.bind(styles);
 

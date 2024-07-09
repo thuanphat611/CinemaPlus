@@ -12,7 +12,7 @@ import {
   PiCornersOutBold, 
   PiCornersInBold, 
   PiFlagBold, 
-  PiSquaresFourBold  
+  // PiSquaresFourBold  
 } from "react-icons/pi";
 
 import styles from './Player.module.scss';
@@ -34,13 +34,13 @@ function Player({id, data, season, episode, type}) {
   let notLastEp = true;
 
   if (data) {
-    nextEp = data[season].episode_count === Number(episode) || data[season].episode_count < Number(episode) ? 1 : Number(episode) + 1;
-    nextSeason = data[season].episode_count === Number(episode) || data[season].episode_count < Number(episode) ? Number(season) + 1 : season;
+    nextEp = data[season]?.episode_count === Number(episode) || data[season]?.episode_count < Number(episode) ? 1 : Number(episode) + 1;
+    nextSeason = data[season]?.episode_count === Number(episode) || data[season]?.episode_count < Number(episode) ? Number(season) + 1 : season;
   }
 
   try {
     let nextSeasonValid = data[nextSeason];
-    notLastEp = Number(nextSeasonValid.episode_count) > 0;
+    notLastEp = Number(nextSeasonValid?.episode_count) > 0;
   } catch (ex) {
     notLastEp = false;
   }

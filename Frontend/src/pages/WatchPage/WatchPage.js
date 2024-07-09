@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 
 import style from './WatchPage.module.scss';
 import Player from '../../components/Player/Player';
-import { getSeasonListFromAPI } from '../../api/AxiosClients';
+import { getSeasonListFromAPI } from '../../api/tmdb';
 
 const cx = classNames.bind(style);
 

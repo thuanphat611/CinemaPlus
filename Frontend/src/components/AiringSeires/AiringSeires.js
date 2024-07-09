@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
 
 import styles from './AiringSeries.module.scss';
-import { getListFromAPI } from "../../api/AxiosClients";
+import { getListFromAPI } from "../../api/tmdb";
 
 const cx = classNames.bind(styles);
 

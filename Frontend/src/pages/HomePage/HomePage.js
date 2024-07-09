@@ -13,7 +13,7 @@ import TrailerSection from '../../components/TrailerSection/TrailerSection';
 import Social from '../../components/Social/Social';
 import Footer from '../../components/Footer/Footer';
 import AuthForm from '../../components/AuthForm/AuthForm';
-import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../api/AxiosClients';
+import { getListFromAPI, getDetailFromAPI, getTrailerFromAPI, getCastFromAPI } from '../../api/tmdb';
 
 
 const cx = classNames.bind(styles);

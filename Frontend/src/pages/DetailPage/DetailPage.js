@@ -7,7 +7,7 @@ import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
 import styles from './DetailPage.module.scss';
-import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI, getRelatedTrailerFromAPI } from '../../api/AxiosClients';
+import { getCollectionFromAPI, getDetailFromAPI, getCreditFromAPI, getRelatedTrailerFromAPI } from '../../api/tmdb';
 import Header from '../../components/Header/Header';
 import MovieOverview from '../../components/MovieOverview/MovieOverview';
 import CardSlider from '../../components/CardSlider/CardSlider';

@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3030
+const PORT = process.env.PORT; 
 
 app.get('/', (req, res) => {
   res.status(200).json({"status": "OK"});
