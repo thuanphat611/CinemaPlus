@@ -1,7 +1,9 @@
 import classNames from 'classnames/bind';
+import axios from 'axios';
 
 import { useState, useEffect } from 'react';
 import { IoClose, IoCheckmarkSharp } from "react-icons/io5";  
+import { FaRegCircleCheck } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import styles from './AuthForm.module.scss'
@@ -18,7 +20,9 @@ function AuthForm({ display, setDisplay}) {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmError, setConfirmError] = useState('');
-
+  const [responseError, setResponseError] = useState('');
+  const [success, setSuccess] = useState(false);
+  
   const clearInput = () => {
     setUsername('');
     setPassword('');
@@ -58,13 +62,75 @@ function AuthForm({ display, setDisplay}) {
     }
     setConfirmError('');
   }, [confirm, password]);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    if (!username && !password && !confirm) {
+      return;
+    }
+    if (usernameError || passwordError || confirmError) {
+      return;
+    }
+
+    try {
+      let url = 'http://localhost:3030/auth/signup';
+      await axios.post(url, { username, password }, { withCredentials: true });
+      setResponseError('');
+      setSuccess(true);
+    }
+    catch (e) {
+      setSuccess(false);
+      setResponseError(e.response.data.message || 'Some errors occured, please reload the page and try again');
+      console.log(e);
+    }
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!username && !password) {
+      return;
+    }
+
+    try {
+      let url = 'http://localhost:3030/auth/signin';
+      await axios.post(url, { username, password }, { withCredentials: true });
+      setLoginError('');
+      setSuccess(true);
+    }
+    catch (e) {
+      setSuccess(false);
+      setLoginError(e.response.data.message || 'Some errors occured, please reload the page and try again');
+      console.log(e);
+    }
+  }
   
   return (
     <div className={cx('container', {'no-display': !display})}>
       <div className={cx('overlay')}>
         <div className={cx('form-container')}>
 
-          <div className={cx('form-login', {'form-active': onLogin})}>
+          <div className={cx('form-message-overlay', {'no-display': !success})}>
+            <div className={cx('form-message-container')}>
+              <div className={cx('form-message-icon')}>
+                <FaRegCircleCheck />
+              </div>
+              <h4 className={cx('form-message-text')}>{(onLogin ? 'Sign in' : 'Sign up')} successfully!</h4>
+              <button className={cx('form-message-btn')}
+                onClick={() => {
+                  setDisplay(false);
+                  window.location.reload();
+                }}
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+
+          <div className={cx('form-login', {'form-active': onLogin})}
+            onSubmit={handleLogin}
+          >
             <h2 className={cx('form-title')}>Welcome to CinemaPlus!</h2>
             <button className={cx('form-close')}
               onClick={() => {
@@ -86,11 +152,7 @@ function AuthForm({ display, setDisplay}) {
               <h4 className={cx('form-error')}>{loginError}</h4>
               <Link className={cx('form-link', 'forget-password')} to='/' onClick={(e) => {e.preventDefault();}}>Forgot password?</Link>
 
-              <button className={cx('form-submit')}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
+              <button className={cx('form-submit')}>
                 Sign In
               </button>
               
@@ -137,7 +199,9 @@ function AuthForm({ display, setDisplay}) {
             </form>
           </div>
           
-          <div className={cx('form-register', {'form-active': !onLogin})}>
+          <div className={cx('form-register', {'form-active': !onLogin})}
+            onSubmit={handleRegister}
+          >
             <h2 className={cx('form-title')}>Create an account</h2>
             <button className={cx('form-close')}
               onClick={() => {
@@ -183,12 +247,9 @@ function AuthForm({ display, setDisplay}) {
                 </div>
               </div>
               <h4 className={cx('form-error', {'no-display': confirmError.length === 0})}>{confirmError}</h4>
+              <h4 className={cx('form-error', {'no-display': responseError.length === 0})}>{responseError}</h4>
 
-              <button className={cx('form-submit')}
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
+              <button className={cx('form-submit')}>
                 Sign up
               </button>
               

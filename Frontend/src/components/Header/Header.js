@@ -7,9 +7,11 @@ import { IoClose } from "react-icons/io5";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { PiArrowFatLeftFill } from "react-icons/pi";
 import { MdLogout } from "react-icons/md";
+import axios from 'axios';
 
 import logo from '../../assests/images/logo.png'
 import { getSearchResultFromAPI } from '../../api/tmdb';
+import { useAuth } from '../../hooks/authProvider';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +21,8 @@ function Header({ refList, loading, setAuthDisplay }) {
   const [searchResult, setSearchResult] = useState([]);
   const headerRef = useRef(null);
   const searchRef = useRef(null);
+
+  const { auth, user, setSignedOut } = useAuth();
 
   if (searchRef.current && searchOpen) {
     searchRef.current.focus();
@@ -58,14 +62,14 @@ function Header({ refList, loading, setAuthDisplay }) {
       return;
     }
     getResult();
-  }, [searchText])
+  }, [searchText]);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-  };
+  }
 
   const scrollToRef = (cardRef) => {
     if (cardRef.current) {
@@ -75,7 +79,14 @@ function Header({ refList, loading, setAuthDisplay }) {
         behavior: 'smooth' 
       });
     }
-  };
+  }
+
+  const handleLogout = async () => {
+    const url = 'http://localhost:3030/auth/signout';
+    await axios.post(url, {}, { withCredentials: true });
+    setSignedOut();
+    window.location.reload();
+  }
 
   return ( 
     <div ref={headerRef} className={cx('header')}>
@@ -202,7 +213,7 @@ function Header({ refList, loading, setAuthDisplay }) {
       }
       </ul>
 
-      <div className={cx('header-button-group')}>
+      <div className={cx('header-button-group', {'no-display': auth})}>
         <button className={cx('login-btn')}>Premium</button>
         <button className={cx('signup-btn')}
           onClick={() => {
@@ -213,7 +224,7 @@ function Header({ refList, loading, setAuthDisplay }) {
         </button>
       </div>
 
-      {/* <div className={cx('account-section')}>
+      <div className={cx('account-section', {'no-display': !auth})}>
         <div className={cx('notification-wrapper')}>
           <div className={cx('notification-icon')}>
             <FaRegBell />
@@ -251,7 +262,7 @@ function Header({ refList, loading, setAuthDisplay }) {
 
           <ul className={cx('account-management-list')}>
             <h4 className={cx('account-management-title')}>
-              Hello! username  
+              Hello! {user?.username || ''}  
             </h4>
             <li className={cx('account-management-item', 'account-management-break')}>
               <div className={cx('account-management-icon')}>
@@ -269,17 +280,21 @@ function Header({ refList, loading, setAuthDisplay }) {
                 Help center
               </h4>
             </li>
-            <li className={cx('account-management-item', 'account-management-break', 'logout')}>
+            <button className={cx('account-management-item', 'account-management-break', 'logout')}
+              onClick={() => {
+                handleLogout();
+              }}
+            >
               <div className={cx('account-management-icon')}>
                 <MdLogout />
               </div>
               <h4 className={cx('account-management-text')}>
                 Log out
               </h4>
-            </li>
+            </button>
           </ul>
         </div>
-      </div> */}
+      </div>
 
     </div>
   );

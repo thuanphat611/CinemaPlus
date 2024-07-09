@@ -131,6 +131,7 @@
     right: -2.5px;
     transform: translateY(calc(-100% - 20px));
     box-shadow: 0 0 10px 3px rgba(204, 204, 204, 0.2);
+    animation: fadeIn 0.2s ease-in;
   }
 
   &-modal::after {
@@ -209,4 +210,13 @@
   right: 0;
   transform: translateY(-100%) translateX(100%);
   background-color: transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

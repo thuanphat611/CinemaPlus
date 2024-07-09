@@ -261,6 +261,12 @@
   }
 }
 
+.logout {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+}
+
 .logout:hover {
   color: var(--red-color)
 }

@@ -23,6 +23,7 @@ const createToken = (id, username, authType) => {
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
 
+  console.log(username, password)
   try {
     const isDuplicate = await User.findOne({ username });
     if (isDuplicate) {
@@ -61,6 +62,40 @@ router.post('/signin', async (req, res) => {
   }
   catch (e) {
     return res.status(500).json({ 'success': false, 'error': e.message });
+  }
+});
+
+router.post('/signout', (req, res) => {
+  res.cookie('jwt', '', { secure: true, httpOnly: true, maxAge: 0 });
+  return res.status(200).json({ 'success': true });
+});
+
+router.get('/check-auth', async (req, res) => {
+  const token = req.cookies.jwt;
+  console.log('check-auth called, token:', token);
+
+  if (!token) {
+    return res.status(401).json({ 'success': false, 'message': 'No token found', user: null });
+  }
+
+  let validToken = false;
+  let username = '';
+
+  jwt.verify(token, process.env.SECRET_KEY,  (err, data) => {
+    if (err) {
+      return;
+    }
+
+    validToken = true;
+    username = data.username;
+  });
+
+  if (validToken) {
+    const user = await User.findOne({ 'username': username });
+    return res.status(200).json({ 'success': true, token, user });
+  }
+  else {
+    return res.status(403).json({ 'success': false, 'message': 'Invalid Token'});
   }
 });
 

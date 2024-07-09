@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
@@ -13,6 +14,10 @@ let dbState = '';
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+  origin: process.env.FRONTEND_URL, 
+  credentials: true
+}));
 app.use('/assets', express.static(path.join(__dirname, '../public')));
 
 app.use('/auth', authRouter);

@@ -14,7 +14,7 @@ const tmdbClient = axios.create({
     'accept': 'application/json',
     'Authorization': accessToken
   }
-})
+});
 
 const languageList = {};
 (async () => {
