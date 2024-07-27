@@ -236,7 +236,7 @@ function HomePage({ props }) {
       
       <span className={cx({'no-display': loading})}>
         <MovieSlider imageList={movieSliderData} />
-        <DiscoverBar />
+        {/* <DiscoverBar />
         <div className={cx('space-under-slider')}></div>
         <AiringSeries />
         <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
@@ -248,7 +248,7 @@ function HomePage({ props }) {
         <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={castData} type="cast" />
         <TrailerSection title={'Movie Trailers'} source={trailerData} />
         <Social />
-        <Footer />
+        <Footer /> */}
       </span>
     </div>
   );

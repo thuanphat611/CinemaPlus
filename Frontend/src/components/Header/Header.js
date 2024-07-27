@@ -144,7 +144,7 @@ function Header({ refList, loading, setAuthDisplay }) {
             </a>
           </li>
           
-          <li className={cx('navigation-item')}>
+          <li className={cx('navigation-item', 'tablet-display')}>
             <div className={cx('search-border')}>
               <div className={cx('search-wrap', { 'search-open': searchOpen })}>
                 <div className={cx('search-bar')}>
@@ -214,8 +214,64 @@ function Header({ refList, loading, setAuthDisplay }) {
       }
       </ul>
 
+      <div className={cx('mobile-search')}>
+        <div className={cx('mobile-search-border')}>
+          <div className={cx('mobile-search-wrap', { 'mobile-search-open': searchOpen })}>
+            <div className={cx('mobile-search-bar')}>
+              <input ref={searchRef} className={cx('mobile-search-input')} value={searchText} type='text' 
+                onChange={(e) => {
+                  setSearchText(e.target.value);
+                }}
+              />
+
+              <button className={cx('mobile-search-close')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSearchText('');
+                  setSearchOpen(false);
+                }}
+              >
+                <IoClose />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={cx('mobile-search-result-wrapper', {'no-display': searchText.length === 0})}>
+          <div className={cx('mobile-search-results')}>
+            {
+              searchResult.map((item, index) => {
+                return (
+                  <Link key={index} className={cx('mobile-result-item')} to={'/' + item.type + '/detail/' + item.id}>
+                    <img className={cx('mobile-result-img')} src={item.poster} alt={item.name} />
+                    <div className={cx('mobile-result-info')}>
+                      <h3 className={cx('mobile-result-name')}>{item.name}</h3>
+                      <p className={cx('mobile-result-type')}>{item.type}</p>
+                    </div>
+                  </Link>
+                )
+              })
+            }
+            
+            <div className={cx('no-result', { 'no-display': searchResult.length > 0})}>
+              <p className={cx('no-result-text')}>No results</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
       <div className={cx('header-button-group', {'no-display': auth})}>
-        <button className={cx('login-btn')}>Premium</button>
+        <div className={cx('mobile-search-icon')} 
+          onClick={(e) => {
+            e.preventDefault();
+            setSearchText('');
+            setSearchOpen(true);
+          }}
+        >
+          <FaMagnifyingGlass/>
+        </div>
+        <button className={cx('premium-btn')}>Premium</button>
         <button className={cx('signup-btn')}
           onClick={() => {
             setAuthDisplay(true);
@@ -226,6 +282,16 @@ function Header({ refList, loading, setAuthDisplay }) {
       </div>
 
       <div className={cx('account-section', {'no-display': !auth})}>
+        <div className={cx('mobile-search-icon')} 
+            onClick={(e) => {
+              e.preventDefault();
+              setSearchText('');
+              setSearchOpen(true);
+            }}
+          >
+            <FaMagnifyingGlass/>
+          </div>
+
         <div className={cx('notification-wrapper')}>
           <div className={cx('notification-icon')}>
             <FaRegBell />
