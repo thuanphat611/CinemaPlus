@@ -10,6 +10,7 @@ import { MdLogout } from "react-icons/md";
 import axios from 'axios';
 
 import logo from '../../assests/images/logo.png'
+import blankProfilePic from '../../assests/images/blank-profile.png';
 import { getSearchResultFromAPI } from '../../api/tmdb';
 import { useAuth } from '../../hooks/authProvider';
 
@@ -255,7 +256,7 @@ function Header({ refList, loading, setAuthDisplay }) {
         </div>
 
         <div className={cx('account-wrapper')}>
-          <img className={cx('account-img')} src='' alt=''/>
+          <img className={cx('account-img')} src={user?.profile_pic || blankProfilePic} alt={user?.username || 'user profile picture'}/>
           <div className={cx('account-arrow')}>
             <FaCaretDown />
           </div>

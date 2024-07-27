@@ -13,8 +13,8 @@ function MovieSlider({ imageList }) {
   const [slideDone, setSlideDone] = useState(true);
   const [timeID, setTimeID] = useState(null);
 
-  let movieName = imageList[activeIndex].name;
-  let movieIMDB = imageList[activeIndex].rating;
+  let movieName = imageList ? imageList[activeIndex].name : '';
+  let movieIMDB = imageList ? imageList[activeIndex].rating : '';
 
   useEffect(() => {
     if (slideDone) {
@@ -30,7 +30,7 @@ function MovieSlider({ imageList }) {
 
   const slideNext = () => {
     setActiveIndex((val) => {
-      if (val >= imageList.length - 1) {
+      if (val >= imageList?.length - 1) {
         return 0;
       } else {
         return val + 1;
@@ -41,7 +41,7 @@ function MovieSlider({ imageList }) {
   const slidePrev = () => {
     setActiveIndex((val) => {
       if (val <= 0) {
-        return imageList.length - 1;
+        return imageList?.length - 1;
       } else {
         return val - 1;
       }
@@ -68,7 +68,7 @@ function MovieSlider({ imageList }) {
     >
       <div className={cx('overlay')}></div>
       {
-        imageList.map((image, index) => {
+        imageList?.map((image, index) => {
           return (
             <img 
               key={index} 
@@ -101,7 +101,7 @@ function MovieSlider({ imageList }) {
           className={cx('poster-slider', 'poster-slide-' + activeIndex)}
         >
         {
-          imageList.map((item, index) => {
+          imageList?.map((item, index) => {
             return (
               <Link 
                 to={"/movie/detail/" + item.id}
@@ -141,7 +141,7 @@ function MovieSlider({ imageList }) {
         </button>
         <div className={cx('slider-dot-container')}>
           {
-            imageList.map((item, index) => {
+            imageList?.map((item, index) => {
               return (
                 <button
                   key={index} 

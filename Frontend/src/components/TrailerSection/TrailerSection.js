@@ -18,7 +18,7 @@ function TrailerSection({ title ,source, horizontal }) {
         <div className={cx('thumbnails')}>
           <div className={cx('trailer-list')}>
             {
-              source[0]?.youtubeKey 
+              source
               ?
               source.map((item, index) => {
                 return (
@@ -49,7 +49,7 @@ function TrailerSection({ title ,source, horizontal }) {
         </div>
 
         <div className={cx('player-container')}>
-          <ReactPlayer controls width="880px" height="495px" url={'https://www.youtube.com/watch?v=' + source[activeIndex]?.youtubeKey}/>
+          <ReactPlayer controls width="880px" height="495px" url={'https://www.youtube.com/watch?v=' + (source ? source[activeIndex]?.youtubeKey : '')}/>
           {/* <iframe width="880" height='495' allowFullScreen title='videos' src='https://vidsrc.to/embed/movie/823464' /> */}
         </div>
       </div>

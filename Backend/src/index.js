@@ -20,7 +20,7 @@ app.use(cors({
 }));
 app.use('/assets', express.static(path.join(__dirname, '../public')));
 
-app.use('/auth', authRouter);
+app.use('/  ', authRouter);
 
 app.get('/', (req, res) => {
   res.status(200).json({ 'state': 'Online', 'Database_state': dbState });

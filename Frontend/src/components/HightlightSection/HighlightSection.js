@@ -9,13 +9,13 @@ function HightlightSection({ source }) {
   return(
     <div className={cx('container')}>
       <div className={cx('information')}>
-        <h2 className={cx('name')}>{source.name ? source.name : ""}</h2>
+        <h2 className={cx('name')}>{source?.name ? source?.name : ""}</h2>
         <h4 className={cx('information-line')}>
           <span className={cx('information-title')}>Category:</span>
           {
-            source.category && source.category.length > 0 
+            source?.category && source?.category.length > 0 
             ?
-            source.category.reduce((accumulator, item, index) => {
+            source?.category.reduce((accumulator, item, index) => {
               if (index === 0)
                 return item;
               else {
@@ -28,18 +28,18 @@ function HightlightSection({ source }) {
         </h4>
         <h4 
           className={cx('information-line', {
-            'no-display': source.type === 'series'
+            'no-display': source?.type === 'series'
           })} 
         >
           <span className={cx('information-title')}>Director:</span>
-          {source.director}
+          {source?.director}
         </h4>
         <h4 className={cx('information-line')}>
           <span className={cx('information-title')}>Casts:</span>
           {
-            source.casts && source.casts.length > 0 
+            source?.casts && source?.casts.length > 0 
             ?
-            source.casts.reduce((accumulator, castName, index) => {
+            source?.casts.reduce((accumulator, castName, index) => {
               if (index === 0)
                 return castName;
               else {
@@ -52,15 +52,15 @@ function HightlightSection({ source }) {
         </h4>
         <div className={cx('overview')}>
           <span className={cx('overview-text')}>
-            {source.overview}
+            {source?.overview}
           </span>
         </div>
         <div className={cx('button-group')}>
-          <Link className={cx('play-btn')} to={"/"+ source.type +"/watch/" + source.id + (source.type !== 'movie' ? '/1/1' : '')}>Play online</Link>
-          <Link className={cx('more-btn')} to={"/"+ source.type +"/detail/" + source.id}>More Details</Link>
+          <Link className={cx('play-btn')} to={"/"+ source?.type +"/watch/" + source?.id + (source?.type !== 'movie' ? '/1/1' : '')}>Play online</Link>
+          <Link className={cx('more-btn')} to={"/"+ source?.type +"/detail/" + source?.id}>More Details</Link>
         </div>
       </div>
-      <img className={cx('poster')} src={source.imgURL} alt={source.name} />
+      <img className={cx('poster')} src={source?.imgURL} alt={source?.name} />
     </div>
   );
 }

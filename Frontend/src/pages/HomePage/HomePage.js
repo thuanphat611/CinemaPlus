@@ -26,74 +26,20 @@ function HomePage({ props }) {
     seriesRef: useRef(null)
   }
 
-  const emptyList = [
-    {
-      id: "",
-      imgURL: "",
-      name: "",
-      imdb: "",
-      poster: "",
-      youtubeKey: ""
-    },
-    {
-      id: "",
-      imgURL: "",
-      name: "",
-      imdb: "",
-      poster: "",
-      youtubeKey: ""
-    },
-    {
-      id: "",
-      imgURL: "",
-      name: "",
-      imdb: "",
-      poster: "",
-      youtubeKey: ""
-    },
-    {
-      id: "",
-      imgURL: "",
-      name: "",
-      imdb: "",
-      poster: "",
-      youtubeKey: ""
-    },
-    {
-      id: "",
-      imgURL: "",
-      name: "",
-      imdb: "",
-      poster: "",
-      youtubeKey: ""
-    }
-  ];
-
-  const emptyItem = {
-    id: "",
-    name: "",
-    category: [],
-    casts: [],
-    director: "",
-    overview: "",
-    posterURL: "",
-    more: ""
-  }
-
   const [loading, setLoading] = useState(true);
   const [numToLoad, setNumToLoad] = useState(0);
   const [numLoaded, setNumLoaded] = useState(0);
   const [authDisplay, setAuthDisplay] = useState(false);
 
-  const [movieSliderData, setMovieSliderData] = useState(emptyList);
-  const [popularMoviesData, setPopularMoviesData] = useState(emptyList);
-  const [topRatedData, setTopRatedData] = useState(emptyList);
-  const [animationData, setAnimationData] = useState(emptyList);
-  const [seriesData, setSeriesData] = useState(emptyList);
-  const [trailerData, setTrailerData] = useState(emptyList);
-  const [castData, setCastData] = useState(emptyList);
-  const [highlightMovie, setHighlightMovie] = useState(emptyItem);
-  const [highlightSeries, setHighlightSeries] = useState(emptyItem);
+  const [movieSliderData, setMovieSliderData] = useState(undefined);
+  const [popularMoviesData, setPopularMoviesData] = useState(undefined);
+  const [topRatedData, setTopRatedData] = useState(undefined);
+  const [animationData, setAnimationData] = useState(undefined);
+  const [seriesData, setSeriesData] = useState(undefined);
+  const [trailerData, setTrailerData] = useState(undefined);
+  const [castData, setCastData] = useState(undefined);
+  const [highlightMovie, setHighlightMovie] = useState(undefined);
+  const [highlightSeries, setHighlightSeries] = useState(undefined);
 
   //useEffect to check if the page is completely loaded
   useEffect(() => {

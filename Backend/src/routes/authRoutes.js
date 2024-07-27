@@ -75,7 +75,7 @@ router.get('/check-auth', async (req, res) => {
   console.log('check-auth called, token:', token);
 
   if (!token) {
-    return res.status(401).json({ 'success': false, 'message': 'No token found', user: null });
+    return res.status(200).json({ 'success': false, 'message': 'No token found', user: null });
   }
 
   let validToken = false;

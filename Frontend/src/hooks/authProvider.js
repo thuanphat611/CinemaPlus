@@ -18,7 +18,8 @@ const AuthProvider = ({ children }) => {
         setUser(response.data.user);
       }
       catch (e) {
-        console.error('Error checking auth:', e);
+        setAuth(false);
+        setUser(null);
       }
     }
 

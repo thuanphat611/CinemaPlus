@@ -165,6 +165,14 @@
     border: 1px solid var(--primary-color);
     border-radius: 10px;
     position: relative;
+
+    &:focus-within {
+      border-color: var(--light-primary-color);
+
+      .form-input::placeholder {
+        color: transparent;
+      }
+    }
   }
 
   &-input-wrap + &-input-wrap {
