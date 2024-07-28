@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { act, useEffect, useState } from 'react';
 import { FaChevronRight, FaChevronLeft, FaRegStar } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
@@ -15,6 +15,9 @@ function MovieSlider({ imageList }) {
 
   let movieName = imageList ? imageList[activeIndex].name : '';
   let movieIMDB = imageList ? imageList[activeIndex].rating : '';
+
+  let touchStartX = 0;
+  let touchEndX = 0;
 
   useEffect(() => {
     if (slideDone) {
@@ -61,12 +64,39 @@ function MovieSlider({ imageList }) {
     }
   };
 
+  //mobile swipe handlers
+  const handleTouchStart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX - touchEndX > 50) {
+      //handle swipe left
+      slideNext();
+    }
+    if (touchEndX - touchStartX > 50) {
+      //handle swipe right
+      slidePrev();
+    }
+  };
+
   return (
     <div className={cx('container')}
       onMouseEnter={AutoPlayStop}
       onMouseLeave={AutoPlayStart}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div className={cx('overlay')}></div>
+      
+      <img className={cx('image-placeholder')} src={imageList ? imageList[0].imgURL : ''} alt='' />
+      <Link className={cx('current-movie-link')} to={imageList ? ('/movie/detail/' +  imageList[activeIndex].id) : ''} />
+
       {
         imageList?.map((image, index) => {
           return (
@@ -94,6 +124,16 @@ function MovieSlider({ imageList }) {
           <h2 className={cx('imdb-max-score')}>/</h2>
           <h2 className={cx('imdb-max-score')}>10</h2>
         </div>
+        <Link 
+          to={imageList ? ('/movie/detail/' +  imageList[activeIndex].id) : ''}
+          className={cx('current-poster-link')}
+          >
+          <img 
+            style={{ display: imageList ? 'block' : 'none' }}
+            className={cx('current-poster')} 
+            src={imageList ? imageList[activeIndex].poster : ''} 
+            alt={imageList ? imageList[activeIndex].name : ''}/>
+        </Link>
       </div>
 
       <div className={cx('poster-slider-border')}>
@@ -104,7 +144,7 @@ function MovieSlider({ imageList }) {
           imageList?.map((item, index) => {
             return (
               <Link 
-                to={"/movie/detail/" + item.id}
+                to={'/movie/detail/' + item.id}
                 key={index} 
                 className={cx('poster-link', {
                   'poster-active': index === activeIndex
