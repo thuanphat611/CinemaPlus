@@ -14,6 +14,16 @@
   --green-color: #00A310;
   --red-color: #FF0000;
   --orange-color: #FF9900;
+
+  //React Toastify style
+  --toastify-color-info: var(--primary-color);
+  --toastify-color-success: var(--green-color);
+  --toastify-color-warning: var(--orange-color);
+  --toastify-color-error: var(--red-color);
+
+  --toastify-color-dark: var(--light-black-color);
+  --toastify-toast-background: var(--light-black-color);
+  --toastify-font-family: 'Poppins';
 }
 
 html {
