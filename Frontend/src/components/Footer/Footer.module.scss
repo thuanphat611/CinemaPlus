@@ -1,3 +1,5 @@
+@import '../GlobalStyles/responsive.scss';
+
 .border {
   width: 100%;
   height: 15px;
@@ -8,6 +10,14 @@
   width: 100%;
   padding: 0px 105px;
   background-color: var(--black-color);
+
+  @include tablet {
+    padding: 0 50px;
+  }
+
+  @include mobile {
+    padding: 0 20px;
+  }
 }
 
 .content {
@@ -16,6 +26,14 @@
   padding: 20px 0;
   border-bottom: 3px solid var(--light-black-color);
   min-height: 100px;
+
+  @include tablet {
+    flex-direction: column;
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .introduction {
@@ -35,6 +53,11 @@
   top: 50%;
   transform: translateY(-50%);
   left: -25px;
+
+  @include mobile {
+    left: 50%;
+    transform:  translateX(-50%) translateY(-50%);
+  }
 
   &-container {
     width: 100%;
@@ -76,6 +99,15 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
+
+    @include tablet {
+      height: 80px;
+    }
+
+    @include mobile {
+      flex-grow: unset;
+      flex-direction: column;
+    }
   }
   
   &-app {
@@ -87,6 +119,12 @@
     justify-content: space-between;
     background-color: var(--primary-color);
     border-radius: 10px;
+
+    @include mobile {
+      height: 70px;
+      width: 100%;
+      flex-grow: unset;
+    }
   }
   
   &-text {
@@ -114,10 +152,25 @@
     background-color: rgb(171, 119, 238);
   }
   
+  &-mobile-text {
+    display: none;
+
+    @include mobile {
+      display: block;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--white-color);
+    }
+  }
+
   &-blocks {
     flex-grow: 2;
     display: flex;
-    gap: 15px
+    gap: 15px;
+    
+    @include mobile {
+      flex-direction: column;
+    }
   }
 }
 
@@ -131,6 +184,12 @@
   background-color: var(--primary-color);
   border-radius: 10px;
   text-decoration: none;
+
+  @include mobile {
+    flex-basis: unset;
+    width: 100%;
+    height: 70px;
+  }
 }
 
 .block {
@@ -143,11 +202,29 @@
   background-color: var(--light-black-color);
   border-radius: 10px;
 
+  @include tablet {
+    padding: 30px;
+  }
+
+  @include mobile {
+    background-color: transparent;
+    padding: 0;
+  }
+
   &-title {
     margin-bottom: 30px;
     color: var(--white-color);
     font-size: 1.6rem;
     font-weight: 400;
+    text-align: center;
+
+    @include tablet {
+      margin-bottom: 15px;
+    }
+
+    @include mobile {
+      display: none;
+    }
   }
 
   &-link {
@@ -161,6 +238,14 @@
     overflow: hidden;
     text-decoration: none;
     user-select: none;
+
+    @include tablet {
+      height: 40px;
+    }
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &-img {
@@ -186,7 +271,7 @@
   }
 }
 
-.email-contact{
+.email-contact {
   text-decoration: none;
   color: var(--white-color);
   font-size: 5rem;
@@ -194,6 +279,12 @@
 
   & .download-text {
     font-size: 1.5rem;
+  }
+
+  @include mobile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }
 
@@ -203,6 +294,10 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 40px;
+
+  @include mobile {
+    flex-direction: column;
+  }
 
   &-text {
     color: var(--gray-color);
@@ -228,6 +323,10 @@
   
   &-group {
     display: flex;
+
+    @include mobile {
+      margin-top: 10px;
+    }
   }
 
   &:hover {

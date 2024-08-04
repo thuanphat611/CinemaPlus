@@ -42,6 +42,7 @@ function Footer() {
             </div>
 
             <div className={cx('download-blocks')}>
+              <h4 className={cx('download-mobile-text')}>Download app from:</h4>
               <div className={cx('block')}>
                 <h4 className={cx('block-title')}>Download From</h4>
                 <a className={cx('block-link')} href="https://play.google.com/store/apps" rel="noreferrer" target="_blank">

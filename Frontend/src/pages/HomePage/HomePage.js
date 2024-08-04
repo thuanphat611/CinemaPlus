@@ -236,19 +236,19 @@ function HomePage({ props }) {
       
       <span className={cx({'no-display': loading})}>
         <MovieSlider imageList={movieSliderData} />
-        {/* <DiscoverBar />
+        {/* <DiscoverBar /> */}
         <div className={cx('space-under-slider')}></div>
-        <AiringSeries />
-        <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" />
-        <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" />
-        <HightlightSection source={highlightMovie} />
-        <CardSlider ref={refList.seriesRef} title="Popular Series" viewAll="/movie" source={seriesData} type="movie" />
-        <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" />
-        <HightlightSection source={highlightSeries} />
-        <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={castData} type="cast" />
-        <TrailerSection title={'Movie Trailers'} source={trailerData} />
-        <Social />
-        <Footer /> */}
+        {/* <AiringSeries /> */}
+        {/* <CardSlider ref={refList.moviesRef} title="Popular Movies" viewAll="/movie" source={popularMoviesData} type="movie" /> */}
+        {/* <CardSlider title="Top Rated Movies" viewAll="/movie" source={topRatedData} type="movie" /> */}
+        {/* <HightlightSection source={highlightMovie} /> */}
+        {/* <CardSlider ref={refList.seriesRef} title="Popular Series" viewAll="/movie" source={seriesData} type="movie" /> */}
+        {/* <CardSlider title="Animations" viewAll="/movie" source={animationData} type="movie" /> */}
+        {/* <HightlightSection source={highlightSeries} /> */}
+        {/* <CardSlider ref={refList.castsRef} title="Actors" viewAll="/cast" source={castData} type="cast" /> */}
+        {/* <TrailerSection title={'Movie Trailers'} source={trailerData} /> */}
+        {/* <Social /> */}
+        <Footer />
       </span>
     </div>
   );
