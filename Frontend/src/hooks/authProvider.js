@@ -10,18 +10,17 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const url = 'http://localhost:3030/auth/check-auth';
+        const url = "http://localhost:3030/api/v1/auth/validate";
         const response = await axios.get(url, { withCredentials: true });
         // console.log(response);
 
         setAuth(response.data.success);
         setUser(response.data.user);
-      }
-      catch (e) {
+      } catch (e) {
         setAuth(false);
         setUser(null);
       }
-    }
+    };
 
     checkAuth();
   }, []);
@@ -29,22 +28,22 @@ const AuthProvider = ({ children }) => {
   const setSignedIn = (user) => {
     setAuth(true);
     setUser(user);
-  }
+  };
 
   const setSignedOut = () => {
     setAuth(false);
     setUser(null);
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ auth, user, setSignedIn, setSignedOut }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
 export default AuthProvider;
 
 export const useAuth = () => {
- return useContext(AuthContext);
-}
+  return useContext(AuthContext);
+};
