@@ -46,7 +46,6 @@ const getListFromAPI = async (url, type) => {
     }
   })
 
-  //Streaming api can only support movies in English
   results = results.filter((item) => {
     return item.originalLanguage === 'en';
   });

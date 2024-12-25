@@ -1,18 +1,23 @@
 const express = require("express");
 
-const authRoutes = require("./auth.route");
 const healthRoutes = require("./health.route");
+const authRoutes = require("./auth.route");
+const movieRoutes = require("./movie.route");
 
 const router = express.Router();
 
 const defaultRoutes = [
   {
+    path: "/health",
+    route: healthRoutes,
+  },
+  {
     path: "/auth",
     route: authRoutes,
   },
   {
-    path: "/health",
-    route: healthRoutes,
+    path: "/movies",
+    route: movieRoutes,
   },
 ];
 
