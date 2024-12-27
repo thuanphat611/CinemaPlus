@@ -153,51 +153,27 @@ function HomePage({ props }) {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const numOfItem = 20;
-      let finalResults = [];
-      let i = 1;
+      const numOfItem = 21;
 
-      while (finalResults.length < numOfItem) {
-        let requestURL =
-          "https://api.themoviedb.org/3/tv/popular?language=en-US&page=" + i;
-        let results = await getListFromAPI(requestURL, "tv");
-
-        if (results.length > 0) {
-          finalResults = [...finalResults, ...results];
+      const results = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/popular`,
+        {
+          params: {
+            count: numOfItem + 1,
+          },
         }
+      );
 
-        i++;
-      }
+      if (results.data.success) {
+        setSeriesData(results.data.list.slice(1, results.data.list.length));
 
-      if (finalResults.length > 0) {
-        setSeriesData(finalResults);
-      }
+        const highlightSeries = await axios(
+          `http://localhost:3030/api/v1/series/detail/${results.data.list[0].id}`
+        );
 
-      setNumLoaded((val) => val + 1);
-    }
-    getData();
-  }, []);
-
-  //Get Highlight series data
-  useEffect(() => {
-    async function getData() {
-      setNumToLoad((val) => val + 1);
-
-      let requestURL =
-        "https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1";
-      const results = await getListFromAPI(requestURL, "tv");
-
-      const random = Math.floor(Math.random() * results.length);
-      const randomIndex = random < results.length ? random : 0;
-      const highlightSeriesId = results[randomIndex].id;
-      requestURL =
-        "https://api.themoviedb.org/3/tv/" +
-        highlightSeriesId +
-        "?language=en-US";
-      const seriesDetail = await getDetailFromAPI(requestURL, "tv");
-
-      if (seriesDetail) {
-        setHighlightSeries(seriesDetail);
+        if (highlightSeries.data.success) {
+          setHighlightSeries(highlightSeries.data.detail);
+        }
       }
 
       setNumLoaded((val) => val + 1);

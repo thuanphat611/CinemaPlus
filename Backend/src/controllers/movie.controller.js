@@ -1,9 +1,4 @@
-const {
-  tmdbClient,
-  getListFromAPI,
-  getDetailFromAPI,
-  movieImagePlaceholder,
-} = require("../utils");
+const { getListFromAPI, getDetailFromAPI } = require("../utils");
 
 module.exports.getTrending = async (req, res, next) => {
   try {
