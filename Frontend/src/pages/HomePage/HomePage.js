@@ -13,12 +13,7 @@ import TrailerSection from "../../components/TrailerSection/TrailerSection";
 import Social from "../../components/Social/Social";
 import Footer from "../../components/Footer/Footer";
 import AuthForm from "../../components/AuthForm/AuthForm";
-import {
-  getListFromAPI,
-  getDetailFromAPI,
-  getTrailerFromAPI,
-  getCastFromAPI,
-} from "../../api/tmdb";
+import { getCastFromAPI } from "../../api/tmdb";
 import axios from "axios";
 
 const cx = classNames.bind(styles);
@@ -186,12 +181,12 @@ function HomePage({ props }) {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      let requestURL =
-        "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
-      const results = await getTrailerFromAPI(requestURL);
+      const results = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/trailers`
+      );
 
-      if (results.length > 0) {
-        setTrailerData(results);
+      if (results.data.success) {
+        setTrailerData(results.data.list);
       }
 
       setNumLoaded((val) => val + 1);

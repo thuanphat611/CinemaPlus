@@ -14,4 +14,6 @@ router.get("/animation", movieController.getAnimations);
 
 router.get("/detail/:id", movieController.getDetail);
 
+router.get("/trailers", movieController.getTrailers);
+
 module.exports = router;

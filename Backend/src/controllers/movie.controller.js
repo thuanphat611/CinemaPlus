@@ -1,4 +1,4 @@
-const { getListFromAPI, getDetailFromAPI } = require("../utils");
+const { tmdbClient, getListFromAPI, getDetailFromAPI } = require("../utils");
 
 module.exports.getTrending = async (req, res, next) => {
   try {
@@ -69,6 +69,71 @@ module.exports.getAnimations = async (req, res, next) => {
     const result = await getListFromAPI(requestURL, "movie");
 
     return res.status(200).json({ success: true, list: result });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports.getTrailers = async (req, res, next) => {
+  try {
+    let response = await tmdbClient.get(
+      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+    );
+
+    let results = response?.data?.results.map((item) => {
+      return {
+        id: item.id,
+        name: item.title ? item.title : item.name,
+        originalLanguage: item.original_language,
+        imgURL: item.backdrop_path
+          ? "https://image.tmdb.org/t/p/w300" + item.backdrop_path
+          : trailerImagePlaceholder,
+        youtubeKey: "",
+      };
+    });
+
+    results = results.filter((item) => {
+      return item.originalLanguage === "en";
+    });
+
+    const trailerData = await Promise.all(
+      results.map(async (item) => {
+        const videos = await tmdbClient.get(
+          `https://api.themoviedb.org/3/movie/${item.id}/videos?language=en-US`
+        );
+
+        const trailer = videos?.data.results.filter((item) => {
+          return item.site === "YouTube" && item.type === "Trailer";
+        });
+
+        return {
+          id: item.id,
+          videos: videos?.data.results,
+          officalTrailers: trailer.filter((item) => {
+            return item.name.includes("Official Trailer");
+          }),
+        };
+      })
+    );
+
+    results = results.map((item) => {
+      const data = trailerData.filter(({ id }) => id === item.id)[0];
+
+      if (data.officalTrailers?.length !== 0) {
+        return {
+          ...item,
+          youtubeKey: data.officalTrailers[0]?.key,
+        };
+      } else {
+        return {
+          ...item,
+          youtubeKey: data.videos[0]?.key,
+        };
+      }
+    });
+
+    return res.status(200).json({ success: true, list: results });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ success: false, message: error.message });
