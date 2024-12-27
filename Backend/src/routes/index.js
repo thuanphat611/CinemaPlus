@@ -3,7 +3,8 @@ const express = require("express");
 const healthRoutes = require("./health.route");
 const authRoutes = require("./auth.route");
 const movieRoutes = require("./movie.route");
-const seriresRoutes = require("./series.route");
+const seriesRoutes = require("./series.route");
+const actorRoutes = require("./actor.route");
 
 const router = express.Router();
 
@@ -22,7 +23,11 @@ const defaultRoutes = [
   },
   {
     path: "/series",
-    route: seriresRoutes,
+    route: seriesRoutes,
+  },
+  {
+    path: "/actors",
+    route: actorRoutes,
   },
 ];
 

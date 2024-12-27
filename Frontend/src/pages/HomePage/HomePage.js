@@ -13,7 +13,6 @@ import TrailerSection from "../../components/TrailerSection/TrailerSection";
 import Social from "../../components/Social/Social";
 import Footer from "../../components/Footer/Footer";
 import AuthForm from "../../components/AuthForm/AuthForm";
-import { getCastFromAPI } from "../../api/tmdb";
 import axios from "axios";
 
 const cx = classNames.bind(styles);
@@ -199,12 +198,12 @@ function HomePage({ props }) {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      let requestURL =
-        "https://api.themoviedb.org/3/trending/person/week?language=en-US";
-      const results = await getCastFromAPI(requestURL);
+      const results = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/actors`
+      );
 
-      if (results.length > 0) {
-        setCastData(results);
+      if (results.data.success) {
+        setCastData(results.data.list);
       }
 
       setNumLoaded((val) => val + 1);

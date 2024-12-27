@@ -81,7 +81,7 @@ module.exports.getTrailers = async (req, res, next) => {
       "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
     );
 
-    let results = response?.data?.results.map((item) => {
+    let result = response?.data?.results.map((item) => {
       return {
         id: item.id,
         name: item.title ? item.title : item.name,
@@ -93,12 +93,12 @@ module.exports.getTrailers = async (req, res, next) => {
       };
     });
 
-    results = results.filter((item) => {
+    result = result.filter((item) => {
       return item.originalLanguage === "en";
     });
 
     const trailerData = await Promise.all(
-      results.map(async (item) => {
+      result.map(async (item) => {
         const videos = await tmdbClient.get(
           `https://api.themoviedb.org/3/movie/${item.id}/videos?language=en-US`
         );
@@ -117,7 +117,7 @@ module.exports.getTrailers = async (req, res, next) => {
       })
     );
 
-    results = results.map((item) => {
+    result = result.map((item) => {
       const data = trailerData.filter(({ id }) => id === item.id)[0];
 
       if (data.officalTrailers?.length !== 0) {
@@ -133,7 +133,7 @@ module.exports.getTrailers = async (req, res, next) => {
       }
     });
 
-    return res.status(200).json({ success: true, list: results });
+    return res.status(200).json({ success: true, list: result });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ success: false, message: error.message });

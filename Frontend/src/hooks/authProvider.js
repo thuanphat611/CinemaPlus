@@ -12,7 +12,6 @@ const AuthProvider = ({ children }) => {
       try {
         const url = "http://localhost:3030/api/v1/auth/validate";
         const response = await axios.get(url, { withCredentials: true });
-        // console.log(response);
 
         setAuth(response.data.success);
         setUser(response.data.user);
