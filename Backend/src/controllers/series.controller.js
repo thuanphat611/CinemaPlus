@@ -29,7 +29,7 @@ module.exports.getPopular = async (req, res, next) => {
 module.exports.getDetail = async (req, res, next) => {
   try {
     const url = `https://api.themoviedb.org/3/tv/${req.params.id}?language=en-US`;
-    const seriesDetail = await getDetailFromAPI(url, "movie");
+    const seriesDetail = await getDetailFromAPI(url, "tv");
 
     return res.status(200).json({ success: true, detail: seriesDetail });
   } catch (error) {

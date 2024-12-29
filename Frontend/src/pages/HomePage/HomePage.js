@@ -161,6 +161,7 @@ function HomePage({ props }) {
       if (results.data.success) {
         setSeriesData(results.data.list.slice(1, results.data.list.length));
 
+        console.log(results.data.list);
         const highlightSeries = await axios(
           `http://localhost:3030/api/v1/series/detail/${results.data.list[0].id}`
         );

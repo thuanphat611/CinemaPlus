@@ -1,5 +1,7 @@
 const { tmdbClient } = require("../utils");
 
+const castCardImagePlaceholder = "https://placehold.co/230x280?text=No+Image";
+
 module.exports.getTrending = async (req, res, next) => {
   try {
     let response = await tmdbClient.get(

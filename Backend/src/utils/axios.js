@@ -1,5 +1,8 @@
 const axios = require("axios");
 
+const movieCardImagePlaceholder = "https://placehold.co/200x280?text=No+Image";
+const backdropImagePlaceholder = "https://placehold.co/1200x700?text=No+Image";
+
 const tmdbClient = axios.create({
   baseURL: "http://localhost:3033",
   headers: {

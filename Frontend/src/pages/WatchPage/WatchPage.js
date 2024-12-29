@@ -14,6 +14,7 @@ function WatchPage({ props }) {
   const { id, season, episode } = useParams();
 
   const [data, setData] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function WatchPage({ props }) {
       setData(response);
     };
     getData();
-  }, []);
+  }, [id, type]);
 
   return (
     <div className={cx("content")}>
