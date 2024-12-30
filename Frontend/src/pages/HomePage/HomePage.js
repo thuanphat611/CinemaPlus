@@ -3,10 +3,7 @@ import { LuLoader2 } from "react-icons/lu";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
-import Header from "../../components/Header/Header";
-import CardSlider from "../../components/CardSlider/CardSlider";
-import TrailerSection from "../../components/TrailerSection/TrailerSection";
-import Footer from "../../components/Footer/Footer";
+import { Header, Footer, CardSlider, TrailerSection } from "../../components";
 
 import styles from "./HomePage.module.scss";
 import {

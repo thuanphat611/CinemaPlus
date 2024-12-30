@@ -16,7 +16,7 @@ import axios from "axios";
 
 import logo from "../../assets/images/logo.png";
 import blankProfilePic from "../../assets/images/blank-profile.png";
-import { useAuth } from "../../hooks/authProvider";
+import { useAuth } from "../../hooks";
 
 const cx = classNames.bind(styles);
 

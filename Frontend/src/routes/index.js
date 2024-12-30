@@ -1,40 +1,38 @@
-import HomePage from "../pages/HomePage/HomePage";
-import DetailPage from "../pages/DetailPage/DetailPage";
-import WatchPage from "../pages/WatchPage/WatchPage";
+import { HomePage, DetailPage, WatchPage } from "../pages";
 
 const publicRoutes = [
   {
-    path: '/', 
+    path: "/",
     component: HomePage,
-    props: {}
+    props: {},
   },
   {
-    path: 'movie/detail/:id', 
+    path: "movie/detail/:id",
     component: DetailPage,
     props: {
-      type: 'movies'
-    }
+      type: "movies",
+    },
   },
   {
-    path: 'series/detail/:id', 
+    path: "series/detail/:id",
     component: DetailPage,
     props: {
-      type: 'series'
-    }
+      type: "series",
+    },
   },
   {
-    path: 'movie/watch/:id', 
+    path: "movie/watch/:id",
     component: WatchPage,
     props: {
-      type: 'movie'
-    }
+      type: "movie",
+    },
   },
   {
-    path: 'series/watch/:id/:season/:episode', 
+    path: "series/watch/:id/:season/:episode",
     component: WatchPage,
     props: {
-      type: 'series'
-    }
+      type: "series",
+    },
   },
 ];
 

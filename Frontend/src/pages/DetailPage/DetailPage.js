@@ -7,13 +7,10 @@ import { FaMoneyBills } from "react-icons/fa6";
 import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
-import Header from "../../components/Header/Header";
-import CardSlider from "../../components/CardSlider/CardSlider";
-import TrailerSection from "../../components/TrailerSection/TrailerSection";
-import Footer from "../../components/Footer/Footer";
+import { Header, Footer, CardSlider, TrailerSection } from "../../components";
 
 import styles from "./DetailPage.module.scss";
-import { MovieOverview, EpisodeSection   } from "./components";
+import { MovieOverview, EpisodeSection } from "./components";
 
 const cx = classNames.bind(styles);
 
