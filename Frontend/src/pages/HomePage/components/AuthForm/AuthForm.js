@@ -79,7 +79,7 @@ function AuthForm({ display, setDisplay }) {
     }
 
     try {
-      let url = "http://localhost:3030/api/v1/auth/signup";
+      let url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/signup`;
       await axios.post(url, { username, password }, { withCredentials: true });
       setResponseError("");
       setSuccess(true);
@@ -100,7 +100,7 @@ function AuthForm({ display, setDisplay }) {
     }
 
     try {
-      let url = "http://localhost:3030/api/v1/auth/login";
+      let url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/login`;
       await axios.post(url, { username, password }, { withCredentials: true });
       setLoginError("");
       setSuccess(true);

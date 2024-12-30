@@ -54,11 +54,11 @@ function Header({ refList, loading, setAuthDisplay }) {
   useEffect(() => {
     const getResult = async () => {
       const movieList = await axios.get(
-        `http://localhost:3030/api/v1/movies/search?search=${searchText}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/search?search=${searchText}`
       );
 
       const seriesList = await axios.get(
-        `http://localhost:3030/api/v1/series/search?search=${searchText}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/search?search=${searchText}`
       );
 
       const result = [...movieList.data.results, ...seriesList.data.results];
@@ -90,7 +90,7 @@ function Header({ refList, loading, setAuthDisplay }) {
   };
 
   const handleLogout = async () => {
-    const url = "http://localhost:3030/api/v1/auth/logout";
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/logout`;
     await axios.post(url, {}, { withCredentials: true });
     setSignedOut();
     window.location.reload();

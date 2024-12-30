@@ -24,7 +24,7 @@ function WatchPage({ props }) {
       }
 
       const response = await axios.get(
-        `http://localhost:3030/api/v1/series/${id}/seasons`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/${id}/seasons`
       );
       if (response.data.success) {
         setData(response.data.result);

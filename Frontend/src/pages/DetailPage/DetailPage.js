@@ -58,13 +58,13 @@ function DetailPage({ props }) {
       setNumToLoad((val) => val + 1);
 
       let result = await axios.get(
-        `http://localhost:3030/api/v1/${type}/detail/${id}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/detail/${id}`
       );
       setData(result.data.detail);
 
       if (result?.data.detail.collection) {
         const resultCollection = await axios.get(
-          `http://localhost:3030/api/v1/collection/${result.data.detail.collection.id}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/collection/${result.data.detail.collection.id}`
         );
         setCollection(resultCollection.data.detail);
       }
@@ -80,7 +80,7 @@ function DetailPage({ props }) {
       setNumToLoad((val) => val + 1);
 
       const result = await axios.get(
-        `http://localhost:3030/api/v1/${type}/${id}/credit`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/credit`
       );
       setCasts(result.data.credit);
 
@@ -94,7 +94,7 @@ function DetailPage({ props }) {
     const getData = async () => {
       setNumToLoad((val) => val + 1);
       const result = await axios.get(
-        `http://localhost:3030/api/v1/${type}/${id}/videos`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/videos`
       );
       setVideos(result.data.videos);
 

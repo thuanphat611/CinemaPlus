@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const url = "http://localhost:3030/api/v1/auth/validate";
+        const url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/validate`;
         const response = await axios.get(url, { withCredentials: true });
 
         setAuth(response.data.success);
