@@ -1,44 +1,19 @@
 import classNames from "classnames/bind";
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 import styles from "./CardSlider.module.scss";
 import { MovieCard, CastCard, PersonCard } from "./components";
+import useHandler from "./controller";
 
 const cx = classNames.bind(styles);
 
 const CardSlider = React.forwardRef(({ title, source, type, scroll }, ref) => {
-  const sliderTitle = title ? title : "None titled";
-  const sliderContent = useRef(null);
-  const [currentPage, setCurrentPage] = useState(0);
-  const pages = source ? source.length : 0;
-  let slideOffset = 0;
-
-  if (type === "movie") slideOffset = 203;
-  else if (type === "cast") slideOffset = 233;
-
-  useEffect(() => {
-    if (sliderContent) {
-      sliderContent.current.style =
-        "transform: translateX(-" + (slideOffset + 15) * currentPage + "px)"; // tùy theo width và margin left của card
-    }
-  });
-
-  const slideNext = () => {
-    if (currentPage < pages - 1) {
-      setCurrentPage(currentPage + 1);
-    } else {
-      setCurrentPage(0);
-    }
-  };
-
-  const slidePrev = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    } else {
-      setCurrentPage(pages - 1);
-    }
-  };
+  const { sliderTitle, sliderContent, slideNext, slidePrev } = useHandler(
+    title,
+    source,
+    type
+  );
 
   return (
     <div ref={ref} className={cx("container")}>

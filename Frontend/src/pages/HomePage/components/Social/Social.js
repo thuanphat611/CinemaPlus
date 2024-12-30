@@ -1,14 +1,14 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
 import { FaTelegram, FaInstagram } from "react-icons/fa";
 import { LuAtSign } from "react-icons/lu";
 
 import styles from "./Social.module.scss";
+import useHandler from "./controller";
 
 const cx = classNames.bind(styles);
 
 function Social() {
-  const [input, setInput] = useState("");
+  const { input, setInput } = useHandler();
 
   return (
     <div className={cx("container")}>

@@ -1,14 +1,14 @@
 import classNames from "classnames/bind";
 import ReactPlayer from "react-player/youtube";
-import { useState } from "react";
 import { IoPlay } from "react-icons/io5";
 
 import styles from "./TrailerSection.module.scss";
+import useHandler from "./controller";
 
 const cx = classNames.bind(styles);
 
 function TrailerSection({ title, source, horizontal }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeIndex, setActiveIndex } = useHandler();
 
   return (
     <div className={cx("container", { horizontal: horizontal })}>

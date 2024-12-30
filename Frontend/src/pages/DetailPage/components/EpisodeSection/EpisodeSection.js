@@ -1,25 +1,14 @@
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { FaAngleDown } from "react-icons/fa";
 
 import styles from "./EpisodeSection.module.scss";
+import useHandler from "./controller";
 
 const cx = classNames.bind(styles);
 
 function EpisodeSection({ data, id, type }) {
-  const [season, setSeason] = useState(data?.length > 0 ? data.length - 1 : 0);
-
-  useEffect(() => {
-    setSeason(data?.length > 0 ? data.length - 1 : 0);
-  }, [data]);
-
-  const episodeList = [];
-  if (data) {
-    for (var i = 0; i < data[Number(season)].episode_count; i++) {
-      episodeList.push(i + 1);
-    }
-  }
+  const { season, setSeason, episodeList } = useHandler(data);
 
   return (
     <div className={cx("container")}>

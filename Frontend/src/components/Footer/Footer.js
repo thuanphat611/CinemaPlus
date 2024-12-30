@@ -7,7 +7,6 @@ import {
   FaInstagram,
   FaWhatsappSquare,
   FaTwitter,
-  FaMailBulk,
 } from "react-icons/fa";
 
 import styles from "./Footer.module.scss";
