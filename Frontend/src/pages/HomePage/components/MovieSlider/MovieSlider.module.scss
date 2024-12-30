@@ -1,4 +1,5 @@
-@import '../GlobalStyles/responsive.scss';
+@import "../../../../components/GlobalStyles/GlobalStyles.scss";
+@import "../../../../components/GlobalStyles/responsive.scss";
 
 .container {
   width: 100%;
@@ -27,7 +28,7 @@
   z-index: 1;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -50,7 +51,11 @@
     width: unset;
     top: 0;
     right: 0;
-    background: linear-gradient(45deg, rgba(97, 29, 186, 1), rgba(97, 29, 186, 0));
+    background: linear-gradient(
+      45deg,
+      rgba(97, 29, 186, 1),
+      rgba(97, 29, 186, 0)
+    );
   }
 
   @include mobile {
@@ -145,7 +150,7 @@
       font-size: 1rem;
     }
   }
-  
+
   &-score {
     color: var(--white-color);
     font-size: 3rem;
@@ -154,7 +159,7 @@
       font-size: 1.8rem;
     }
   }
-  
+
   &-max-score {
     color: var(--white-color);
     margin-left: 5px;
@@ -199,19 +204,19 @@
   &-0 {
     transform: translateX(0);
   }
-  
+
   &-1 {
     transform: translateX(calc(-203px - 20px));
   }
-  
+
   &-2 {
     transform: translateX(calc(-203px * 2 - 20px * 2));
   }
-  
+
   &-3 {
     transform: translateX(calc(-203px * 3 - 20px * 3));
   }
-  
+
   &-4 {
     transform: translateX(calc(-203px * 4 - 20px * 4));
   }
@@ -226,7 +231,7 @@
   background-color: var(--light-primary-color);
   border: 2px solid var(--white-color);
   border-radius: 15px;
-    
+
   &-link {
     transition: transform 0.5s ease;
   }
@@ -256,7 +261,7 @@
     background-color: var(--light-primary-color);
     border: 2px solid var(--white-color);
     border-radius: 15px;
-      
+
     &-link {
       display: none;
       margin-top: 20px;
@@ -265,11 +270,11 @@
         display: block;
       }
     }
-  
+
     &-link + &-link {
       margin-left: 20px;
     }
-  
+
     &:hover {
       border-color: var(--turquoise-color);
       cursor: pointer;
@@ -278,8 +283,8 @@
   }
 
   &-movie-link {
-    display: none; 
-    
+    display: none;
+
     @include mobile {
       display: block;
       position: absolute;
@@ -331,7 +336,6 @@
     cursor: pointer;
   }
 }
-
 
 .slider-dot-container {
   display: flex;

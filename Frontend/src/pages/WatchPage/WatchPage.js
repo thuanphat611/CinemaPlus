@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LuLoader2 } from "react-icons/lu";
 import classNames from "classnames/bind";
+import axios from "axios";
 
 import style from "./WatchPage.module.scss";
-import Player from "../../components/Player/Player";
-import axios from "axios";
+import { Player } from "./containers";
 
 const cx = classNames.bind(style);
 
@@ -19,6 +19,10 @@ function WatchPage({ props }) {
 
   useEffect(() => {
     const getData = async () => {
+      if (type === "movie") {
+        return;
+      }
+
       const response = await axios.get(
         `http://localhost:3030/api/v1/series/${id}/seasons`
       );

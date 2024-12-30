@@ -1,19 +1,22 @@
 import classNames from "classnames/bind";
 import { LuLoader2 } from "react-icons/lu";
 import { useRef, useState, useEffect } from "react";
+import axios from "axios";
+
+import Header from "../../components/Header/Header";
+import CardSlider from "../../components/CardSlider/CardSlider";
+import TrailerSection from "../../components/TrailerSection/TrailerSection";
+import Footer from "../../components/Footer/Footer";
 
 import styles from "./HomePage.module.scss";
-import Header from "../../components/Header/Header";
-import MovieSlider from "../../components/MovieSlider/MovieSlider";
-import DiscoverBar from "../../components/DiscoverBar/DiscoverBar";
-import AiringSeries from "../../components/AiringSeries/AiringSeries";
-import CardSlider from "../../components/CardSlider/CardSlider";
-import HightlightSection from "../../components/HightlightSection/HighlightSection";
-import TrailerSection from "../../components/TrailerSection/TrailerSection";
-import Social from "../../components/Social/Social";
-import Footer from "../../components/Footer/Footer";
-import AuthForm from "../../components/AuthForm/AuthForm";
-import axios from "axios";
+import {
+  AuthForm,
+  MovieSlider,
+  DiscoverBar,
+  AiringSeries,
+  HighlightSection,
+  Social,
+} from "./components";
 
 const cx = classNames.bind(styles);
 
@@ -241,7 +244,7 @@ function HomePage({ props }) {
           source={topRatedData}
           type="movie"
         />
-        <HightlightSection source={highlightMovie} />
+        <HighlightSection source={highlightMovie} />
         <CardSlider
           ref={refList.seriesRef}
           title="Popular Series"
@@ -255,7 +258,7 @@ function HomePage({ props }) {
           source={animationData}
           type="movie"
         />
-        <HightlightSection source={highlightSeries} />
+        <HighlightSection source={highlightSeries} />
         <CardSlider
           ref={refList.castsRef}
           title="Actors"

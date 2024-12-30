@@ -14,8 +14,8 @@ import { PiArrowFatLeftFill } from "react-icons/pi";
 import { MdLogout } from "react-icons/md";
 import axios from "axios";
 
-import logo from "../../assests/images/logo.png";
-import blankProfilePic from "../../assests/images/blank-profile.png";
+import logo from "../../assets/images/logo.png";
+import blankProfilePic from "../../assets/images/blank-profile.png";
 import { useAuth } from "../../hooks/authProvider";
 
 const cx = classNames.bind(styles);

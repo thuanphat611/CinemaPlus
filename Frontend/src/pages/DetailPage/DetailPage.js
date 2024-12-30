@@ -7,13 +7,13 @@ import { FaMoneyBills } from "react-icons/fa6";
 import { GrStatusInfo } from "react-icons/gr";
 import { IoLanguage } from "react-icons/io5";
 
-import styles from "./DetailPage.module.scss";
 import Header from "../../components/Header/Header";
-import MovieOverview from "../../components/MovieOverview/MovieOverview";
 import CardSlider from "../../components/CardSlider/CardSlider";
-import EpisodeSection from "../../components/EpisodeSection/EpisodeSection";
-import TrailSection from "../../components/TrailerSection/TrailerSection";
+import TrailerSection from "../../components/TrailerSection/TrailerSection";
 import Footer from "../../components/Footer/Footer";
+
+import styles from "./DetailPage.module.scss";
+import { MovieOverview, EpisodeSection   } from "./components";
 
 const cx = classNames.bind(styles);
 
@@ -175,7 +175,7 @@ function DetailPage({ props }) {
         </span>
 
         <span className={cx({ "no-display": videos?.length === 0 })}>
-          <TrailSection
+          <TrailerSection
             title={"Teasers& Trailers"}
             horizontal
             source={videos}
