@@ -4,7 +4,7 @@
 }
 
 .no-display {
-  display: none!important;
+  display: none !important;
 }
 
 .loader {
@@ -24,10 +24,13 @@
   }
 }
 
-
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .section-title {
@@ -47,20 +50,20 @@
     border-radius: 10px;
     align-items: baseline;
     justify-content: space-between;
-    background-color:  var(--light-black-color);
+    background-color: var(--light-black-color);
   }
-  
+
   &-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
   &-title-icon {
     margin-right: 5px;
   }
-  
+
   &-title {
     display: flex;
     align-items: center;
@@ -70,13 +73,13 @@
     font-size: 1.6rem;
     font-weight: 500;
   }
-  
+
   &-content {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   &-value {
     max-width: 350px;
     color: var(--white-color);
@@ -85,7 +88,6 @@
     text-align: center;
   }
 }
-
 
 //production companies-----------------------------
 .production {
@@ -98,7 +100,7 @@
     justify-content: center;
     gap: 30px;
   }
-  
+
   &-company {
     width: 170px;
     height: 170px;

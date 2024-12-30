@@ -9,7 +9,7 @@
   & + & {
     margin-left: 15px;
   }
-    
+
   &:hover .movie-name {
     color: var(--primary-color);
     font-weight: 500;
@@ -48,7 +48,11 @@
   width: 203px;
   height: 288px;
   border-radius: 15px;
-  background: linear-gradient(135deg, rgba(96, 242, 190, 0), rgba(96, 242, 190, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(96, 242, 190, 0),
+    rgba(96, 242, 190, 0.9)
+  );
   box-shadow: 0 0 5px 1px rgba(96, 242, 190, 1);
   position: absolute;
   top: 0;
@@ -64,7 +68,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(45deg, rgba(97, 29, 186, 1), rgba(96, 242, 190, 1));
+  background: linear-gradient(
+    45deg,
+    rgba(97, 29, 186, 1),
+    rgba(96, 242, 190, 1)
+  );
   color: var(--white-color);
   border-radius: 50%;
   font-size: 2.5rem;
@@ -83,7 +91,7 @@
 }
 
 .like-icon {
-  text-align: center  ;
+  text-align: center;
 }
 
 .movie-name {
@@ -96,6 +104,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 }

@@ -34,24 +34,24 @@
     flex: 1;
     overflow: auto;
   }
-  
+
   &-list::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   &-list::-webkit-scrollbar-track {
     background: var(--light-black-color);
   }
-  
+
   &-list::-webkit-scrollbar-thumb {
     background: var(--white-color);
     border-radius: 2px;
   }
-  
+
   &-list::-webkit-scrollbar-thumb:hover {
     background: var(--white-hover-color);
   }
-  
+
   &-item {
     height: 95px;
     display: flex;
@@ -59,16 +59,16 @@
     justify-content: flex-start;
     border-radius: 10px;
   }
-  
+
   &-item:hover {
     cursor: pointer;
     background-color: var(--black-color);
   }
-  
+
   &-item:hover &-name {
     color: var(--primary-color);
   }
-  
+
   &-img {
     width: 150px;
     height: 85px;
@@ -80,7 +80,7 @@
     overflow: hidden;
     user-select: none;
   }
-  
+
   &-info {
     display: flex;
     height: 100%;
@@ -96,6 +96,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }

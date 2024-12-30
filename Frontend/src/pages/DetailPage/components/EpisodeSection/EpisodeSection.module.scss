@@ -38,7 +38,7 @@
   user-select: none;
 
   &-container {
-    height: 100%; 
+    height: 100%;
     margin-bottom: 10px;
     position: relative;
   }
@@ -130,19 +130,19 @@
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   &-item {
     width: 40px;
     height: 40px;
     background-color: var(--black-color);
     border-radius: 5px;
   }
-  
+
   &-item:hover {
     cursor: pointer;
     background-color: var(--primary-color);
   }
-  
+
   &-link {
     display: flex;
     width: 100%;

@@ -18,7 +18,7 @@
   color: var(--white-color);
   align-items: center;
   justify-content: center;
-  
+
   &:hover {
     color: var(--primary-color);
     cursor: pointer;
@@ -58,19 +58,19 @@
     align-items: center;
     gap: 20px;
   }
-  
+
   .progress-bar {
     height: 5px;
     flex: 1;
     background-color: var(--gray-color);
   }
-  
+
   .remaining-time {
     font-size: 1.8rem;
     font-weight: 500;
     color: var(--white-color);
   }
-  
+
   .btn-group {
     display: flex;
     width: 100%;
@@ -106,7 +106,7 @@
     position: relative;
 
     &::before {
-      content: '';
+      content: "";
       width: 200px;
       height: 30px;
       position: absolute;
@@ -119,7 +119,6 @@
       display: block;
     }
   }
-
 
   &-modal {
     display: none;
@@ -135,7 +134,7 @@
   }
 
   &-modal::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 100%;
     right: 10px;
@@ -197,7 +196,7 @@
 }
 
 .no-display {
-  display: none!important;
+  display: none !important;
 }
 
 .hd-label {
