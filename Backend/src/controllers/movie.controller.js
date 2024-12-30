@@ -1,4 +1,11 @@
-const { tmdbClient, getListFromAPI, getDetailFromAPI } = require("../utils");
+const {
+  tmdbClient,
+  getListFromAPI,
+  getDetailFromAPI,
+  getSearchResultFromAPI,
+  getCreditFromAPI,
+  getRelatedTrailerFromAPI,
+} = require("../utils");
 
 module.exports.getTrending = async (req, res, next) => {
   try {
@@ -134,6 +141,44 @@ module.exports.getTrailers = async (req, res, next) => {
     });
 
     return res.status(200).json({ success: true, list: result });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports.getSearchResult = async (req, res, next) => {
+  try {
+    const results = await getSearchResultFromAPI(
+      `https://api.themoviedb.org/3/search/movie?query=${req.query.search}&language=en`,
+      "movie"
+    );
+
+    return res.status(200).json({ success: true, results });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports.getCredit = async (req, res, next) => {
+  try {
+    const credit = await getCreditFromAPI(
+      `https://api.themoviedb.org/3/movie/${req.params.id}/credits?language=en-US`
+    );
+
+    return res.status(200).json({ success: true, credit });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports.getVideos = async (req, res, next) => {
+  try {
+    const videos = await getRelatedTrailerFromAPI(req.params.id, "movie");
+
+    return res.status(200).json({ success: true, videos });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ success: false, message: error.message });
