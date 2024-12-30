@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { ApiErrorHandler } from "../../utils/function";
+
 function useHandler() {
   const [loading, setLoading] = useState(true);
   const [numToLoad, setNumToLoad] = useState(0);
@@ -32,35 +34,37 @@ function useHandler() {
 
     async function getData() {
       setNumToLoad((val) => val + 1);
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/trending`,
+          {
+            params: {
+              count: movieSliderSize + 1,
+            },
+          }
+        );
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/trending`,
-        {
-          params: {
-            count: movieSliderSize + 1,
-          },
+        if (results.data.list.length >= 5) {
+          setMovieSliderData(results.data.list.slice(1, movieSliderSize));
         }
-      );
 
-      if (results.data.list.length >= 5) {
-        setMovieSliderData(results.data.list.slice(1, movieSliderSize));
+        //Get Highlight movie data
+        const random =
+          Math.floor(Math.random() * (results.length - movieSliderSize)) +
+          movieSliderSize;
+        const randomIndex = random < results.length ? random : 0;
+        const highlightMovieId = results.data.list[randomIndex].id;
+
+        const movieDetail = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/detail/${highlightMovieId}`
+        );
+
+        if (movieDetail.data.success) {
+          setHighlightMovie(movieDetail.data.detail);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
-
-      //Get Highlight movie data
-      const random =
-        Math.floor(Math.random() * (results.length - movieSliderSize)) +
-        movieSliderSize;
-      const randomIndex = random < results.length ? random : 0;
-      const highlightMovieId = results.data.list[randomIndex].id;
-
-      const movieDetail = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/detail/${highlightMovieId}`
-      );
-
-      if (movieDetail.data.success) {
-        setHighlightMovie(movieDetail.data.detail);
-      }
-
       setNumLoaded((val) => val + 1);
     }
     getData();
@@ -70,15 +74,17 @@ function useHandler() {
   useEffect(() => {
     async function getData() {
       setNumToLoad((val) => val + 1);
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/popular`
+        );
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/popular`
-      );
-
-      if (results.data.success) {
-        setPopularMoviesData(results.data.list);
+        if (results.data.success) {
+          setPopularMoviesData(results.data.list);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
-
       setNumLoaded((val) => val + 1);
     }
     getData();
@@ -89,12 +95,16 @@ function useHandler() {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/top-rated`
-      );
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/top-rated`
+        );
 
-      if (results.data.success) {
-        setTopRatedData(results.data.list);
+        if (results.data.success) {
+          setTopRatedData(results.data.list);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);
@@ -107,12 +117,16 @@ function useHandler() {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/animation`
-      );
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/animation`
+        );
 
-      if (results.data.success) {
-        setAnimationData(results.data.list);
+        if (results.data.success) {
+          setAnimationData(results.data.list);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);
@@ -125,27 +139,31 @@ function useHandler() {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const numOfItem = 21;
+      try {
+        const numOfItem = 21;
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/popular`,
-        {
-          params: {
-            count: numOfItem + 1,
-          },
-        }
-      );
-
-      if (results.data.success) {
-        setSeriesData(results.data.list.slice(1, results.data.list.length));
-
-        const highlightSeries = await axios(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/detail/${results.data.list[0].id}`
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/popular`,
+          {
+            params: {
+              count: numOfItem + 1,
+            },
+          }
         );
 
-        if (highlightSeries.data.success) {
-          setHighlightSeries(highlightSeries.data.detail);
+        if (results.data.success) {
+          setSeriesData(results.data.list.slice(1, results.data.list.length));
+
+          const highlightSeries = await axios(
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/detail/${results.data.list[0].id}`
+          );
+
+          if (highlightSeries.data.success) {
+            setHighlightSeries(highlightSeries.data.detail);
+          }
         }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);
@@ -158,12 +176,16 @@ function useHandler() {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/trailers`
-      );
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/trailers`
+        );
 
-      if (results.data.success) {
-        setTrailerData(results.data.list);
+        if (results.data.success) {
+          setTrailerData(results.data.list);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);
@@ -176,12 +198,16 @@ function useHandler() {
     async function getData() {
       setNumToLoad((val) => val + 1);
 
-      const results = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/actors`
-      );
+      try {
+        const results = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/actors`
+        );
 
-      if (results.data.success) {
-        setCastData(results.data.list);
+        if (results.data.success) {
+          setCastData(results.data.list);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);

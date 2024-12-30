@@ -73,10 +73,10 @@ function useHandler() {
       await axios.post(url, { username, password }, { withCredentials: true });
       setResponseError("");
       setSuccess(true);
-    } catch (e) {
+    } catch (error) {
       setSuccess(false);
       setResponseError(
-        e?.response?.data?.message ||
+        error?.response?.data?.message ||
           "Some errors occured, please reload the page and try again"
       );
     }
@@ -94,10 +94,10 @@ function useHandler() {
       await axios.post(url, { username, password }, { withCredentials: true });
       setLoginError("");
       setSuccess(true);
-    } catch (e) {
+    } catch (error) {
       setSuccess(false);
       setLoginError(
-        e?.response?.data?.message ||
+        error?.response?.data?.message ||
           "Some errors occured, please reload the page and try again"
       );
     }

@@ -1,6 +1,8 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
 
+import { ApiErrorHandler } from "../utils/function";
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -15,9 +17,10 @@ const AuthProvider = ({ children }) => {
 
         setAuth(response.data.success);
         setUser(response.data.user);
-      } catch (e) {
+      } catch (error) {
         setAuth(false);
         setUser(null);
+        ApiErrorHandler(error);
       }
     };
 

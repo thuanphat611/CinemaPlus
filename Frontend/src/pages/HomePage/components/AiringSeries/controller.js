@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { ApiErrorHandler } from "../../../../utils/function";
+
 function useHandler() {
   const imagePlaceholder = "https://placehold.co/342x513?text=No+Image";
   const emptyData = [
-    {
-      id: "",
-      name: "",
-      poster: imagePlaceholder,
-      bigPoster: imagePlaceholder,
-    },
     {
       id: "",
       name: "",
@@ -92,11 +88,11 @@ function useHandler() {
         );
 
         setLoading(false);
-
         setHighlightSeries(results.data.list[0]);
         setDataList(results.data.list.slice(1, 9));
       } catch (error) {
         setLoading(false);
+        ApiErrorHandler(error);
       }
     };
     getData();

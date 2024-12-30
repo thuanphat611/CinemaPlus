@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import { useAuth } from "../../hooks";
+import { ApiErrorHandler } from "../../utils/function";
 
 function useHandler() {
   const [searchText, setSearchText] = useState("");
@@ -36,16 +37,20 @@ function useHandler() {
   //Get result for searchbar
   useEffect(() => {
     const getResult = async () => {
-      const movieList = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/search?search=${searchText}`
-      );
+      try {
+        const movieList = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/movies/search?search=${searchText}`
+        );
 
-      const seriesList = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/search?search=${searchText}`
-      );
+        const seriesList = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/series/search?search=${searchText}`
+        );
 
-      const result = [...movieList.data.results, ...seriesList.data.results];
-      setSearchResult(result);
+        const result = [...movieList.data.results, ...seriesList.data.results];
+        setSearchResult(result);
+      } catch (error) {
+        ApiErrorHandler(error);
+      }
     };
 
     if (searchText.length === 0) {
@@ -73,10 +78,14 @@ function useHandler() {
   };
 
   const handleLogout = async () => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/logout`;
-    await axios.post(url, {}, { withCredentials: true });
-    setSignedOut();
-    window.location.reload();
+    try {
+      const url = `${process.env.REACT_APP_BACKEND_URL}/api/v1/auth/logout`;
+      await axios.post(url, {}, { withCredentials: true });
+      setSignedOut();
+      window.location.reload();
+    } catch (error) {
+      ApiErrorHandler(error);
+    }
   };
 
   return {

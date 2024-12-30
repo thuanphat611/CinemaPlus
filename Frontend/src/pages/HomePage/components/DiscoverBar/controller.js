@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { ApiErrorHandler } from "../../../../utils/function";
+
 const accessToken = "Bearer " + process.env.REACT_APP_TMBD_ACCESS_TOKEN;
 
 const tmdbClient = axios.create({
@@ -13,17 +15,21 @@ const tmdbClient = axios.create({
 });
 
 const getGenresFromAPI = async () => {
-  const result = {};
+  const result = { movie: [], series: [], all: [] };
 
-  let requestURL = "https://api.themoviedb.org/3/genre/movie/list";
-  let response = await tmdbClient.get(requestURL);
-  result.movie = response?.data.genres;
+  try {
+    let requestURL = "https://api.themoviedb.org/3/genre/movie/list";
+    let response = await tmdbClient.get(requestURL);
+    result.movie = response?.data.genres;
 
-  requestURL = "https://api.themoviedb.org/3/genre/tv/list";
-  response = await tmdbClient.get(requestURL);
-  result.series = response?.data.genres;
+    requestURL = "https://api.themoviedb.org/3/genre/tv/list";
+    response = await tmdbClient.get(requestURL);
+    result.series = response?.data.genres;
 
-  result.all = [...result.movie, ...result.series];
+    result.all = [...result.movie, ...result.series];
+  } catch (error) {
+    ApiErrorHandler(error);
+  }
 
   return result;
 };

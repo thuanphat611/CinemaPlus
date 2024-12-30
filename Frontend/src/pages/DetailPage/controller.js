@@ -2,6 +2,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+import { ApiErrorHandler } from "../../utils/function";
+
 function useHandler(type) {
   const { id } = useParams();
 
@@ -44,16 +46,20 @@ function useHandler(type) {
     const getData = async () => {
       setNumToLoad((val) => val + 1);
 
-      let result = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/detail/${id}`
-      );
-      setData(result.data.detail);
-
-      if (result?.data.detail.collection) {
-        const resultCollection = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/collection/${result.data.detail.collection.id}`
+      try {
+        let result = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/detail/${id}`
         );
-        setCollection(resultCollection.data.detail);
+        setData(result.data.detail);
+
+        if (result?.data.detail.collection) {
+          const resultCollection = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/collection/${result.data.detail.collection.id}`
+          );
+          setCollection(resultCollection.data.detail);
+        }
+      } catch (error) {
+        ApiErrorHandler(error);
       }
 
       setNumLoaded((val) => val + 1);
@@ -66,10 +72,14 @@ function useHandler(type) {
     const getData = async () => {
       setNumToLoad((val) => val + 1);
 
-      const result = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/credit`
-      );
-      setCasts(result.data.credit);
+      try {
+        const result = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/credit`
+        );
+        setCasts(result.data.credit);
+      } catch (error) {
+        ApiErrorHandler(error);
+      }
 
       setNumLoaded((val) => val + 1);
     };
@@ -80,10 +90,15 @@ function useHandler(type) {
   useEffect(() => {
     const getData = async () => {
       setNumToLoad((val) => val + 1);
-      const result = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/videos`
-      );
-      setVideos(result.data.videos);
+
+      try {
+        const result = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/${type}/${id}/videos`
+        );
+        setVideos(result.data.videos);
+      } catch (error) {
+        ApiErrorHandler(error);
+      }
 
       setNumLoaded((val) => val + 1);
     };
