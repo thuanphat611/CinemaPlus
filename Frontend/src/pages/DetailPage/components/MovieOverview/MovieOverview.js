@@ -63,10 +63,10 @@ function MovieOverview({ data, type }) {
             className={cx("play-btn")}
             to={
               "/" +
-              (type === "tv" ? "series" : "movie") +
+              (type === "series" ? "series" : "movie") +
               "/watch/" +
               data?.id +
-              (type === "tv" ? "/0/0" : "")
+              (type === "series" ? "/0/0" : "")
             }
           >
             <IoPlay />
