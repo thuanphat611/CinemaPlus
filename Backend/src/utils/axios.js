@@ -2,6 +2,8 @@ const axios = require("axios");
 
 const movieCardImagePlaceholder = "https://placehold.co/200x280?text=No+Image";
 const backdropImagePlaceholder = "https://placehold.co/1200x700?text=No+Image";
+const searchImagePlaceholder = "https://placehold.co/60x90?text=No+Image";
+const castCardImagePlaceholder = "https://placehold.co/230x280?text=No+Image";
 
 const tmdbClient = axios.create({
   baseURL: "http://localhost:3033",
@@ -117,5 +119,100 @@ module.exports.getDetailFromAPI = async (url, type) => {
     result.director = director[0]?.name;
     result.casts = castList;
   }
+  return result;
+};
+
+module.exports.getSearchResultFromAPI = async (url, type) => {
+  const response = await tmdbClient.get(url);
+  let results = response?.data?.results.map((item) => {
+    return {
+      id: item.id,
+      type: type === "tv" || type === "series" ? "series" : "movie",
+      name: item.title ? item.title : item.name,
+      poster: item.poster_path
+        ? "https://image.tmdb.org/t/p/w92" + item.poster_path
+        : searchImagePlaceholder,
+    };
+  });
+
+  return results;
+};
+
+module.exports.getCollectionFromAPI = async (url) => {
+  const response = await tmdbClient.get(url);
+  let results = response?.data?.parts.map((item) => {
+    return {
+      id: item.id,
+      rating: item.vote_average,
+      name: item.title ? item.title : item.name,
+      originalLanguage: item.original_language,
+      imdb: null,
+      imgURL: "https://image.tmdb.org/t/p/original" + item.backdrop_path,
+      poster: item.poster_path
+        ? "https://image.tmdb.org/t/p/w342" + item.poster_path
+        : movieCardImagePlaceholder,
+    };
+  });
+
+  results = results.filter((item) => {
+    return item.originalLanguage === "en";
+  });
+
+  return results;
+};
+
+module.exports.getCreditFromAPI = async (url) => {
+  let response = await tmdbClient.get(url);
+  let results = {
+    cast: response?.data?.cast?.map((item) => {
+      return {
+        id: item.id,
+        known_for_department: item.known_for_department,
+        name: item.title ? item.title : item.name,
+        poster: item.profile_path
+          ? "https://image.tmdb.org/t/p/w185" + item.profile_path
+          : castCardImagePlaceholder,
+      };
+    }),
+    director: response?.data?.crew
+      ?.filter(
+        (item) => item.job === "Director" && item.department === "Directing"
+      )
+      .map((item) => {
+        return {
+          id: item.id,
+          known_for_department: item.known_for_department,
+          name: item.title ? item.title : item.name,
+          poster: item.profile_path
+            ? "https://image.tmdb.org/t/p/w185" + item.profile_path
+            : castCardImagePlaceholder,
+        };
+      }),
+  };
+
+  return results;
+};
+
+module.exports.getRelatedTrailerFromAPI = async (id, type) => {
+  type = type === "movie" ? "movie" : "tv";
+  let requestURL =
+    "https://api.themoviedb.org/3/" +
+    type +
+    "/" +
+    id +
+    "/videos?language=en-US";
+  const response = await tmdbClient.get(requestURL);
+
+  let result = response?.data?.results.map((item) => {
+    return {
+      name: item.title ? item.title : item.name,
+      site: item.site || "",
+      type: item.type,
+      youtubeKey: item?.key,
+    };
+  });
+
+  result = result.filter((item) => item.site === "YouTube");
+
   return result;
 };
