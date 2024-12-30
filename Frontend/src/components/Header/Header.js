@@ -16,7 +16,6 @@ import axios from "axios";
 
 import logo from "../../assests/images/logo.png";
 import blankProfilePic from "../../assests/images/blank-profile.png";
-import { getSearchResultFromAPI } from "../../api/tmdb";
 import { useAuth } from "../../hooks/authProvider";
 
 const cx = classNames.bind(styles);
@@ -54,19 +53,15 @@ function Header({ refList, loading, setAuthDisplay }) {
   //Get result for searchbar
   useEffect(() => {
     const getResult = async () => {
-      let requestURL =
-        "https://api.themoviedb.org/3/search/movie?query=" +
-        searchText +
-        "&language=en";
-      const movieList = await getSearchResultFromAPI(requestURL, "movie");
+      const movieList = await axios.get(
+        `http://localhost:3030/api/v1/movies/search?search=${searchText}`
+      );
 
-      requestURL =
-        "https://api.themoviedb.org/3/search/tv?query=" +
-        searchText +
-        "&language=en";
-      const seriesList = await getSearchResultFromAPI(requestURL, "tv");
+      const seriesList = await axios.get(
+        `http://localhost:3030/api/v1/series/search?search=${searchText}`
+      );
 
-      const result = [...movieList, ...seriesList];
+      const result = [...movieList.data.results, ...seriesList.data.results];
       setSearchResult(result);
     };
 
@@ -199,6 +194,7 @@ function Header({ refList, loading, setAuthDisplay }) {
                       e.preventDefault();
                       setSearchText("");
                       setSearchOpen((val) => !val);
+                      searchRef.current.focus();
                     }}
                   >
                     <FaMagnifyingGlass />

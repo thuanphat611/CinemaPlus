@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 
 import style from "./WatchPage.module.scss";
 import Player from "../../components/Player/Player";
-import { getSeasonListFromAPI } from "../../api/tmdb";
+import axios from "axios";
 
 const cx = classNames.bind(style);
 
@@ -19,9 +19,12 @@ function WatchPage({ props }) {
 
   useEffect(() => {
     const getData = async () => {
-      const requestURL = "https://api.themoviedb.org/3/" + type + "/" + id;
-      const response = await getSeasonListFromAPI(requestURL, type);
-      setData(response);
+      const response = await axios.get(
+        `http://localhost:3030/api/v1/series/${id}/seasons`
+      );
+      if (response.data.success) {
+        setData(response.data.result);
+      }
     };
     getData();
   }, [id, type]);

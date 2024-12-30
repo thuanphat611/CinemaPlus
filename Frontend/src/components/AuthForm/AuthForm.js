@@ -89,7 +89,6 @@ function AuthForm({ display, setDisplay }) {
         e?.response?.data?.message ||
           "Some errors occured, please reload the page and try again"
       );
-      console.log(e);
     }
   };
 
@@ -111,7 +110,6 @@ function AuthForm({ display, setDisplay }) {
         e?.response?.data?.message ||
           "Some errors occured, please reload the page and try again"
       );
-      console.log(e);
     }
   };
 

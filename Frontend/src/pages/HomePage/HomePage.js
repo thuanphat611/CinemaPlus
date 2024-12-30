@@ -6,7 +6,7 @@ import styles from "./HomePage.module.scss";
 import Header from "../../components/Header/Header";
 import MovieSlider from "../../components/MovieSlider/MovieSlider";
 import DiscoverBar from "../../components/DiscoverBar/DiscoverBar";
-import AiringSeries from "../../components/AiringSeires/AiringSeires";
+import AiringSeries from "../../components/AiringSeries/AiringSeries";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import HightlightSection from "../../components/HightlightSection/HighlightSection";
 import TrailerSection from "../../components/TrailerSection/TrailerSection";
@@ -161,7 +161,6 @@ function HomePage({ props }) {
       if (results.data.success) {
         setSeriesData(results.data.list.slice(1, results.data.list.length));
 
-        console.log(results.data.list);
         const highlightSeries = await axios(
           `http://localhost:3030/api/v1/series/detail/${results.data.list[0].id}`
         );

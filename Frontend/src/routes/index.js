@@ -12,7 +12,7 @@ const publicRoutes = [
     path: 'movie/detail/:id', 
     component: DetailPage,
     props: {
-      type: 'movie'
+      type: 'movies'
     }
   },
   {
