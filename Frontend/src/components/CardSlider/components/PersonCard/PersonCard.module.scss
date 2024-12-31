@@ -1,11 +1,19 @@
+@import "../../../GlobalStyles/responsive.scss";
+
 .container {
-  display: block;
+  display: flex;
+  flex-direction: column;
   flex: none;
+  align-items: center;
   position: relative;
   overflow: hidden;
 
   & + & {
     margin-left: 30px;
+
+    @include mobile {
+      margin-left: 15px;
+    }
   }
 
   &:hover .cast-name {
@@ -23,6 +31,11 @@
   border: 2px solid var(--white-color);
   border-radius: 50%;
   user-select: none;
+
+  @include mobile {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .cast-name {

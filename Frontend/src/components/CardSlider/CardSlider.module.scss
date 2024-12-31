@@ -1,3 +1,5 @@
+@import "../GlobalStyles/responsive.scss";
+
 .container {
   display: flex;
   padding: 0 105px;
@@ -7,6 +9,11 @@
   margin: 80px 0;
   position: relative;
   overflow: hidden;
+
+  @include mobile {
+    margin: 20px 0;
+    padding: 0 20px;
+  }
 }
 
 .header {
@@ -15,12 +22,20 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @include mobile {
+    margin-bottom: 10px;
+  }
 }
 
 .title {
   color: var(--white-color);
   font-size: 2rem;
   font-weight: 500;
+
+  @include mobile {
+    font-size: 1.5rem;
+  }
 }
 
 .view-all {
@@ -73,6 +88,12 @@
     transform: translateY(-50%);
     opacity: 0.5;
     z-index: 2;
+
+    @include mobile {
+      display: flex;
+      width: 50px;
+      height: 50px;
+    }
   }
 
   &-button + &-button {
@@ -83,6 +104,17 @@
   &-button:hover {
     cursor: pointer;
     opacity: 1;
+
+    @include mobile {
+      opacity: 0.5;
+    }
+  }
+
+  &-button:active {
+    @include mobile {
+      opacity: 1;
+      transform: translateY(-50%) scale(0.9);
+    }
   }
 }
 
