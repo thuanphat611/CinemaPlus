@@ -94,6 +94,12 @@
       width: 50px;
       height: 50px;
     }
+
+    @include tablet {
+      display: flex;
+      width: 50px;
+      height: 100px;
+    }
   }
 
   &-button + &-button {
@@ -108,10 +114,19 @@
     @include mobile {
       opacity: 0.5;
     }
+
+    @include tablet {
+      opacity: 0.5;
+    }
   }
 
   &-button:active {
     @include mobile {
+      opacity: 1;
+      transform: translateY(-50%) scale(0.9);
+    }
+
+    @include tablet {
       opacity: 1;
       transform: translateY(-50%) scale(0.9);
     }

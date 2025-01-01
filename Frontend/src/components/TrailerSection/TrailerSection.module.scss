@@ -1,5 +1,15 @@
+@import "../../components/GlobalStyles/responsive.scss";
+
 .container {
   padding: 0 105px;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
 }
 
 .title {

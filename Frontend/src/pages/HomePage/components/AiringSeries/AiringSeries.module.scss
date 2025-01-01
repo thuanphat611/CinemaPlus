@@ -1,3 +1,5 @@
+@import "../../../../components/GlobalStyles//responsive.scss";
+
 .container {
   height: calc(462px + 35px * 2);
   display: flex;
@@ -7,6 +9,14 @@
   background-color: var(--light-black-color);
   border-radius: 25px;
   position: relative;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
 }
 
 .day {

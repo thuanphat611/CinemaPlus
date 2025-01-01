@@ -1,3 +1,5 @@
+@import "../../../../components/GlobalStyles/responsive.scss";
+
 .container {
   width: 100%;
   margin: 80px 0;
@@ -22,17 +24,48 @@
   left: 0;
   box-shadow: 0 0 100px 100px rgb(97, 29, 186);
 
+  @include mobile {
+    width: 70%;
+    justify-content: space-between;
+    background: none;
+    box-shadow: none;
+    padding: 20px 0 20px 10px;
+  }
+
+  @include tablet {
+    background-color: rgba(97, 29, 186, 0.8);
+    box-shadow: 0 0 100px 100px rgba(97, 29, 186, 0.8);
+  }
+
   &-line {
     display: block;
     margin-bottom: 20px;
     color: var(--white-color);
     font-size: 1.7rem;
     font-weight: 300;
+
+    @include mobile {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    @include tablet {
+      margin-bottom: 10px;
+    }
   }
 
   &-title {
     font-weight: 600;
     margin-right: 5px;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -43,12 +76,21 @@
   font-size: 3rem;
   font-weight: 600;
   text-align: start;
+
+  @include mobile {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
 }
 
 .overview {
   flex: 1;
   margin-bottom: 20px;
   overflow: auto;
+
+  @include mobile {
+    display: none;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -76,6 +118,14 @@
     color: var(--white-color);
     font-size: 1.7rem;
     font-weight: 400;
+
+    @include mobile {
+      font-size: 1rem;
+    }
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
   }
 }
 
@@ -94,6 +144,16 @@
   text-align: center;
   border-radius: 5px;
 
+  @include mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 1rem;
+    background: var(--primary-color);
+    color: var(--white-color);
+  }
+
   &:hover {
     opacity: 0.9;
     cursor: pointer;
@@ -109,6 +169,19 @@
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
+
+  @include mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 1rem;
+    background: var(--white-color);
+    color: var(--black-color);
+    font-weight: normal;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
 
   &:hover {
     opacity: 0.8;
@@ -128,4 +201,12 @@
   object-fit: cover;
   background-color: var(--black-color);
   user-select: none;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
 }

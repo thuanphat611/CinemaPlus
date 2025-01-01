@@ -1,3 +1,5 @@
+@import "../../components/GlobalStyles/responsive.scss";
+
 .content {
   min-height: 100vh;
   background-color: var(--black-color);
@@ -7,6 +9,14 @@
 .space-under-slider {
   display: block;
   height: 80px;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
 }
 
 .no-display {
