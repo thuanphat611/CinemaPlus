@@ -1,5 +1,11 @@
+@import "../../../../components/GlobalStyles/responsive.scss";
+
 .container {
   margin: 0 105px 80px;
+
+  @include mobile {
+    margin: 20px 20px 0;
+  }
 }
 
 .content {
@@ -129,6 +135,10 @@
     flex-wrap: wrap;
     align-items: flex-start;
     gap: 10px;
+
+    @include mobile {
+      justify-content: space-between;
+    }
   }
 
   &-item {
@@ -136,6 +146,11 @@
     height: 40px;
     background-color: var(--black-color);
     border-radius: 5px;
+
+    @include mobile {
+      width: 45px;
+      height: 45px;
+    }
   }
 
   &-item:hover {

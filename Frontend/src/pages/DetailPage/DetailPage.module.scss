@@ -1,3 +1,5 @@
+@import "../../components/GlobalStyles/responsive.scss";
+
 .content {
   background-color: var(--black-color);
   min-height: 100vh;
@@ -51,6 +53,14 @@
     align-items: baseline;
     justify-content: space-between;
     background-color: var(--light-black-color);
+
+    @include mobile {
+      margin: 20px 20px 0;
+      padding: 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
   }
 
   &-item {
@@ -111,6 +121,11 @@
     object-fit: contain;
     overflow: hidden;
     user-select: none;
+
+    @include mobile {
+      width: 100px;
+      height: 100px;
+    }
   }
 }
 
@@ -128,4 +143,9 @@
   font-size: 1.7rem;
   font-weight: 700;
   text-align: center;
+
+  @include mobile {
+    width: 100px;
+    height: 100px;
+  }
 }
