@@ -5,7 +5,7 @@ CinemaPlus is a movie streaming platform built using the MERN stack (MongoDB, Ex
 ## Deployment
 - **Live website**: [https://cinemaplus0201.netlify.app/](https://cinemaplus0201.netlify.app/)
   
-**Note**: The server might take some time to respond.
+**Note**: The server might take some time to respond due to free hosting limitations.
 
 ## References
 - **Design reference**: [dribbble.com](https://dribbble.com/shots/24037692-Movie-Website-Case-Study)
